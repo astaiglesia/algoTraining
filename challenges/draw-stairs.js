@@ -17,12 +17,32 @@ drawStairs(6) ->
 
 */
 
-const drawStairs = n => {
+// create a recursive func; accepts a num; returns strings
+     // each pass should log to the console a concatenation of spaces and asterisks for n number of passes
+          // string to concat n-count spaces + count asterisks
+          // log line to console
+     // increment count on recursive call
+const drawStairs = (n, count=0, line='') => {
+  // base case -> ends when count equals n
+  if (count === n) return
 
+  for (let i=0; i<=n-count; i++){
+     line+=' ';
+  }
+  for (let i=0; i<=count; i++){
+     line+='*';
+  }
+  console.log(line);
+
+  return drawStairs(n, count+1)
 };
 
-/* 
+drawStairs(6);
 
+
+
+
+/* 
 Extension:
 Write a function that logs to the console an nxn overlapping '+' and 'X' for a given 
 number n where n must be an odd positive number. Note that each row of the star must
@@ -46,8 +66,29 @@ drawStar(5) ->
 
 */
 
-const drawStar = n => {
+// similar recursive function as above
+  // conditional concats based on "depth" of star defined by input n
+    // if n = 1 -> log '+'
+    // middle line will concat (n-1)/2 dashes on either side of the star
+    // 
 
+const drawStar = (n, count=0, line='') => {
+  // base case -> ends when count equals n
+  if (count === n) return
+
+  for (let i=0; i<=n-count; i++){
+     line+=' ';
+  }
+
+  console.log(line);
+
+  return drawStairs(n, count+1)
 };
 
-module.exports = { drawStairs, drawStar };
+// drawStar(1);
+// drawStar(3);
+// drawStar(5);
+
+
+
+// module.exports = { drawStairs, drawStar };
