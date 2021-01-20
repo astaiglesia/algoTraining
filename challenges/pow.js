@@ -15,14 +15,15 @@
 //    terminate recursion and return output when pow =0 <--- base case
 
 function pow(base, power, output = base) {
-  return (power === 1 ) ? output
+  return (power === 0 ) ? 1       <---- edge case
+      : (power === 1 ) ? output
       : pow(base, power - 1, output * base);
 }
 
  // test cases
  console.log(pow(2,4)) // => 2^4 = 16
  console.log(pow(3,3)) // => 3^3 = 27
-
+ console.log(pow(4,0)) // => 1
 
 /**
  * Extension: Use recursion to solve the problem in O(n) time complexity -> Linear time complexity
@@ -33,8 +34,9 @@ function powRecurse(base, power) {
   // The number of computations for an algorithm in O(n), or linear, time complexity increases in direct proportion to the size of the input data. 
   // In this case, the power is the dictating variable as its size directly determines the number of iterations with recursive calls occuring only once per pass.
   // Therefore, the function as written above and below are in O(n) time complexity.
-  return (power === 1 ) ? output
-  : pow(base, power - 1, output * base)
+  return (power === 0 ) ? 1
+      : (power === 1 ) ? output
+      : pow(base, power - 1, output * base);
 }
 
 module.exports = { pow, powRecurse };
