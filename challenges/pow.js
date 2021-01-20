@@ -15,7 +15,7 @@
 //    terminate recursion and return output when pow =0 <--- base case
 
 function pow(base, power, output = base) {
-  return (power === 0 ) ? 1       <---- edge case
+  return (power === 0 ) ? 1       // <---- edge case
       : (power === 1 ) ? output
       : pow(base, power - 1, output * base);
 }
