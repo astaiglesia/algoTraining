@@ -28,19 +28,24 @@ After sorting, think about how to merge the intervals together.
 // # assume unordered intervals   ## assume at least one array
 // sort the intervals 
 // merge the intervals
-
+// edge case - empty input array
 const mergeRanges = (intervals, output = [], sortedArr = intervals.sort((a,b) => a[0]-b[0])) => {
-//   console.log(sortedArr);
+  // console.log(sortedArr);
     // base case
-    if (intervals.length === 1) return output;  // ### refactor base case! almost there -> handle end of array
+    if (!sortedArr[0]) return output;  
+    if (!sortedArr[1]) {output.push(sortedArr[0]); return output};  
 
     // recursive case
-    // if no overlap of first element
     let newSort;
+    // if no overlap of first element
     if (sortedArr[0][1] < sortedArr[1][0]) {
       output.push(sortedArr[0]);
       newSort = sortedArr.slice(1);
-    } else {
+    } 
+    else if (sortedArr[0][1] > sortedArr[1][1]) {
+      newSort = [sortedArr[0]].concat(sortedArr.slice(2));
+    }  
+    else {
       // merge overlaps
       const temp = [sortedArr[0][0], sortedArr[1][1]]
       newSort = sortedArr.slice(2);
@@ -57,5 +62,17 @@ console.log(mergeRanges(intervals)); //-> [[0, 1], [3, 8], [9, 12]]
 
 intervals = [[8, 10], [15, 18], [1, 3], [2, 6]]
 console.log(mergeRanges(intervals)); //-> [[1, 6], [8, 10], [15, 18]]
+
+intervals = [[0, 1], [3, 5], [4, 8], [10, 12], [9, 10], [4, 9]];
+console.log(mergeRanges(intervals)); //->[[0, 1], [3, 12]]
+
+intervals = [[0, 1], [3, 5], [4, 8], [10, 12], [9, 10]];
+console.log(mergeRanges(intervals)); //-> [[0, 1], [3, 8], [9, 12]])
+
+intervals = [[0, 4], [1, 3], [2, 4], [0, 5]];
+console.log(mergeRanges(intervals)); //->[0, 5]
+
+intervals = [];
+console.log(mergeRanges(intervals)); //->
 
 module.exports = {mergeRanges};
