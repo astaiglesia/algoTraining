@@ -22,7 +22,7 @@ calculate profit along the array.
 
 // function accepts an array; returns a value
 // --- input array contains values in chrono order
-// --- iterate through array to find the greatest difference between 2 elements
+// --- nested iteration through array to find the greatest difference between 2 elements -> find difference between each element (i.e. all combos)
 // ------ store differences in a cache; return Math.max of collection?
 // edge cases/considerations: 
 // - no need to track inputs
@@ -30,20 +30,28 @@ calculate profit along the array.
 // - or invalid input -> i.e. values are not a number
 // ### USE max O(n^2) time complexity 
 
-const highestProfit = (apple_stock, storage = []) => {
-  if (typeof apple_stock[0] !== 'number' ) return 0                                         // invalid inputs ### refactor for edge cases
-  if (apple_stock.length === 1) return Math.max(...storage)                                 // base case    
-  
-  if (apple_stock[0] > apple_stock[1] ) return highestProfit(apple_stock.slice(1), storage)  // decreasing stock value
+const highestProfit = (apple_stock, current = 0, next = 1, storage = []) => {
+  if (typeof(apple_stock[current]) !== 'number' || apple_stock.length === 1) return 0;    // edge cases -> handle invalid inputs 
+  if (!Array.isArray(apple_stock)) return 0;  
 
-  // increasing stock value -> check if the subsequent values are increasing
-  for (let i = 1; i < apple_stock.length || apple_stock[i] < apple_stock[0]; i++) {
-    if (apple_stock[0] < apple_stock[i]) {
-        storage.push(apple_stock[i] - apple_stock[0]);
-    }
+  // base case 
+  if (current === apple_stock.length-1) {
+    const output = Math.max(...storage);
+    return (output > 0) ? output : 0;
   }
   
-  return highestProfit(apple_stock.slice(1), storage)
+  // recursive case
+  if (next === apple_stock.length) {                                                      // increment current; reset next 
+    current += 1; 
+    next = current + 1;
+  }      
+
+  else {
+    storage.push(apple_stock[next] - apple_stock[current]);                               // store diff, recurse to the next+1
+    next += 1;  
+  }
+ 
+  return highestProfit(apple_stock, current, next, storage);
 }
 
 // test cases
@@ -51,10 +59,16 @@ console.log(highestProfit({0: 10, 1: 5, 2: 0})) //toEqual(0);
 console.log(highestProfit('stocks')) //toEqual(0);
 console.log(highestProfit(1000)) //toEqual(0);
 
-stocks = [0, 2000, 4000, 6000, 8000, 10000];
+let stocks = [0, 2000, 4000, 6000, 8000, 10000];
 console.log(highestProfit(stocks)); //toEqual(10000);
+
+stocks = [200, 600, 700, 100, 300, 200, 620];
+console.log(highestProfit(stocks)) //.toEqual(520);
 
 stocks = [1000, 500, 1000, 1500, 0, 200, 800, -10, 0, 100];
 console.log(highestProfit(stocks)) // toEqual(1000);
+
+stocks = [100, 90, 70, 40, 0];
+console.log(highestProfit(stocks)) // toEqual(0);
 
 module.exports = {highestProfit}
