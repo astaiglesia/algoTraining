@@ -7,10 +7,8 @@
     "test": "jest",
     "test-hh": "bash ./scripts/run-test.sh"
   },
-  "dependencies": {
-
-  },
-  "devDependencies": { 
+  "dependencies": {},
+  "devDependencies": {
     "jest": "^24.9.0"
   },
   "repository": {

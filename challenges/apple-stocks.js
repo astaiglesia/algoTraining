@@ -30,39 +30,39 @@ calculate profit along the array.
 // - or invalid input -> i.e. values are not a number
 // ### USE max O(n^2) time complexity 
 
-// const highestProfit = (apple_stock, current = 0, next = 1, storage = []) => {
-//   if (typeof(apple_stock[current]) !== 'number' || apple_stock.length === 1) return 0;    // edge cases -> handle invalid inputs 
-//   if (!Array.isArray(apple_stock)) return 0;  
+const highestProfit = (apple_stock, current = 0, next = 1, storage = []) => {
+  if (typeof(apple_stock[current]) !== 'number' || apple_stock.length === 1) return 0;    // edge cases -> handle invalid inputs 
+  if (!Array.isArray(apple_stock)) return 0;  
 
-//   // base case 
-//   if (current === apple_stock.length-1) {
-//     const output = Math.max(...storage);
-//     return (output > 0) ? output : 0;
-//   }
+  // base case 
+  if (current === apple_stock.length-1) {
+    const output = Math.max(...storage); // ---> instad of an array, use a storage variable and assign the profit if greater than current profit
+    return (output > 0) ? output : 0;
+  }
   
-//   // recursive case
-//   if (next === apple_stock.length) {                                                      // increment current; reset next 
-//     current += 1; 
-//     next = current + 1;
-//   }      
+  // recursive case
+  if (next === apple_stock.length) {                                                      // increment current; reset next 
+    current += 1; 
+    next = current + 1;
+  }      
 
-//   else {
-//     storage.push(apple_stock[next] - apple_stock[current]);                               // store diff, recurse to the next+1
-//     next += 1;  
-//   }
+  else {
+    storage.push(apple_stock[next] - apple_stock[current]);                               // store diff, recurse to the next+1
+    next += 1;  
+  }
  
-//   return highestProfit(apple_stock, current, next, storage);
-// }
-
-const highestProfit = (apple_stock, storage = [], current = 0, next = 1) => {
-  // console.log (current, next, storage);
-  return (typeof(apple_stock[current]) !== 'number' || apple_stock.length === 1) ? 0
-      :  (!Array.isArray(apple_stock)) ? 0    
-      :  (current === apple_stock.length-1 && Math.max(...storage) <  0) ? 0
-      :  (current === apple_stock.length-1 && Math.max(...storage) >  0) ? Math.max(...storage) 
-      :  (next === apple_stock.length) ? highestProfit(apple_stock, storage, current + 1, current + 2)
-      :  highestProfit(apple_stock, storage.concat([apple_stock[next] - apple_stock[current]]), current, next + 1)
+  return highestProfit(apple_stock, current, next, storage);
 }
+
+// const highestProfit = (apple_stock, storage = [], current = 0, next = 1) => {
+//   // console.log (current, next, storage);
+//   return (typeof(apple_stock[current]) !== 'number' || apple_stock.length === 1) ? 0
+//       :  (!Array.isArray(apple_stock)) ? 0    
+//       :  (current === apple_stock.length-1 && Math.max(...storage) <  0) ? 0
+//       :  (current === apple_stock.length-1 && Math.max(...storage) >  0) ? Math.max(...storage) 
+//       :  (next === apple_stock.length) ? highestProfit(apple_stock, storage, current + 1, current + 2)
+//       :  highestProfit(apple_stock, storage.concat([apple_stock[next] - apple_stock[current]]), current, next + 1)
+// }
 
 // test cases
 console.log(highestProfit({0: 10, 1: 5, 2: 0})) //toEqual(0);
