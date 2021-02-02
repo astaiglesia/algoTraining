@@ -21,11 +21,30 @@ retrieveDepth([2, [4, [7], 1], 5], 3) -> [2, 4, 7, 1, 5] because every number
 is within "depth 3". No number is deeper.
 
 */
-
-const retrieveDepth = (arr, depth) => {
+// function acepts args of an array of numbers and an integer value; returns an array
+// -- iterate through array and populate an output array 
+// -- push elements from input array up to depth of input integer, bypassing the rest 
+// -- handle edge cases?
+const retrieveDepth = (arr, depth, output = []) => {
+  if (arr.length === 0) return output;
+  if (depth === 0) return retrieveDepth;
   
+  // if element is a numnber
+  if (typeof arr[0] === 'number') output.push(arr[0])
+  
+  // if element is an array - recursive call to just that element, decrementing depth
+  else if (Array.isArray(arr[0])) {                
+    retrieveDepth(arr[0], depth - 1, output)
+  }
+  
+  return retrieveDepth(arr.slice(1), depth, output);
 };
 
+
+// test cases
+console.log(retrieveDepth([2, [4, [7], 1], 5], 1) ); // -> [2, 5] 
+console.log(retrieveDepth([2, [4, [7], 1], 5], 2) ); // -> [2, 4, 1, 5] 
+console.log(retrieveDepth([2, [4, [7], 1], 5], 3) ); // -> [2, 4, 7, 1, 5] 
 /*
 
 Extension:
@@ -53,8 +72,31 @@ flattened array
 
 */
 
+// function acepts args of an array of numbers and an integer value; returns an array
+// -- iterate through array and populate an output array 
+// -- push elements from input array up to depth of input integer, bypassing deeper dimensions
+// -- handle edge cases?
 const flattenDepth = (arr, depth) => {
+  return arr.flat(depth);
+
+  // if (arr.length === 0) return output;
+  // if (depth === 0) return flattenDepth;
+
+  // // if element is a numnber
+  // if (Array.isArray(arr[0])) output.push(arr[0])
   
+  // // if element is an array - recursive call to just that element, decrementing depth
+  // else if (Array.isArray(arr[0])) {               
+  //   flattenDepth(arr[0], depth - 1, output)
+  // }
+  
+  // return flattenDepth(arr.slice(1), depth, output);
 };
+
+console.log(flattenDepth([2, [4, [7], 1], 5], 0));
+console.log(flattenDepth([2, [4, [7], 1], 5], 1));
+console.log(flattenDepth([2, [4, [7], 1], 5], 2));
+console.log(flattenDepth([2, [4, [7], 1], 5], 3));
+
 
 module.exports = {retrieveDepth, flattenDepth};
