@@ -25,17 +25,32 @@ is within "depth 3". No number is deeper.
 // -- iterate through array and populate an output array 
 // -- push elements from input array up to depth of input integer, bypassing the rest 
 // -- handle edge cases?
+// const retrieveDepth = (arr, depth, output = []) => {
+//   if (arr.length === 0) return output;
+//   if (depth === 0) return retrieveDepth;
+  
+//   // if element is a numnber
+//   if (typeof arr[0] === 'number') output.push(arr[0])
+  
+//   // if element is an array - recursive call to just that element, decrementing depth
+//   else if (Array.isArray(arr[0])) {                
+//     retrieveDepth(arr[0], depth - 1, output)
+//   }
+  
+//   return retrieveDepth(arr.slice(1), depth, output);
+// };
+
+// ----- refactor solution
 const retrieveDepth = (arr, depth, output = []) => {
   if (arr.length === 0) return output;
   if (depth === 0) return retrieveDepth;
   
-  // if element is a numnber
-  if (typeof arr[0] === 'number') output.push(arr[0])
-  
   // if element is an array - recursive call to just that element, decrementing depth
-  else if (Array.isArray(arr[0])) {                
+  if (Array.isArray(arr[0])) {                
     retrieveDepth(arr[0], depth - 1, output)
   }
+  // if element is a value
+  else output.push(arr[0])
   
   return retrieveDepth(arr.slice(1), depth, output);
 };
