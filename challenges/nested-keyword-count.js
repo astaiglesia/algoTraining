@@ -11,23 +11,29 @@ keywordCount(['blah', 'key', ['inside', ['really inside']]], 'lol') -> 0
 // func accepts an array and a string; returns a number
 // iterate through array and count how many times the string matches the element
 // --- increment match
-const keywordCount = (array, keyword, element = 0, match = 0) => {
-    if (array[element] === 'undefined') return keywordCount
-    if (array.length === element) return match
-    
-    if (array[element] === keyword) match +=1
-    if (Array.isArray(array[element])) keywordCount(array[element], keyword, 0, match)
-  
-    return keywordCount(array, keyword, element + 1, match)
-  };
-  
-// const keywordCount = (array, keyword, flatArr = array.flat(Infinity), match = 0) => {
-//   if (flatArr.length === 0) return match
-  
-//   if (flatArr[0] === keyword) match +=1
+// --- ### no string, no array, invalid input, empty array/no matching keyword
+// create counter
+iterate
+if el = keyword, increment counter
 
-//   return keywordCount(array, keyword, flatArr.slice(1), match)
-// };
+
+// const keywordCount = (array, keyword, element = 0, match = 0) => {
+//     if (array[element] === 'undefined') return keywordCount
+//     if (array.length === element) return match
+    
+//     if (array[element] === keyword) match +=1
+//     if (Array.isArray(array[element])) keywordCount(array[element], keyword, 0, match)
+  
+//     return keywordCount(array, keyword, element + 1, match)
+//   };
+  
+const keywordCount = (array, keyword, flatArr = array.flat(Infinity), match = 0) => {
+  if (flatArr.length === 0) return match
+  
+  if (flatArr[0] === keyword) match +=1
+
+  return keywordCount(array, keyword, flatArr.slice(1), match)
+};
 
 
 // test cases
@@ -51,8 +57,18 @@ keywordMode([['ace', 'cool'], ['hi'], 'cool']) -> ['cool']
 // implement a frequency table where element is the key with an initial value of 1
 // -- subsequent occurences will increment increment the value
 // 
-const keywordMode = array => {
+const keywordMode = (array, storage = {}) => {
+
+
+  for (const ele of array) {
+    if (Array.isArray(storage[ele])) keywordMode(array, storage)
+    else if (!storage[ele]) storage[ele] = 1
+    else storage[ele] += 1
+  }
   
 };
+
+console.log(keywordMode([['cars', 'bat'], 'apple', 'bat', 'cars'])); // -> ['bat', 'cars']
+console.log(keywordMode([['ace', 'cool'], ['hi'], 'cool'])); // -> ['cool']
 
 module.exports = {keywordCount, keywordMode};
