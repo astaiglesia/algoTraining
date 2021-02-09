@@ -6,11 +6,30 @@ to the array prototype while solving the problem.
 
 */
 
-const reverseArray = array => {
-  
+// func accepts an array; returns a mutated array
+// modify array in place
+// --- push ele at pointer (initialized to array.length -1)
+// --- splice the array to remove the pointer element(duplicate)
+// --- recursive call with pointer decremented by 1
+// --- terminate recursion when pointer less than 0
+// --- return array
+// edge cases -> ???
+// ### DO NOT CREATE A NEW ARRAY or REVERSE ARRAY METHOD
+
+const reverseArray = (array, pointer = array.length-1) => {
+  if (pointer < 0) return array
+  array.push(array[pointer]);                    
+  array.splice(pointer, 1);
+  return reverseArray(array, pointer-1)
 };
 
+
+// test cases
+const test1 = [100, 200, 300, 400, 500]
+console.log(reverseArray(test1)); // => [500, 400, 300, 200, 100]
+
 /*
+
 
 Extension: (recommended to solve reverseArray first)
 
