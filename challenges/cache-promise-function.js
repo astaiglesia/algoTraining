@@ -18,9 +18,15 @@ Use an object store for the cache, as the function parameter may be any value
 that's convertable to JSON. (This is just the memoize problem)
 
 */
-
-const memoize = func => {
-  
+// function accepts a callback and returns a function
+// - inner func to create a cache object using closure
+// - if property of innerParam does not exist set it to the eval result of running callback on the inner param
+// - return the stored value
+const memoize = (func, cache = {}) => {
+  return (innerParam) => {
+    if (!cache[innerParam]) cache[innerParam] = func(innerParam)
+    return cache[innerParam]
+  }
 };
 
 /*
@@ -62,13 +68,16 @@ to be axios.get, although you could think of it as being something similar.
 Don't worry about promise rejections/errors or using .catch()
 
 Hint: look up Promise.resolve - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve
-
+---> returns a promise object that is resolved with a given value
 */
 
 // "get" is a p-function, that is, a function that takes in a url-string and
 // returns a promise
-const cachePromiseFunction = get => {
-  
+const cachePromiseFunction = (get, cache = {}) => {
+  return (url) => {
+    if (!cache[url]) cache[url] = get(url).then(data => Promise.resolve(data))
+    return cache[url]
+  }
 };
 
 
