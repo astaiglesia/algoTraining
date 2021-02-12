@@ -13,9 +13,40 @@ console.table(matrixTranspose(twoDimArray)); // -> [['fred', 30, true],
 
 */
 
-const matrixTranspose = matrix => {
+// function accepts a 2d array; returns a 2d array
+// --- iterate through the matrix array
+// --- output array should combine all elements of subarrays at a given index 
+// --- populate output array
+// edge cases -> non matrix array
+const matrixTranspose = (matrix, output = [], counter = 1, subcount = 0) => {
+    // base case
+    //   if (counter === matrix.length) return output
+    //   if (subcount === matrix[counter].length) return output
+    
+  // output defaulted to create the subarrays
+  matrix[0].forEach((ele) => output.push([ele]))
+  // iteration through outer array
+  for (let i = 1; i < matrix.length; i++) {
+    // iterate through inner array
+    for (let j = 0; j < matrix[i].length; j++) {
+      
+    }
+
+  }
+
+      
+
+// return matrixTranspose(matrix, output, counter + 1, subcount);
 
 };
+
+
+// test case
+const twoDimArray = [ ['fred', 'barney'], [30, 40], [true, false] ];
+                      
+console.table(matrixTranspose(twoDimArray)); // -> [['fred', 30, true], ['barney', 40, false]]
+
+
 
 /*
 
