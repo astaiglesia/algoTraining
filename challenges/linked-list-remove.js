@@ -25,8 +25,29 @@ function Node(val) {
   this.next = null;
 }
 
+// function to accept a ll and a val; return mutated ll
 const linkedListRemove = (ll, val) => {
-
+  
+  // use pointers for prev, current, next
+  let previous = null;
+  let current = ll.head;
+  let next = current.next;
+  
+  // traverse the ll with a conditional to search for the passed in value in current.val
+  // --- while statement to reassign pointers until value is found
+  while (current.val !== val || next) {
+    next = current.next.next;
+    current = current.next;
+    previous = current;
+  }
+  
+  // if found, reassign previous.next to next.val 
+  if (current.val === val) {
+    previous.next = next;
+  }
+  
+  // return mutated ll
+  return ll
 };
 
 
