@@ -31,7 +31,7 @@ const linkedListRemove = (ll, val) => {
   // use pointers for prev, current, next
   let previous = null;
   let current = ll.head;
-  let next = current.next;
+  let next = current.next; // <--- ### Not necessary -refactor
   
   // traverse the ll with a conditional to search for the passed in value in current.val
   // --- while statement to reassign pointers until value is found

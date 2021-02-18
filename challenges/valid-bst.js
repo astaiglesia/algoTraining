@@ -1,3 +1,8 @@
+function BinaryTree(value) {
+  this.value = value;
+  this.left = null;
+  this.right = null;
+}
 /* 
   Given a node representing the root of a binary tree, write a function to check if it is a valid binary *search* tree. 
   
@@ -33,15 +38,30 @@
 
 */
 
+// function to accept a node; returns a boolean
+// conditional statements ->  true if:
+// -- tree.value is greater than sum of recursively calling all nodes to the left
+// ---- &&
+// -- tree.value is less than the sum of recursively calling all nodes to the right
+// -- false if: tree.value === tree.left.value || tree.right.value
+// use recursion; need pointers to indicate current, left branch and right branch
+// --- use a helper function...
 
-function BinaryTree(value) {
-  this.value = value;
-  this.left = null;
-  this.right = null;
-}
+const validBST = (tree, current = tree, leftTree = tree.left, rightTree = tree.right, sum = 0) => {
+  if (current.value === left.value || current.value === right.value) return false
+  if (current.value < left.value || current.value > right.value) return false
 
-const validBST = tree => {
+  while (current.left !== null) {
+    // reassign sum
+    sum += leftTree.value;
+    // reassign current
+    // recursive call to the left
+    // recursive call to the right
+    // conditional to check sums
+    current 
+  }
 
+  return true
 }
 
 module.exports = { BinaryTree, validBST };
