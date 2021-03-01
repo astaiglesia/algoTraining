@@ -1,8 +1,3 @@
-function BinarySearchTree(value) {
-  this.value = value;
-  this.right = null;
-  this.left = null;
-}
 
 
 /*
@@ -16,21 +11,62 @@ function.
 
 Ex:
 
-     4
-   /   \
-  2     7
- / \     \
+4
+/   \
+2     7
+/ \     \
 1   3     9
-         /
-        8
+/
+8
 
-returns 8, becuase 9 - 1 = 8
+returns 8, because 9 - 1 = 8
+
+*/
+
+function BinarySearchTree(value) {
+  this.value = value;
+  this.right = null;
+  this.left = null;
+}
+/* ---------------------------
+given: bst root; return: num
+-- traverse the bst and push each value into an array/queue
+-- determine the min and max vals
+-- return the difference between min and max
 
 */
 
 const bstMinMax = root => {
+  const queue = [];
+  queue.push(root.value);
+  if (root.left === null && root.right === null) return 0
+
+  if (root.left) queue.push(root.left.value);
+  if (root.right) queue.push(root.right.value);
   
+  console.log(queue);
+  // while (root.left) {
+  //   queue.push(root.left);
+  //   bstMinMax(root.left);
+  // }
+  
+  // while (root.right) {
+  //   queue.push(root.right);
+  //   bstMinMax(root.right);
+  // }
+
+  const max = Math.max(...queue);
+  const min = Math.min(...queue);
+  console.log('max and min', max, min);
+
+  return max-min;
 };
+
+
+
+
+
+
 
 /*
 
