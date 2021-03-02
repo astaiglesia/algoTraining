@@ -23,9 +23,40 @@ and has 3 links.
 
 */
 
+/* ------
+input: root of a bst; return: tallest height of the tree
+create counter variables to track the height
+recursively traverse down the left side to determine maxheight
+recursively traverse down the right side to determine maxheight 
+return greater value
+*/
+
 const bstHeight = tree => {
-  
+
+  const maxH = (node, counter = 1) => {
+    if (!node) return counter;
+    if (node.left) {
+      counter += 1;
+      return maxH(node.left, counter);
+    }
+    if (node.right) {
+      counter += 1;
+      return maxH(node.right, counter);
+    }
+    return counter;
+  }
+
+  const maxL = maxH(tree.left);
+  const maxR = maxH(tree.right);
+  return (maxL > maxR) ? maxL : maxR;
 };
+
+
+
+
+
+
+
 
 /*
   Extension:

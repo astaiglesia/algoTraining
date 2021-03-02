@@ -31,9 +31,10 @@ function BinarySearchTree(value) {
 /* ---------------------------
 given: bst root; return: num
 -- traverse the bst and push each value into an array/queue
+---- recursively traverse the left side looking for the min
+---- recursively traverse the right side looking for the max
 -- determine the min and max vals
 -- return the difference between min and max
-
 */
 
 const bstMinMax = root => {
