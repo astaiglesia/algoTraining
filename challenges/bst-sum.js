@@ -13,9 +13,54 @@ function.
 
 */
 
-const bstSum = root => {
+/* ----------
+Given: root of a bst; Return: a num
+Find: the sum of all values
+Approach: Create a sum variable, recursively traverse the left side tree then the right side and increment the sum variable
+Edge Cases: 
+*/
+const bstSum = (root, sum = root.value) => {
+  console.log('initial sum', sum);
   
+  const summer = (node, sum) => {  
+    sum += node.value;
+    if (node.left) {
+      console.log('recursive left sum', sum);
+      return bstSum(node.left, sum);
+    }
+    if (node.right) {
+      console.log('recursive right sum', sum);
+      return bstSum(node.right, sum);
+    }
+  }
+
+  const leftSum = summer(root.left, sum);
+  const rightSum = summer(root.right, sum);
+
+  // if (root.left) {
+  //   console.log('recursive left sum', sum);
+  //   sum += root.left.value;
+  //   return bstSum(root.left, sum);
+  // }
+  // if (root.right) {
+  //   console.log('recursive right', sum);
+  //   sum += root.right.value;
+  //   return bstSum(root.right, sum);
+  // }
+
+  console.log('final sum', sum)
+  return sum;
 };
+
+// test case
+bst = new BinarySearchTree(10);
+bst.left = new BinarySearchTree(2);
+bst.left.left = new BinarySearchTree(1);
+bst.left.right = new BinarySearchTree(3);
+bst.left.right.right = new BinarySearchTree(4);
+
+bstSum(bst);
+
 
 /*
 

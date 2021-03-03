@@ -25,7 +25,7 @@ and has 3 links.
 
 /* ------
 input: root of a bst; return: tallest height of the tree
-create counter variables to track the height
+create counter variable to track the height
 recursively traverse down the left side to determine maxheight
 recursively traverse down the right side to determine maxheight 
 return greater value
@@ -51,7 +51,7 @@ const bstHeight = tree => {
   return (maxL > maxR) ? maxL : maxR;
 };
 
-
+// ### create test cases -> code passes tests.. but why?!... whiteboard
 
 
 
