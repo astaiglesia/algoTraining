@@ -21,7 +21,7 @@ Edge Cases:
 */
 const bstSum = (root, sum = root.value) => {
   console.log('initial sum', sum);
-  
+  // ## create leftSum and rightSum
   const summer = (node, sum) => {  
     sum += node.value;
     if (node.left) {
