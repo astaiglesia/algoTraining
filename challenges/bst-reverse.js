@@ -43,7 +43,7 @@ Given a root and expecting a bst to be returned
 - reassign the right and left values of each node
 - if value is not null traverse to the next node
 */
-
+// ## REFACTOR TO USE SWAP SYNTAX
 const bstReverse = root => {
   const temp = root.right;
   root.right = root.left;
