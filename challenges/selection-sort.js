@@ -12,10 +12,38 @@ third-smallest number in the array at position 2 etc. After going through the
 whole array, the array will end up being sorted.
 
 */
+// func accepts an array; returns an array
+// -- input assumed to contain integers only
+// -- ### sort in place
+// -- iterate through the array, starting at index 1
+// ---- if i < index 0 => swap
+// ---- if i > i0 check against  
 
-const selectionSort = array => {
+// iterate through array to check for non-integers - exit if true 
+const selectionSort = (array, counter = 1) => {
+  // edgecases: array contains non-integers, empty array, not an array
+  if (!Array.isArray(array)) return console.log("this is not an array");
+  // base case -> iterated through array
+  if (counter > array.length) return array;
   
-};
+  // recursive case
+  console.log('counter at', counter, 'current array is:', array);
+  
+  console.log("true");
+  if (array[counter] < array[0]) {
+    [array[0], array[counter]] = [array[counter], array[0]];
+  }
+//   console.log(array);
+  return selectionSort(array, counter + 1);
+}
+
+
+// test case
+const tester =  [5, 25, 16, 48, 30];
+console.log(selectionSort(tester));
+
+
+
 
 /*
 
