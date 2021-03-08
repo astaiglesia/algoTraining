@@ -19,6 +19,8 @@ whole array, the array will end up being sorted.
 // ---- if i < index 0 => swap
 // ---- if i > i0 check against  
 
+// ### think of the array as broken into 2 sections -> a sorted part and an unsorted par
+
 // iterate through array to check for non-integers - exit if true 
 const selectionSort = (array, counter = 1) => {
   // edgecases: array contains non-integers, empty array, not an array
@@ -29,8 +31,8 @@ const selectionSort = (array, counter = 1) => {
   // recursive case
   console.log('counter at', counter, 'current array is:', array);
   
-  console.log("true");
   if (array[counter] < array[0]) {
+      console.log("true");
     [array[0], array[counter]] = [array[counter], array[0]];
   }
 //   console.log(array);

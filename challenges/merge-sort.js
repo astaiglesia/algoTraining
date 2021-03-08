@@ -12,8 +12,37 @@
 
 */
 
-const mergeSort = array => {
+// given: array of integers; return: sorted array
+// DO NOT USE NATIVE SORT METHOD
+// split array in half until each element is in it's own array 
+// compare a pair of arrays and combine into a sorted array - use reduce?
+// return sorted array 
+// edge cases:
 
+const mergeSort = array => {
+  const splitArray = [];
+  const output = [];
+
+  array.forEach( ele => splitArray.push([ele]));
+  // console.log(splitArray);
+
+  for (let i = 1; i < output.length; i++){
+    if (ele[0] < accum[i]) output.unshift(ele[0]);
+  }
+
+  // return splitArray.reduce((accum, ele) => {
+    // if (!accum) {
+    //   accum.unshift(ele[0])
+    // }
+    // console.log(accum)
+
+    // return accum
+  // },[] );
+
+  return output;
 }
+
+const tester = [8,7,5,3,9]
+console.log(mergeSort(tester));
 
 module.exports = { mergeSort };
