@@ -5,22 +5,40 @@ ways of creating strings from the letters 'r', 'p', and 's'.
 
 For example:
 
-rps(0) -> ['']
-rps(1) -> ['r', 'p', 's']
-rps(2) -> ['rr', 'rp', 'rs', 'pr', 'pp', 'ps', 'sr', 'sp', 'ss']
-rps(3) -> [
-  'rrr', 'rrp', 'rrs', 'rpr', 'rpp', 'rps', 'rsr', 'rsp', 'rss',
-  'prr', 'prp', 'prs', 'ppr', 'ppp', 'pps', 'psr', 'psp', 'pss',
-  'srr', 'srp', 'srs', 'spr', 'spp', 'sps', 'ssr', 'ssp', 'sss'
-]
+
 
 The strings must be returned in the order suggested above.
 
 */
 
-const rps = n => {
+// input: number; return: an array of strings (all length n)
+// find: all the possible combinations possible with three different different letters
+// approach: use nested iteration based on the input value - # of pointers conditional on value of n
+// edge cases: n < 0, n is not a number, n > 3
+
+const rps = (n, output = []) => {
+  if (n === 0) return output
   
+  const choices = ['r', 'p', 's'];
+
+  for 
+
+  
+  return rps(n - 1, output)
 };
+
+// test cases:
+console.log(rps(0)) // -> ['']
+console.log(rps(1)) // -> ['r', 'p', 's']
+console.log(rps(2)) // -> ['rr', 'rp', 'rs', 'pr', 'pp', 'ps', 'sr', 'sp', 'ss']
+console.log(rps(3)) // -> [
+//   'rrr', 'rrp', 'rrs', 'rpr', 'rpp', 'rps', 'rsr', 'rsp', 'rss',
+//   'prr', 'prp', 'prs', 'ppr', 'ppp', 'pps', 'psr', 'psp', 'pss',
+//   'srr', 'srp', 'srs', 'spr', 'spp', 'sps', 'ssr', 'ssp', 'sss'
+// ]
+
+
+
 
 /*
 

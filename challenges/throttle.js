@@ -9,6 +9,7 @@ The throttled version of the function works in the following way. Throttling
 enforces a maximum number of times a function can be called over time. For example,
 "execute this function at most once every 100 milliseconds."
 
+
 --------------------------------------------------------------------------------
 
 The following analogy helps in understanding throttle:
@@ -55,13 +56,33 @@ it differs from debounce.
 
 Note that the practical application of throttle in real-life web development is
 to lessen the rate at which a function can be repeatedly called (whether the
-function be from a button click, scroll, window resize and result in API calls
-or browser reflows or not etc).
-
+    function be from a button click, scroll, window resize and result in API calls
+    or browser reflows or not etc).
+    
 */
 
-const throttle = (f, t) => {
-  
+// inputs: callback(no params) and an integer(time interval in ms)
+// output: function definition('throttled' version of the callback)
+// - throttling to enforce a call limit per time interval -> use setInterval or setTimeout?
+// - create a helper function to invoke the callback using the integer input as the throttling parameter
+// - utilize closure to persist the initial args + a const boolean defaulted to false
+// --- bool to represent whether the function is in throttle (init val is false)
+// --- conditional check on throttle
+// --- if false -> invoke callback, set throttlecheck to true and setTimeout 
+
+// edge cases:
+
+const throttle = (callback, timer, throttleCheck = false) => {
+  return () => {
+    
+  }
 };
+
+
+// - create a callback to invoke
+const tester = () => console.log('this should print every 5 seconds');
+
+// test case
+throttle(tester, 5000);
 
 module.exports = {throttle};
