@@ -72,7 +72,7 @@ to lessen the rate at which a function can be repeatedly called (whether the
 
 // edge cases:
 
-const throttle = (callback, timer, throttleCheck = false) => {
+const throttle = (callback, timer, inThrottle = false, loaded = false;) => {
   return () => {
     
   }
