@@ -45,14 +45,14 @@ Given n = 0, a solution set is:
 
 // ------- Code --------
 
-const generateParentheses = n => {
+const generateParentheses = (n, output = [] ) => {
   
 };
 
 // test cases:
-console.log( ); // <--- expect
-console.log( ); // <--- expect
-
+console.log(generateParentheses(2)); // <--- expect [ "(())", "()()" ]
+console.log(generateParentheses(3)); // <--- expect [ "((()))", "(()())", "(())()", "()(())", "()()()" ]
+console.log(generateParentheses(0)); // <--- expect [ "" ]
 
 // ------- Refactor --------
 
