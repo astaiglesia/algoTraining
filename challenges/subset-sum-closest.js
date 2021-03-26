@@ -1,4 +1,4 @@
-/*
+ /*
 
 You are given an array of integers and a target number. Write a function that
 returns the smallest absolute difference of the closest subset sum to the
