@@ -28,12 +28,12 @@ drawStairs(6) ->
 		.
   edges: invalid input(assume valid), 0's and negatives returns an empty string
   time: O(n^2) with a nested loop
-  refactored time: O(n) with recursion
+  refactored time: 
 */
 
 const drawStairs = target => {
   
-  // loop for each level
+  // loop for each level - re-initialize level
   for (let i = 1; i <= target; i++) {
     let level = ' ';
     
@@ -53,20 +53,21 @@ const drawStairs = target => {
 };
 
 
-// const drawStairs = (target, counter = 1, level = '') => {
-//   if (counter > target) return
+// const drawStairsRecursive = (target, stars = 1, level = ' ', spaces = target-stars) => {
+//   if (counter > target) return level
 
-//   console.log(level)
-//   return drawStairs(target, counter + 1)
+//   level.concat()
+  
+//   return drawStairs(target, stars + 1)
 // }
 
 
 
 
 // test cases:
+drawStairs('negative 5', -5); // expected => shown in example
+drawStairs('zero', 0); // expected => shown in example
 drawStairs(6); // expected => shown in example
-
-
 
 
 
@@ -94,24 +95,7 @@ drawStar(5) ->
 
 */
 
-// similar recursive function as above
-  // conditional concats based on "depth" of star defined by input n
-    // if n = 1 -> log '+'
-    // middle line will concat (n-1)/2 dashes on either side of the star
-    // 
 
-const drawStar = (n, count=0, line='') => {
-  // base case -> ends when count equals n
-  if (count === n) return
-
-  for (let i=0; i<=n-count; i++){
-     line+=' ';
-  }
-
-  console.log(line);
-
-  return drawStairs(n, count+1)
-};
 
 // drawStar(1);
 // drawStar(3);
