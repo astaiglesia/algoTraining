@@ -25,24 +25,72 @@ fizzbuzz(16);
   refactored time:
 */
 
-const fizzbuzz = (num) => {
-  const output = [];
-  let temp;
+
+//---------------------------------take2
+// input: num
+// output: array of nums and strings
+// approach: 
+// - iterate from 1 to input with a conditional push to an output Array
+// - if current int div by 3 and 5 push string fizzbuzz
+// - if current div by 5 push string buzz
+// - if current div by 3 push string fizz
+// - else push current
+// edge cases: 
+// - invalid input, negative nums
+
+const fizzbuzz = (num, output = []) => {
+  if ((typeof num !== "number") || (num < 1)) return "invalid input";
 
   for (let i = 1; i <= num; i++) {
-    if ( i % 3 === 0 && i % 5 === 0) temp = 'fizzbuzz'
-    else if ( i % 3 === 0 ) temp = 'fizz'
-    else if ( i % 5 === 0) temp = 'buzz'
-    else temp = i;
-
-    output.push(temp);
-  };
+    ((i % 5 === 0) && (i % 3 === 0)) ? output.push("fizzbuzz") :
+    ((i % 5 === 0)) ? output.push("buzz") :
+    ((i % 3 === 0)) ? output.push("fizz") :
+    output.push(i);
+  }
 
   return output;
 }
 
-// test cases:
-console.log(fizzbuzz(16)); // expected =>[1, 2, 'fizz', 4, 'buzz', 'fizz', 7, 8, 'fizz', 'buzz', 11, 'fizz', 13, 14, 'fizzbuzz', 16]
+// time: O(n) -> the loop will iterate n times
+// space: O(1) -> constant space allocation
+
+// alt approach -> recursion ? tradeoff => additional calls to the stack
+// const fizzbuzz = (num, current = 1, output = []) => {
+//   if ((typeof num !== "number") || (num < 1)) return "invalid input";
+//   if (current > num) return output;
+
+//   ((current % 5 === 0) && (current % 3 === 0)) ? output.push("fizzbuzz") :
+//   ((current % 5 === 0)) ? output.push("buzz") :
+//   ((current % 3 === 0)) ? output.push("fizz") :
+//   output.push(current);
+
+//   return fizzbuzz(num, current + 1, output);
+// }
+
+
+console.log(fizzbuzz(16));
+console.log(fizzbuzz(-16));
+console.log(fizzbuzz("sixteen"));
+
+
+// const fizzbuzz = (num) => {
+//   const output = [];
+//   let temp;
+
+//   for (let i = 1; i <= num; i++) {
+//     if ( i % 3 === 0 && i % 5 === 0) temp = 'fizzbuzz'
+//     else if ( i % 3 === 0 ) temp = 'fizz'
+//     else if ( i % 5 === 0) temp = 'buzz'
+//     else temp = i;
+
+//     output.push(temp);
+//   };
+
+//   return output;
+// }
+
+// // test cases:
+// console.log(fizzbuzz(16)); // expected =>[1, 2, 'fizz', 4, 'buzz', 'fizz', 7, 8, 'fizz', 'buzz', 11, 'fizz', 13, 14, 'fizzbuzz', 16]
 
 
 
