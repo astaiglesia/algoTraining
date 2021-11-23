@@ -13,9 +13,6 @@ const duplicateNumber
 // console.log(duplicateNumber([1,5,4,3,6,2,4,7])) // should return 4
 
 
-
-
-
 /* EXTENSION:
 You have an unsorted array of n + 1 numbers, with the range of k to k + n - 1, with an extra number that is a duplicate.
 
