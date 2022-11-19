@@ -1,4 +1,4 @@
-const EventEmitter  = require('../challenges/event-emitter.js'); 
+const EventEmitter  = require('../challenges/round3/8-event-emitter'); 
 
 describe('EventEmitter Tests', () => {
   const emitter = new EventEmitter();

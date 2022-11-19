@@ -1,4 +1,5 @@
-fizzbuzz                        [chronological order of hack hours]
+[chronological order of hack hours]
+fizzbuzz    
 drawstairs
 pow
 duplicate-number
@@ -22,7 +23,7 @@ cache-promise-function
 matrix-transpose
 reverse-linked-list
 linked-list-remove
- valid-bst 
+valid-bst 
 bst-breadth-first
 bin-to-dec
 bst-min-max

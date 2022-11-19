@@ -1,4 +1,4 @@
-const {commonElements} = require('../challenges/common-elements');
+const {commonElements} = require('../challenges/round3/7-common-elements');
 
 describe('common-elements', () => {
 

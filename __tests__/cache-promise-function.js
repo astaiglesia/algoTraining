@@ -10,7 +10,7 @@ these tests are using real timers.
 
 */
 
-const {memoize, cachePromiseFunction, cachePromiseFunction2} = require('../challenges/cache-promise-function.js');
+const {memoize, cachePromiseFunction, cachePromiseFunction2} = require('../challenges/round3/6-cache-promise-function.js');
 
 describe('memoize test', () => {
   const stringify = value => {

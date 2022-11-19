@@ -1,4 +1,4 @@
-const { pow, powRecurse } = require('../challenges/pow');
+const { pow, powRecurse } = require('../challenges/round3/3-pow.js');
 
 describe('pow algorithm tests', () => {
   it('returns 1 when the power is 0', () => {

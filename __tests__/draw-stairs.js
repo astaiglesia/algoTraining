@@ -1,4 +1,4 @@
-const { drawStairs, drawStar } = require('../challenges/draw-stairs.js');
+const { drawStairs, drawStar } = require('../challenges/round3/2-draw-stairs.js');
 
 describe('drawStairs test', () => {
 	let logOutput;

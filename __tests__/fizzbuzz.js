@@ -1,4 +1,4 @@
-const {fizzbuzz, fizzbuzzbazz} = require('../challenges/fizzbuzz.js');
+const {fizzbuzz, fizzbuzzbazz} = require('../challenges/round3/1-fizzbuzz.js');
 
 describe('fizzbuzz test', () => {
   const arr = fizzbuzz(31);

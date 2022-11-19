@@ -1,4 +1,4 @@
-const {duplicateNumber, duplicateNumberAdvanced} = require('../challenges/duplicate-number.js');
+const {duplicateNumber, duplicateNumberAdvanced} = require('../challenges/round3/4-duplicate-number');
 
 describe('duplicateNumber test', () => {
   let arr;

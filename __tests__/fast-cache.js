@@ -1,4 +1,4 @@
-const {fastCache, fastCacheAdvanced} = require('../challenges/fast-cache');
+const {fastCache, fastCacheAdvanced} = require('../challenges/round3/5-fast-cache');
 
 describe('fast-cache test', () => {
   let cachedFunc;
