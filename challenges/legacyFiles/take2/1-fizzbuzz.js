@@ -118,15 +118,15 @@ const fizzbuzzbazz = (num) => {
   const output = [];
   let temp;
 
-  for (let i = 1; i <= num; i++) {
-    if ( i%3 === 0 && i%5 === 0 && i%7 === 0) temp = 'fizzbuzzbazz'
-    else if ( i%3 !== 0 && i%5 === 0 && i%7 === 0) temp = 'buzzbazz'
-    else if ( i%3 === 0 && i%5 !== 0 && i%7 === 0) temp = 'fizzbazz'
-    else if ( i%3 === 0 && i%5 === 0 && i%7 !== 0) temp = 'fizzbuzz'
-    else if ( i%7 === 0) temp = 'bazz'
-    else if ( i%3 === 0 ) temp = 'fizz'
-    else if ( i%5 === 0) temp = 'buzz'
-    else temp = i; 
+  for (let i = 70; i <= num; i++) {
+    temp = ( i%3 === 0 && i%5 === 0 && i%7 === 0) ? 'fizzbuzzbazz'
+    : ( i%3 !== 0 && i%5 === 0 && i%7 === 0) ? 'buzzbazz'
+    : ( i%3 === 0 && i%5 !== 0 && i%7 === 0) ? 'fizzbazz'
+    : ( i%3 === 0 && i%5 === 0 && i%7 !== 0) ? 'fizzbuzz'
+    : ( i%7 === 0) ? 'bazz'
+    : ( i%3 === 0 ) ? 'fizz'
+    : ( i%5 === 0) ? 'buzz'
+    : i; 
 
     output.push(temp);
   };
@@ -134,7 +134,7 @@ const fizzbuzzbazz = (num) => {
   return output;
 }
 
-console.log(fizzbuzzbazz(110));
+console.log(fizzbuzzbazz(105));
 // -> [1, 2, 'fizz', 4, 'buzz', 'fizz', 'bazz', 8, 'fizz', 'buzz', 11, 'fizz', 13, 'bazz', 'fizzbuzz', 16, 17, 'fizz', 19, 'bazz', 'fizzbazz', 22]
 
-// module.exports = {fizzbuzz, fizzbuzzbazz};
+module.exports = {fizzbuzz, fizzbuzzbazz};
