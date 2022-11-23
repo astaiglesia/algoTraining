@@ -28,7 +28,7 @@ describe('fizzbuzz test', () => {
   });
 });
 
-xdescribe('fizzbuzzbazz test', () => {
+describe('fizzbuzzbazz test', () => {
   const arr = fizzbuzzbazz(105);
   
   it('should work for non-multiples of 3, 5, and 7', () => {

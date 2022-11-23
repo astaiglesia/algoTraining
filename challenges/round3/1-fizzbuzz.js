@@ -12,11 +12,42 @@ fizzbuzz(16);
 
 */
 
-const fizzbuzz = (num) => {
+/* |===> fizzbuzz <===|
+
+input: num: number
+output: []: any
+givens: 
+- evaluates to any array of numbers from 1 to num
+- nums divisiible by 
+
+approach: iterate and insert
+- loop til num
+  - insert a val on each pass, TYP idx
+  - evaluate each idx of array to see if divisible by 3 and/or 5
+  - insert predefined strings per metrics noted above
+
+edges:  
+-invalid inputs? can we trust the inputs
+
+time: linear
+space: linear
+
+*/ 
+
+const fizzbuzz = num => {
+  const output = [];
+
+  for (let i = 1; i <= num; i++) {
+    let ele = i % 3 === 0 && i % 5 === 0 ? 'fizzbuzz'
+      : i % 3 === 0 ? 'fizz'
+      : i % 5 === 0 ? 'buzz'
+      : i;
+
+    output.push(ele);
+  }
+
+  return output;
 }
-
-
-
 
 
 
@@ -39,17 +70,32 @@ fizzbuzzbazz(22);
 */
 
 
-const fizzbuzzbazz = (num) => {
+const fizzbuzzbazz = num => {
+  const output = [];
 
+  for (let i = 1; i <= num; i++) {
+    let ele = i % 3 === 0 && i % 5 === 0 && i % 7 === 0 ? 'fizzbuzzbazz' 
+      : i % 3 === 0 && i % 5 === 0 ? 'fizzbuzz'
+      : i % 3 === 0 && i % 7 === 0 ? 'fizzbazz'
+      : i % 5 === 0 && i % 7 === 0 ? 'buzzbazz'
+      : i % 3 === 0 ? 'fizz'
+      : i % 5 === 0 ? 'buzz'
+      : i % 7 === 0 ? 'bazz'
+      : i;
+
+    output.push(ele);
+  }
+
+  return output;
 }
 
 
 
 
-// module.exports = {fizzbuzz, fizzbuzzbazz};
+module.exports = {fizzbuzz, fizzbuzzbazz};
 
 
-
+// ==============================LEGACY SOLUTIONS===============================================
 
 
 
