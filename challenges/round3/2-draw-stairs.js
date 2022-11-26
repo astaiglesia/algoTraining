@@ -17,6 +17,59 @@ drawStairs(6) ->
 
 */
 
+
+/* |===> Draw Stairs <===|
+
+input: n: num (reps the height of the stairs)
+output: 
+givens: 
+- if n is negative log an empty string
+- each "step" of the stairs is a combination of asterisks and spaces
+- stairs must 'climb' from left to right
+
+approach: 
+- track asterisks starting with 1
+- track spaces starting at n-1
+
+- iterate n times
+  - on each pass log a string consisting of the current number of spaces + current number of asterisks
+
+edges:
+- invalid inputs
+- handle negative n
+- handle 0
+
+time: quadratic
+space: linear
+
+*/ 
+const drawStairs = height => {
+  if (height < 1) return;
+
+  for (let i = 1; i <= height; i++) {
+    let asterisks = i,
+        spaces = height - asterisks, 
+        output = "";
+    
+    while (spaces > 0) {
+      output = output.concat(' ');
+      spaces -= 1;
+    }
+    while (asterisks > 0) {
+      output = output.concat('*');
+      asterisks -= 1;
+    }
+    console.log(output)
+  }
+}
+
+// test cases
+// drawStairs(6)
+// drawStairs(3)
+// drawStairs(0)
+// drawStairs(-4)
+
+
 /* 
 Extension:
 Write a function that logs to the console an nxn overlapping '+' and 'X' for a given 
@@ -41,11 +94,42 @@ drawStar(5) ->
 
 */
 
+// constraint - height must be an odd + positive num
+// handle edge case for evens
 
+const drawStar = height => {
+  if (height % 2 === 0 || height < 1) return;
+  const centerPt = Math.ceil(height / 2) - 1;
+
+  for (let yAxis = 0; yAxis < height; yAxis++) {
+    let output = "";
+    let xAxis = 0;
+
+    if (yAxis === centerPt) {
+      while (xAxis < height) {
+        (xAxis === centerPt) ? output = output.concat('+')
+          : output = output.concat('-');
+        xAxis += 1;
+      }
+    } 
+    else {
+      while (xAxis < height) {
+        (xAxis === yAxis) ? output = output.concat('\\')
+          : (xAxis === centerPt) ? output = output.concat('|')
+          : (xAxis === height - 1 - yAxis) ? output = output.concat('/')
+          : output = output.concat(' ')
+        xAxis += 1;
+      }
+    }
+    console.log(output);
+  }
+}
 
 // drawStar(1);
+// console.log('===================')
 // drawStar(3);
-// drawStar(5);
+// console.log('===================')
+// drawStar(23);
 
 
 

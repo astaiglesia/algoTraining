@@ -47,7 +47,7 @@ describe('drawStairs test', () => {
 	});
 });
 
-xdescribe('drawStar test', () => {
+describe('drawStar test', () => {
 	let logOutput;
 
 	beforeAll(() => {
