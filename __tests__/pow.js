@@ -16,7 +16,7 @@ describe('pow algorithm tests', () => {
   });
 });
 
-xdescribe('pow recursive algorithm tests', () => {
+describe('pow recursive algorithm tests', () => {
   it('returns 1 when the power is 0', () => {
     expect(powRecurse(5, 0)).toEqual(1);
   });

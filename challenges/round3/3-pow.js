@@ -8,16 +8,43 @@
  */
 
 
+/* |===> Solution <===|
+input: base, pow: nums
+output: num
+givens: 
+- base and pow are as names imply
+- output to evaluate raising base to the pow power
+approach: 
+- recursive approach
+  - decrement pow on each pass
+  - multiply output by base
+  - base case: return output when pow = 0
+edges:  
+- invalid inputs
+- handle pow of 0
+- handle negs
+time: linear based on pow
+space: constant / linear based on approach
+*/ 
 
-
-
-
+// iterative approach
+const pow = (base, pow) => {
+  let output = (pow < 1 ) ? 1 : base;
+  for (let i = 1; i < pow; i++) {
+    output *= base;
+  }
+  return output;
+}
 
 /**
  * Extension: Use recursion to solve the problem in O(n) time complexity -> Linear time complexity
  */
+const powRecurse = (base, pow, output = pow < 1 ? 1 : base) => (pow < 2) ? output : powRecurse(base, pow - 1, output * base);
 
 
+// test cases
+console.log(pow(2, 4)) // expect to equal 16
+console.log(powRecurse(2, 4)) // expect to equal 16
 
 
 
