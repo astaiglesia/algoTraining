@@ -14,7 +14,7 @@ describe('duplicateNumber test', () => {
   })
 })
 
-xdescribe('duplicateNumberAdvanced test', () => {
+describe('duplicateNumberAdvanced test', () => {
   let arr;
 
   it('should return duplicate number in an unsorted array', () => {
