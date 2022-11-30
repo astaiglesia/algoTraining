@@ -48,7 +48,7 @@ You have an unsorted array of n + 1 numbers, with the range of k to k + n - 1, w
 ex: [3, 4, 7, 6, 8, 5, 6] should return 6
 
 input: array of nums with 1 duplicate
-output: 
+output: num
 givens:
 - input is unsorted
 - range of input begins at k
@@ -57,19 +57,60 @@ CONSTRAINTS:
 approach:
 - previous solution is linear timespace
 - we know that the array elements should be a complete, sequential range (plus 1 dup)
-- don't use a cache object 
-- ### use the input as a hashmap
+- ### use the input as a hashmap ###
 */
 
 /*
-input as a hashmap approach
+utilize input as a hashmap 
 - iterate through the array
-- implement hash function: arr[  arr[i]  % n  ] += n , where n = array length
-- iterate through hashed array and check occurences against k
-- Occurence of k = arr[i]/5
-- need to track smallest element?
+  - implement hash function where values are hashed to an index and flips the corresponding element to negative val
+    - arr[  hashedIdx  ] *= -1 , where n = array length, hashedIdx = currentVal  % n
+    - if value at hasheedIdx is negative then the current val has already been encountered
+*/
 
-### 
+const duplicateNumberAdvanced = arr => {
+  const n = arr.length;
+
+  // hashmap the array on itself         linear
+  for (let i = 0; i < n; i++) {
+    const currentVal = Math.abs(arr[i]);
+    const hashedIdx = currentVal % n;
+
+    if (arr[hashedIdx] < 0) return currentVal;
+      
+    arr[ hashedIdx ] *= -1;
+  }
+
+  return null;
+}
+
+
+
+// includes logs
+// const duplicateNumberAdvanced = arr => {
+//   const n = arr.length;
+//   console.log(arr, n)
+//   // find the smallest number            linear
+//   let k = arr[0];
+//   for (const num of arr) if (num < k) k = num;
+
+//   // hashmap the array on itself         linear
+//   for (let i = 0; i < n; i++) {
+//     const currentVal = Math.abs(arr[i]);
+//     const hashedIdx = currentVal % n;
+
+//     if (arr[hashedIdx] < 0) return currentVal;
+    
+//     console.log('current value is :', arr[i], 'and will be hashed to idx',  hashedIdx)
+  
+//     arr[ hashedIdx ] *= -1;
+//     console.log(arr)
+//   }
+  
+//   return null;
+// }
+
+/* ### 
 n = 7
 arr at index 
 arr[  arr[i]  % n  ] += n
@@ -111,41 +152,12 @@ i = 6:
   => [10, 11, 7, 13, 15, 12, 20]
 */
 
-const duplicateNumberAdvanced = arr => {
-  const n = arr.length;
-  // find the smallest number            linear
-  let k = arr[0];
-  for (const num of arr) if (num < k) k = num;
-
-  // hashmap the array                   linear
-  for (let i = 0; i < n; i++) {
-    arr[arr[i] % n] += n;
-  }
-
-  // can we handle single duplicates with a negative mutation of the hashed element?
-  // // analyze the hashed array            linear
-  // for (let i = k; i < (k + n - 1); i++) {
-  //   // k = arr[i]/n
-  //   // occurences of 3 (mapped to idx 3)
-  //   const occurences = Math.floor(arr[ i % n ] / n);
-  //   console.log(`${occurences} occurences of ${i}`);
-
-  //   if (occurences > 1) return i;
-  // }
-}
-
-
-
-
-
-
-
 // test cases
-const testarr2 = [3, 4, 7, 6, 8, 5, 6] // expect to be 6
 // const testarr = [1,15,2,5,6,7,3,4,7,8,12,13,9,10,11,14]; // expect to be 7
-
 // console.log(duplicateNumberAdvanced(testarr))
-console.log(duplicateNumberAdvanced(testarr2))
+
+// const testarr2 = [3, 4, 7, 6, 8, 5, 6] // expect to be 6
+// console.log(duplicateNumberAdvanced(testarr2))
 
 
 module.exports = { duplicateNumber, duplicateNumberAdvanced };
