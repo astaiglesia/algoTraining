@@ -29,7 +29,7 @@ describe('fast-cache test', () => {
 
 });
 
-xdescribe('fast-cache advanced test', () => {
+describe('fast-cache advanced test', () => {
   let mockMult;
   let mockAdd;
   let mockPluralize;

@@ -4,14 +4,43 @@
  Every subsequent call to that returned function with the same argument will return the output directly from the object, instead of invoking the original function again.
 */
 
+/* |===> fastCache <===|
+input: callback: function
+output: function
+givens: 
+- function creates a cache object 
+  - cache tracks calls to the returned function 
+  - each input to the returned func is associated with its output
+- subsequent calls with a cached arg should return the cached result
+approach: utilizes closure to persist the cache
+- set up an object cache
+- inner func should check cache before evaluating
+  - if property exists, return value
+  - else evaluate and store to cache
+edges:  
+- invalid inputs
+time: constant
+space: linear
+*/ 
 
+const fastCache = callback => {
+  const cache = {};
 
+  return num => {
+    if (!cache[num]) cache[num] = callback(num);
+    return cache[num]
+  }
+}
 
 // test cases:
-// const square = num => num*num;
-// const squareCache = fastCache(square);
+const square = num => num*num;
+const squareCache = fastCache(square);
 
-
+// console.log(squareCache(5));    // expect to be 25
+// console.log(squareCache(7));    // expect to be 49
+// console.log(squareCache(100));  // expect to be 10000
+// console.log(squareCache(5));    // expect to be cached value of 25
+// console.log(squareCache(7));    // expect to be cached value of 49
 
 
 
@@ -20,9 +49,56 @@
  HINT: you might need to use the spread operator...
 */
 
+// Assumption: multiple args are evaluated to an array for return
+// assumption: inputs are all numbers
+// argument to returned function should be spread
+// - inner func should iterate through the spread args array
+
+const fastCacheAdvanced = callback => {
+  const cache = {};
+  
+  return (...args) => {
+    const output = [];
+    
+    // const argPusher = num => {
+    //   // if (cache[num]) console.log('cache hit for arg of', num)
+    //   if (!cache[num]) cache[num] = callback(num);
+    //   output.push(cache[num])
+    // }
+
+    for (const arg of args) {
+      // typecheck the arg
+      // handle primitive
+      if (typeof(arg) === 'number') argPusher(arg)
+
+      // handle array
+      // iterate thru the array and 
+      else if (Array.isArray(arg)) for (const ele of arg) argPusher(ele)
+
+      // handle object
+      else if (typeof(arg) === 'object' && arg !== null) for (const prop in arg) argPusher(arg[prop])
+    }
+    
+    return output.length === 1 ? output[0] : output;
+  }
+}
 
 
 
+
+// test cases
+const advancedSquareCache = fastCacheAdvanced(square);
+
+console.log(advancedSquareCache(5));               // expect to be 25
+console.log(advancedSquareCache(5));               // expect to be cached val of 25
+console.log(advancedSquareCache([5, 7, 10]));           // expect to be *25, 49, 100
+console.log(advancedSquareCache([3, 10], 11, 15));      // expect to be 
+const objArg = {
+  first: 34,
+  second: 10,
+  third: 8
+}
+console.log(advancedSquareCache(objArg, 13, 15));      // expect to be 
 
 
 
