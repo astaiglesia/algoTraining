@@ -1,19 +1,31 @@
 /* ==== Breadth First Sum ====
 
 * Write a function, sumTree(root), that takes in the root of a binary tree as its arg
-
-* the function should return the total sum of all values in the tree.
-
-* you can assume that the tree only contains number values
+* The function should return the total sum of all values in the tree
+* You can assume that the tree only contains number values
 
 @params:
 - root: Node
 @returns: number
 
+approach:
+- breadth first traversal
+  - declare a sum, init to 0
+  - implement a queue, init'd with root
+  - shift the queue
+  - process the node and push children to queue
+  
+  // console.log('--------------->', queue)
+  // console.log('++++ current node is:', current, 'current sum is:', sum)
 */ 
 
-const sumTree = () => {
-
+const sumTree = (root, queue = [root], sum = 0) => {
+  const current = queue.shift();                                        // pointer to current Node shifted from queue  
+  return (!current && !queue.length) ? sum                              // base case: return out sum if current is null and queue is empty
+    : (                                                                 // recursive case: 
+      current && (sum += current.data, queue.push(current.left), queue.push(current.right)),  // if current is a node, process the node
+      sumTree(root, queue, sum)                                         // return a recursive call 
+    );
 }
 
 // test cases
