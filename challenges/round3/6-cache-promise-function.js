@@ -10,16 +10,32 @@ problem and be a helpful reminder. It's up to you.
 -------------  Pre-problem:
 
 Write a function that takes in a function of one parameter, and returns a new
-memoized function. The memoized function maintains a cache object through
+memoized function. 
+The memoized function maintains a cache object through
 closure such that when we call the function f(3) -> 4, subsequent calls of
 f(3) will not recompute f(3) but rather draw upon the cache to return 4.
 
 Use an object store for the cache, as the function parameter may be any value
 that's convertable to JSON. (This is just the memoize problem)
 
+input: callback: function
+output: function
+givens:
+- return a function with a memoized cache object
+approach: 
+- utilize closure to persist a cache object as lexically scoped reference data
+- returned function should return values from cache for arguments passed into the callback
+- on cache misses, populate with the argument as the key and evaluating through the callback as the result
 */
 
-const memoize
+const memoize = (callback) => {
+  const cache = {};
+
+  return input => {
+    if (!cache[input]) cache[input] = callback(input);
+    return cache[input];
+  }
+}
 
 
 /* ----------- Main problem:
@@ -64,7 +80,7 @@ Hint: look up Promise.resolve - https://developer.mozilla.org/en-US/docs/Web/Jav
 
 // "get" is a p-function, that is, a function that takes in a url-string and
 // returns a promise
-const cachePromiseFunction 
+// const cachePromiseFunction 
 
 
 /*
@@ -88,8 +104,8 @@ As above, don't worry about promise rejections/errors or using .catch()
 
 // "get" is a p-function, that is, a function that takes in a url-string and
 // returns a promise
-const cachePromiseFunction2 = get => {
+// const cachePromiseFunction2 = get => {
   
-};
+// };
 
 module.exports = {memoize, cachePromiseFunction, cachePromiseFunction2};
