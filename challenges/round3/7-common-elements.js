@@ -6,16 +6,41 @@ with all the common elements (both numbers and/or strings) from the given input.
 If there are no common numbers/strings, return "Nothing in Common!"
 Assume there are no duplicates within the array.
 */
-
-
 // ### Assume input arrays contain no duplicates, may contain nums and/or strings
+/*
+input: ...args[]: args array of enumTyped arrays [num, string]
+output: [num, string] || string
+given:
+- evaluated array contains common elements
+- null set returns a string
+approach: 
+- brute force iteration - quadratic time
+- set up a frequency table  - linear time
+- iterate through each array and populate the table
+- iterate through entries and push keys whose values equal length of args
+edges:
+- invalid inputs
+- no common elements
+*/
 
-// create a func that accepts an unknown number of arrays; returns an array or string
-// - function to iterate through input arrays and populate an output array with common elements -> 
-// --- use reduce to iterate among arg arrays and executing filter on each array
-// ----- filter to populate a return array with values that pass the boolean check of .includes
-// - if output array is empty return string else return output
-const commonElements 
+const commonElements = (...args) => {
+  const freqTable = {};
+  
+  // populate the table
+  for (const arg of args) {
+    for (const ele of arg) {
+      freqTable[ele] ? freqTable[ele][1] += 1 : freqTable[ele] = [ele, 1]
+    }
+  }
+
+  // evaluate the table
+  const output = [];
+  Object.entries(freqTable).forEach(([key, [ele, freq]]) => {
+    freq === args.length && output.push(ele);
+  })
+
+  return output.length ? output : 'Nothing in Common!'
+}
 
 
 // test cases
@@ -25,12 +50,31 @@ arr3 = [2, 100, 2000, 'dog', 3, 'lion'];
 
 commonElements(arr1, arr2, arr3) // -> [2, 3, 2000, 'dog']
 
+
+
 /*
 ** Extension **
 Refactor your function to have O(n) time complexity.
 */
 
-const commonElementsOptimized
+const commonElementsOptimized = (...args) => {
+  const freqTable = {};
+  
+  // populate the table
+  for (const arg of args) {
+    for (const ele of arg) {
+      freqTable[ele] ? freqTable[ele][1] += 1 : freqTable[ele] = [ele, 1]
+    }
+  }
+
+  // evaluate the table
+  const output = [];
+  Object.entries(freqTable).forEach(([key, [ele, freq]]) => {
+    freq === args.length && output.push(ele);
+  })
+
+  return output.length ? output : 'Nothing in Common!'
+}
 
 // test cases
 arr1 = [2, 10,'cat', 3, 99, 2000, 'dog', 'lion'];

@@ -13,7 +13,7 @@ describe('common-elements', () => {
     })
 
     it('should return an array of numbers', () => {
-        expect(commonElements([3, 99, 2000, 'dog', 'lion'], [3, 1, 'cat', 99], [2, 3, 2000, 'dog', 3, 99])).toEqual([3, 99]);
+        expect(commonElements([3, 99, 2000, 'dog', 'lion'], [3, 1, 'cat', 99], [2, 2000, 'dog', 3, 99])).toEqual([3, 99]);
         expect(commonElements([1, 2, 'dog', 3], [7, 1, 2], [1, 2, 5, 'lion'], [2, 1])).toEqual([1, 2]);
     })
 
