@@ -25,17 +25,33 @@ Caveats:
 
 */
 
+// class EventEmitter {
+//   constructor() {
+//     this.event = {}
+//   }
+//   // on(funcName, funcDeclaration) => method stores the name + function as the instance's event
+//   // trigger(funcName, options) => executes passed in function per func assignment by on()
+// }
 
 function EventEmitter() {
-
+  this.event = {};
 }
-
 EventEmitter.prototype.on = function(funcName, func) {
-
+  !this.event[funcName] && (this.event[funcName] = []);
+  this.event[funcName].push(func);
 };
 
 EventEmitter.prototype.trigger = function(funcName, ...args) {
-
+  this.event[funcName].forEach(callback => callback(...args));
 };
+
+// test case
+const instance = new EventEmitter();
+let counter = 0;
+
+instance.on('increment', () => counter++);  // counter should be 0
+instance.trigger('increment');              // counter should be 1
+instance.trigger('increment');              // counter should be 2
+
 
 module.exports = EventEmitter;

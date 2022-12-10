@@ -49,7 +49,7 @@ describe('memoize test', () => {
   })
 });
 
-xdescribe('cachePromiseFunction test', () => {
+describe('cachePromiseFunction test', () => {
   const fakeApi = url => {
     return new Promise(resolve => {
       apiCalls++;

@@ -78,9 +78,61 @@ Hint: look up Promise.resolve - https://developer.mozilla.org/en-US/docs/Web/Jav
 ---> returns a promise object that is resolved with a given value
 */
 
-// "get" is a p-function, that is, a function that takes in a url-string and
-// returns a promise
-// const cachePromiseFunction 
+// "get" is a p-function, that is, a function that takes in a url-string and returns a promise
+
+/*
+input: get: function (async)
+output: function (async)
+givens: 
+- output is a promise function
+- p-func maintains a cache
+  - key: url string 
+  - value: response data
+approach: utilize closure to maintain cache in a closed over variable environment
+- returned function accepts a url sting arg
+- calls should check cache for the url string and return cached values on hits
+- invoke callback on misses, persist to cache
+  - callback is a promise function and requires on fulfillment handlers
+edges: 
+- invalid responses
+- rejection / error handling
+
+*/ 
+
+const cachePromiseFunction = get => {
+  const cache = {};
+
+  return url => {
+    const promise = new Promise((resolve, reject) => {
+      
+      const data = get(url);
+      // console.log('=====', data);
+
+      Promise.resolve(data)
+      
+      
+    })
+
+  
+   promise
+    .then(result => console.log(result))
+    // .then(error => console.error(error))
+
+    // on cache miss, invoke the callback and store the evaluated result
+    // if (!cache[url]) {
+    //   const promise = new Promise((resolve, reject) => {
+    //     const data = get(url)
+    //     resolve(get(url))
+    //   })
+    //   promise.then(result => console.log(result))
+      
+    //   console.log('++++', promise)
+      
+    // }
+
+    // return cache[url]
+  }
+}
 
 
 /*
@@ -102,10 +154,10 @@ As above, don't worry about promise rejections/errors or using .catch()
 
 */
 
-// "get" is a p-function, that is, a function that takes in a url-string and
-// returns a promise
-// const cachePromiseFunction2 = get => {
+// "get" is a p-function, that is, a function that takes in a url-string and returns a promise
+
+const cachePromiseFunction2 = get => {
   
-// };
+};
 
 module.exports = {memoize, cachePromiseFunction, cachePromiseFunction2};

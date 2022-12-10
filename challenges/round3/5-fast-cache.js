@@ -60,23 +60,23 @@ const fastCacheAdvanced = callback => {
   return (...args) => {
     const output = [];
     
-    // const argPusher = num => {
-    //   // if (cache[num]) console.log('cache hit for arg of', num)
-    //   if (!cache[num]) cache[num] = callback(num);
-    //   output.push(cache[num])
-    // }
+    const argHandler = arg => {
+      // if (cache[arg]) console.log('cache hit for arg of', arg)
+      if (!cache[arg]) cache[arg] = callback(arg);
+      output.push(cache[num])
+    }
 
     for (const arg of args) {
       // typecheck the arg
-      // handle primitive
-      if (typeof(arg) === 'number') argPusher(arg)
-
       // handle array
       // iterate thru the array and 
-      else if (Array.isArray(arg)) for (const ele of arg) argPusher(ele)
-
+      if (Array.isArray(arg)) for (const ele of arg) argHandler(ele)
+      
       // handle object
-      else if (typeof(arg) === 'object' && arg !== null) for (const prop in arg) argPusher(arg[prop])
+      else if (typeof(arg) === 'object' && arg !== null) for (const prop in arg) argHandler(arg[prop])
+      
+      // handle primitive
+      if (typeof(arg) === 'number') argHandler(arg)
     }
     
     return output.length === 1 ? output[0] : output;
