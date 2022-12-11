@@ -1,4 +1,4 @@
-const {substringNonrepeating} = require('../challenges/substring-nonrepeating.js');
+const {substringNonrepeating} = require('../challenges/round3/10-substring-nonrepeating');
 
 describe('substringNonrepeating test', () => {
   it('handles single-character strings', () => {
