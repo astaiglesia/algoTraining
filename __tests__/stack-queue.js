@@ -1,11 +1,11 @@
-const { Stack, Queue } = require('../challenges/stack-queue');
+const { Stack, Queue } = require('../challenges/round3/11-stack-queue');
 
 describe('Stack Tests', () => {
   const myStack = new Stack();
 
   it('should have a "length" property.', () => {
-    expect(myStack.length).toBeDefined();
-    expect(myStack.length).toBe(0);
+    expect(myStack.height).toBeDefined();
+    expect(myStack.height).toBe(0);
   })
 
   describe('Stack.push tests', () => {
@@ -16,11 +16,11 @@ describe('Stack Tests', () => {
 
     it('should add value to stack', () => {
       myStack.push(1);
-      expect(myStack.stack[0]).toBe(1);
+      expect(myStack.storage[0]).toBe(1);
     })
     
-    it('should increment length', () => {
-      expect(myStack.length).toBe(1);
+    it('should increment height', () => {
+      expect(myStack.height).toBe(1);
     })
 
     it('should add new values to top (end) of stack', () => {
@@ -28,8 +28,8 @@ describe('Stack Tests', () => {
       myStack.push(3);
       myStack.push(4);
       myStack.push(5);
-      expect(myStack.stack[1]).toBe(2);
-      expect(myStack.stack[4]).toBe(5);
+      expect(myStack.storage[1]).toBe(2);
+      expect(myStack.storage[4]).toBe(5);
     })
   })
 
@@ -41,11 +41,11 @@ describe('Stack Tests', () => {
 
     it('should remove and return value from top (end) of stack', () => {
       expect(myStack.pop()).toBe(5);
-      expect(myStack.stack[4]).toBeUndefined();
+      expect(myStack.storage[4]).toBeUndefined();
     })
     
-    it('should decrement length', () => {
-      expect(myStack.length).toBe(4);
+    it('should decrement height', () => {
+      expect(myStack.height).toBe(4);
     })
   })
 
@@ -55,10 +55,10 @@ describe('Queue Tests', () => {
   const myQueue = new Queue();
 
   it('should consist of two Stacks', () => {
-    expect(myQueue.stack1).toBeDefined();
-    expect(myQueue.stack1).toBeInstanceOf(Stack);
-    expect(myQueue.stack2).toBeDefined();
-    expect(myQueue.stack2).toBeInstanceOf(Stack);
+    expect(myQueue.inStack).toBeDefined();
+    expect(myQueue.inStack).toBeInstanceOf(Stack);
+    expect(myQueue.outStack).toBeDefined();
+    expect(myQueue.outStack).toBeInstanceOf(Stack);
   })
 
   it('should have an enqueue method', () => {
