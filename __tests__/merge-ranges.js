@@ -1,4 +1,4 @@
-const {mergeRanges} = require('../challenges/merge-ranges.js');
+const {mergeRanges} = require('../challenges/round3/12-merge-ranges.js');
 
 describe('mergeRanges test', () => {
   let intervals;
