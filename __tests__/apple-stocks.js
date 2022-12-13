@@ -1,4 +1,4 @@
-const {highestProfit} = require('../challenges/apple-stocks.js');
+const {highestProfit} = require('../challenges/round3/13-apple-stocks.js');
 
 describe('apple-stocks\' test', () => {
     let stocks;
