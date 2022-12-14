@@ -20,17 +20,40 @@ retrieveDepth([2, [4, [7], 1], 5], 2) -> [2, 4, 1, 5] becuase the 2 and 5 are at
 retrieveDepth([2, [4, [7], 1], 5], 3) -> [2, 4, 7, 1, 5] because every number
 is within "depth 3". No number is deeper.
 
+approach: recursive func defined with input: [], target: num, currentDepth = 1, output: []
+base case: terminate on empty arrays, return output
+recursive case: 
+- analyze element at the 0 idx
+  - if element is non-empty array 
+    - recursive call: pass in the arrayt + incremented depth
+  - if element is num && current Depth is less than or equal to target
+      -  push to output
+  - recursive call to a sliced input
+
 */
 
 
-const retrieveDepth 
+const retrieveDepth = (input, target, currentDepth = 1, output = []) => {
+  console.log('--------- new frame on stack with input of', input, 'at depth', currentDepth, 'current output is', output )
+  if (!input.length) return output;
 
-
+  const currentElement = input[0];
+  if (Array.isArray(currentElement) && currentElement.length) {
+    retrieveDepth(currentElement, target, currentDepth + 1, output);
+  }
+  if (typeof(currentElement) === 'number' && currentDepth <= target) {
+    output.push(currentElement);
+  }
+  
+  return retrieveDepth(input.slice(1), target, currentDepth, output)
+}
 
 // test cases
 console.log(retrieveDepth([2, [4, [7], 1], 5], 1) ); // -> [2, 5] 
 console.log(retrieveDepth([2, [4, [7], 1], 5], 2) ); // -> [2, 4, 1, 5] 
 console.log(retrieveDepth([2, [4, [7], 1], 5], 3) ); // -> [2, 4, 7, 1, 5] 
+
+
 /*
 
 Extension:
@@ -59,12 +82,14 @@ flattened array
 */
 
 
-const flattenDepth 
+const flattenDepth = () => {
 
-console.log(flattenDepth([2, [4, [7], 1], 5], 0));
-console.log(flattenDepth([2, [4, [7], 1], 5], 1));
-console.log(flattenDepth([2, [4, [7], 1], 5], 2));
-console.log(flattenDepth([2, [4, [7], 1], 5], 3));
+}
+
+// console.log(flattenDepth([2, [4, [7], 1], 5], 0));
+// console.log(flattenDepth([2, [4, [7], 1], 5], 1));
+// console.log(flattenDepth([2, [4, [7], 1], 5], 2));
+// console.log(flattenDepth([2, [4, [7], 1], 5], 3));
 
 
 module.exports = {retrieveDepth, flattenDepth};

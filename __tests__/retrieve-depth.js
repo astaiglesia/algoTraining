@@ -1,4 +1,4 @@
-const {retrieveDepth, flattenDepth} = require('../challenges/retrieve-depth.js');
+const {retrieveDepth, flattenDepth} = require('../challenges/round3/14-retrieve-depth.js');
 
 describe('retrieveDepth test', () => {
   it('retieves values less than or equal to a certain depth', () => {
