@@ -29,12 +29,12 @@ recursive case:
   - if element is num && current Depth is less than or equal to target
       -  push to output
   - recursive call to a sliced input
-
+  
+  console.log('--------- new frame on stack with input of', input, 'at depth', currentDepth, 'current output is', output )
 */
 
 
 const retrieveDepth = (input, target, currentDepth = 1, output = []) => {
-  console.log('--------- new frame on stack with input of', input, 'at depth', currentDepth, 'current output is', output )
   if (!input.length) return output;
 
   const currentElement = input[0];
@@ -49,9 +49,9 @@ const retrieveDepth = (input, target, currentDepth = 1, output = []) => {
 }
 
 // test cases
-console.log(retrieveDepth([2, [4, [7], 1], 5], 1) ); // -> [2, 5] 
-console.log(retrieveDepth([2, [4, [7], 1], 5], 2) ); // -> [2, 4, 1, 5] 
-console.log(retrieveDepth([2, [4, [7], 1], 5], 3) ); // -> [2, 4, 7, 1, 5] 
+// console.log(retrieveDepth([2, [4, [7], 1], 5], 1) ); // -> [2, 5] 
+// console.log(retrieveDepth([2, [4, [7], 1], 5], 2) ); // -> [2, 4, 1, 5] 
+// console.log(retrieveDepth([2, [4, [7], 1], 5], 3) ); // -> [2, 4, 7, 1, 5] 
 
 
 /*
@@ -80,16 +80,48 @@ flattenDepth([2, [4, [7], 1], 5], 3)
 flattened array
 
 */
+// if current depth is less than or equal to target 
+//  - push num element to output
+//  - recursive call on array element
+// if current depth equal to or greater than target 
+//  - push element to output
+// console.log('--------- new frame on stack with input of', input, 'at depth', currentDepth, 'current output is', output )
 
+const flattenDepth = (input, target, currentDepth = 0, output = []) => {
+  if (!input.length) return output;
 
-const flattenDepth = () => {
-
+  const currentElement = input[0];
+  (currentDepth < target) ? (
+    (Array.isArray(currentElement) && currentElement.length) &&
+      flattenDepth(currentElement, target, currentDepth + 1, output),
+    (typeof(currentElement) === 'number') && output.push(currentElement)
+  ) : output.push(currentElement)
+  
+  return flattenDepth(input.slice(1), target, currentDepth, output)
 }
 
-// console.log(flattenDepth([2, [4, [7], 1], 5], 0));
-// console.log(flattenDepth([2, [4, [7], 1], 5], 1));
-// console.log(flattenDepth([2, [4, [7], 1], 5], 2));
-// console.log(flattenDepth([2, [4, [7], 1], 5], 3));
+
+console.log(flattenDepth([2, [4, [7], 1], 5], 0));
+console.log(flattenDepth([2, [4, [7], 1], 5], 1));
+console.log(flattenDepth([2, [4, [7], 1], 5], 2));
+console.log(flattenDepth([2, [4, [7], 1], 5], 3));
 
 
 module.exports = {retrieveDepth, flattenDepth};
+
+
+
+
+// const flattenDepth = (input, target, currentDepth = 0, output = []) => {
+//   return !input.length ? output
+//     : (currentElement = input[0],
+//         (currentDepth < target ? (
+//             (Array.isArray(currentElement) && currentElement.length) &&
+//               flattenDepth(currentElement, target, currentDepth + 1, output),
+//             (typeof(currentElement) === 'number') && output.push(currentElement)
+//           ) 
+//         : output.push(currentElement)),
+        
+//         flattenDepth(input.slice(1), target, currentDepth, output)
+//       )
+// }

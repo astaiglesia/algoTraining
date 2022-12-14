@@ -8,7 +8,7 @@ describe('retrieveDepth test', () => {
   });
 });
 
-xdescribe('flattenDepth test', () => {
+describe('flattenDepth test', () => {
   it('flattens arrays to a certain depth', () => {
     expect(flattenDepth([2, [4, [7], 1], 5], 0)).toEqual([2, [4, [7], 1], 5]);
     expect(flattenDepth([2, [4, [7], 1], 5], 1)).toEqual([2, 4, [7], 1, 5]);
