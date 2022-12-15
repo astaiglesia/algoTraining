@@ -18,7 +18,9 @@ nestedArrMax(arrNested);
 
 */
 
-const nestedArrMax 
+const nestedArrMax = () => {
+  
+}
 
 // test cases
 const arrFlat = [1, 3, 10, 6];
