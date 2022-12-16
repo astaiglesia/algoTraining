@@ -5,7 +5,8 @@
   "description": "",
   "scripts": {
     "test": "jest",
-    "test-hh": "bash ./scripts/run-test.sh"
+    "test-hh": "bash ./scripts/run-test.sh",
+    "test-ass": "bash ./scripts/run-ass.sh"
   },
   "dependencies": {},
   "devDependencies": {
