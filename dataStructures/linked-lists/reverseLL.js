@@ -14,23 +14,23 @@ const e = new Node(50);
 a.next = b; b.next = c; c.next = d; d.next = e;
 
 // console.log(a);
-// P    C
+// P    C     t
 // null 10 > 20 > 30 > 40 > 50
 
-// P      C   
+// P      C    t
 // null < 10   20 > 30 > 40 > 50
 
-//        P    C
+//        P    C     t
 // null < 10   20 > 30 > 40 > 50
 
-//              P   C
+//              P   C     t
 // null < 10 < 20   30 > 40 > 50
 
 
 
 
 // recursive approach
-const reverseLL = (root, prev = null, temp = root && root.next) => {
+const reverseLL = (root, prev = null, temp = root?.next) => {
   return (root === null) ? prev
     : (root.next = prev, reverseLL(temp, root));
 }
@@ -66,5 +66,6 @@ const reverseLL = (root, prev = null, temp = root && root.next) => {
 
 //   return prev;  
 // }
+
 
 console.log(reverseLL(a));    // expect 50 > 40 > 30 > 20 > 10
