@@ -8,7 +8,7 @@ if [ -z $1 ]; then
   echo -e "\033[01;36mCorrect Syntax:\033[0m 'npm run testHH <hh name>' "; 
   echo -en '\n'
 # check to ensure that the test file being requested exists
-elif [ ! -f "./__tests__/assessments/$1" ] && [ ! -f "./__tests__/assessments/$1.js" ]; then
+elif [ ! -f "./__tests__/leetcode/$1" ] && [ ! -f "./__tests__/leetcode/$1.js" ]; then
   echo -en '\n'
   echo -e "\033[0;31mTest file does not exist for:\033[0m \033[01;36m$1\033[0m"
   echo -e "\033[0;31mPlease check your spelling.\033[0m"
@@ -20,9 +20,9 @@ else
   echo -en '\n'
   # if they passed the file to test in as <hh>.js, then don't add .js to filename
   if [[ $1 == *".js"* ]]; then
-    ./node_modules/.bin/jest __tests__/assessments/$1
+    ./node_modules/.bin/jest __tests__/leetcode/$1
   # if they followed instructions and passed in just the name of the file:
   else
-    ./node_modules/.bin/jest __tests__/assessments/$1.js
+    ./node_modules/.bin/jest __tests__/leetcode/$1.js
   fi
 fi

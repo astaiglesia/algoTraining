@@ -6,7 +6,9 @@
   "scripts": {
     "test": "jest",
     "test-hh": "bash ./scripts/run-test.sh",
-    "test-ass": "bash ./scripts/run-ass.sh"
+    "testAss": "bash ./scripts/run-ass.sh",
+    "testLeet": "bash ./scripts/run-leet.sh"
+
   },
   "dependencies": {},
   "devDependencies": {
@@ -14,9 +16,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CodesmithLLC/hack-hour-la-41.git"
+    "url": ""
   },
   "main": "index.js",
-  "author": "Kyle Combs",
+  "author": "sunset sessions",
   "license": "ISC"
 }
