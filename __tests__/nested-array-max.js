@@ -23,7 +23,7 @@ describe('nestedArrMax test', () => {
   });
 });
 
-xdescribe('nestedArrMaxLevel test', () => {
+describe('nestedArrMaxLevel test', () => {
   const emptyArr = [];
   const flatArr = [1, 2, 5, 10, 3];
   const nestedMaxArr = [1, [2, 5, [10]]];

@@ -36,7 +36,9 @@ timespace:
 */
 
 
-const nestedReducer = (input, current = input[0]) => !input.length
+const nestedArrMax = input => {
+  let largestNum = input[0]
+  const nestedReducer = (input, current = input[0]) => !input.length
   ? undefined
   : (
       Array.isArray(current) && nestedReducer(current),
@@ -44,8 +46,6 @@ const nestedReducer = (input, current = input[0]) => !input.length
       nestedReducer(input.slice(1))    
     )
 
-const nestedArrMax = input => {
-  let largestNum = input[0]
   return (nestedReducer(input), largestNum)
 }
 
@@ -84,10 +84,34 @@ nestedArrMaxLevel(arrNested, 2);
 nestedArrMaxLevel(arrNested, 3);
 -> 10
 
+edit above code to maintain level on recursive calls
+- decrement level on recursive calls on nested array args
+  - lock out recursive logic if level is at 1 (don't drill deeper)
+- edit largestNum reassignment logic to only trigger for numTypes
 */
 
-const nestedArrMaxLevel = (arr, level = 1) => {
-  
+
+const nestedArrMaxLevel = (input, level) => {
+  let largestNum = input[0]
+  const nestedMaxLevelReducer = (input, level, current = input[0]) => !input.length
+  ? undefined
+  : (
+    level > 1 && Array.isArray(current) && nestedMaxLevelReducer(current, level - 1),
+    typeof current === 'number' && current > largestNum && (largestNum = current),
+    nestedMaxLevelReducer(input.slice(1), level)    
+  )
+
+  return (nestedMaxLevelReducer(input, level), largestNum)
 };
+
+
+
+// testcases
+arrNested = [1, [3, [10], 6]];
+console.log('+++TeST expect', nestedArrMaxLevel(arrNested, 1), 'to be 1');
+console.log('+++TeST expect', nestedArrMaxLevel(arrNested, 2), 'to be 6');
+console.log('+++TeST expect', nestedArrMaxLevel(arrNested, 3), 'to be 10');
+
+
 
 module.exports = {nestedArrMax, nestedArrMaxLevel};
