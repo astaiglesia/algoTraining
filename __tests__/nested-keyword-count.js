@@ -1,4 +1,4 @@
-const {keywordCount, keywordMode} = require('../challenges/nested-keyword-count.js');
+const {keywordCount, keywordMode} = require('../challenges/round3/16-nested-keyword-count.js');
 
 describe('keywordCount test', () => {
   let arr;
@@ -39,8 +39,9 @@ describe('keywordCount test', () => {
   });
 });
 
-xdescribe('keywordMode test', () => {
+describe('keywordMode test', () => {
   let arr;
+  
   it('finds keywords in a non-nested array', () => {
     arr = ['bye', 'cool', 'bye', 'bye'];
     expect(keywordMode(arr)).toEqual(['bye']);
