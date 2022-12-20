@@ -1,4 +1,4 @@
-const { twoSum, threeSum } = require('../challenges/two-sum.js');
+const { twoSum, threeSum } = require('../challenges/round3/17-two-sum');
 
 describe('twoSum test', () => {
   let arr;
