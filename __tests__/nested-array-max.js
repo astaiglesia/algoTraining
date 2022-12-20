@@ -1,4 +1,4 @@
-const {nestedArrMax, nestedArrMaxLevel} = require('../challenges/nested-array-max.js');
+const {nestedArrMax, nestedArrMaxLevel} = require('../challenges/round3/15-nested-array-max.js');
 
 describe('nestedArrMax test', () => {
   const emptyArr = [];
