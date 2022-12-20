@@ -30,7 +30,7 @@ describe('twoSum test', () => {
 
 });
 
-xdescribe('threeSum test', () => {
+describe('threeSum test', () => {
   let arr;
 
   it('should return true if three numbers sum to n', () => {

@@ -51,13 +51,13 @@ const twoSum = (nums, target) => {
 
 // test cases
 const nums = [1, 4, 7, 2, 9, 0];
-console.log(twoSum(nums, 8)); //> true
+// console.log(twoSum(nums, 8)); //> true
 
 const arr = [1, 4, 7, 2, 9, 0];
-console.log(twoSum(arr, 17)); // false
+// console.log(twoSum(arr, 17)); // false
 
 const arr2 = [-1, -1, -2, -4, -5];
-console.log(twoSum(arr2, -2)); //(true);
+// console.log(twoSum(arr2, -2)); //(true);
 
 
 
@@ -69,14 +69,37 @@ Otherwise, return false.
 
 The straightforward way to solve this problem would take O(n³) time. Is it possible to do this in O(n²) time?
 
+extend on twoSum?
+approach: dual nested iteration || 
+- set up an instance table
+- find current diff: 18- 2 = 16
+- iterate to initialize props of table with currentDiff: idx
+- iterate through table entries
+  - call twoSum on spliced nums array (remove idx ele) + key as target
+  - return true on hits
 */
 
 const threeSum = (arr, target) => { 
+  const diffTable = {}
+  let returnState = false
 
+  arr.forEach((num, idx) => {
+    const currentDiff = target - num;
+    diffTable[currentDiff] = idx;
+  })
+
+  Object.entries(diffTable).forEach(([ diff, srcIdx ]) => {
+    const newArr = [...arr]
+    newArr.splice(srcIdx, 1)
+    if (twoSum(newArr, diff)) returnState = true
+  })
+
+  return returnState
 }
 
-
-
+// testcases
+let threeNums = [2, 5, 11, 15];
+console.log('+++TEST expect', threeSum(threeNums, 18), 'to be true'); //true;
 
 
 module.exports = { twoSum, threeSum };
