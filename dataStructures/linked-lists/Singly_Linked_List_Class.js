@@ -18,14 +18,9 @@ class SinglyLinkedList{
     // adds a new node to the tail of a linked list
     push(val){
         const newNode = new Node(val);
-
-        !this.head ? (
-            this.head = newNode
-        ) : (
-            this.tail.next = newNode
-        );        
-            this.tail = newNode
-            this.length += 1
+        !this.head ? this.head = newNode : this.tail.next = newNode     // handles empty list + rewire tail's next prop
+        this.tail = newNode                                             // reassign tail pointer
+        this.length += 1                                                // update class props
             
         return this;
     }
