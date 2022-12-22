@@ -27,6 +27,55 @@ Example
 
  */ 
 
+function door(events) {
+  let output = ''
+  const state = {
+    inMotion: false,
+    counter: 0,
+    isOpening: true
+  }
+  
+  for (const char of events) {
+    switch (char) {
+      case 'P': 
+        !state.inMotion && (state.isOpening ? state.counter += 1 : state.counter -= 1),
+        state.inMotion = !state.inMotion,
+        output = `${output}${state.counter}`
+
+        break
+
+      case '.': 
+        !state.inMotion ? (
+          output = `${output}${state.counter}`
+        ) : (
+          state.isOpening ? state.counter += 1 : state.counter -= 1,   
+          output = `${output}${state.counter}`,
+          (state.counter <= 1 || state.counter === 5 ) && (
+            state.inMotion = false,
+            state.isOpening = !state.isOpening,
+            (state.counter === 1) && (state.counter -= 1)
+          )
+        )
+
+        break
+
+      case 'O': 
+        state.isOpening = !state.isOpening,
+        state.isOpening ? state.counter += 1 : state.counter -= 1,
+        output = `${output}${state.counter}`,
+        (state.counter <= 1 || state.counter === 5 ) && (
+          state.inMotion = false,
+          state.isOpening = !state.isOpening,
+          (state.counter === 1) && (state.counter -= 1)
+        )
+
+        break
+    } 
+  }
+
+  return output
+}
+
 /*
 input: events: string
 output: string
@@ -46,7 +95,7 @@ edges:
 - invalid inputs 
 - 
 
-timespace: linear time
+timespace: linear time, linear space (we can maintain constant space by mutating the input)
 
 example: 
 . . P . . . O . . . . . as input should yield 
@@ -54,69 +103,5 @@ example:
 
 */
 
-function door(events) {
-  console.log('================= new call', events)
-  let output = ''
-  const doorState = {
-    isOpen: false,
-    inMotion: false,
-    transitionCount: 0,
-    isOpening: true
-  }
-  
-  let { isOpen, inMotion, transitionCount, isOpening } = doorState
-  
-  for (const char of events) {
-    console.log('new step', char, transitionCount, 'in motion:', inMotion, '| going up?', isOpening)
-    if (char === 'P' ) {
-      !inMotion && (isOpening ? transitionCount += 1 : transitionCount -= 1)
-      inMotion = !inMotion
-      output = `${output}${transitionCount}`
-      continue
-    }
-    
-    
-    if (char === '.' && !inMotion) {
-      output = `${output}${transitionCount}`
-      continue
-    }
-    if (char === '.' && inMotion) {
-      console.log('hit')
-      isOpening ? transitionCount += 1 : transitionCount -= 1
-      
-      output = `${output}${transitionCount}`
-  
-      console.log('terminate motion', inMotion, isOpening, transitionCount)
-      if (transitionCount <= 1 ) {
-        inMotion = false
-        isOpening = !isOpening
-        if (transitionCount === 1) transitionCount -= 1
-      }
-      if (transitionCount === 5) {
-        inMotion = false
-        isOpening = !isOpening
-      }
-      continue
-    } 
-    if (char === 'O' && inMotion) {
-      isOpening = !isOpening
-      isOpening ? transitionCount += 1 : transitionCount -= 1
-      output = `${output}${transitionCount}`
-      
-      if (transitionCount === 1 || transitionCount === 5) {
-        inMotion = !inMotion
-        isOpening = !isOpening
-        if (transitionCount === 1) transitionCount -= 1
-      }
-      continue
-    } 
-
-    console.log('added current char ----', char, 'to new output:', output)
-  }
-  
-  
-  console.log('----- final output', output)
-  return output
-}
 
 module.exports = { door }
