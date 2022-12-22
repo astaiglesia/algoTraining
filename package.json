@@ -7,7 +7,7 @@
     "test": "jest",
     "test-hh": "bash ./scripts/run-test.sh",
     "testAss": "bash ./scripts/run-ass.sh",
-    "testLeet": "bash ./scripts/run-leet.sh"
+    "testCode": "bash ./scripts/run-leet.sh"
 
   },
   "dependencies": {},
