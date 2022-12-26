@@ -1,4 +1,4 @@
-const {reverseArray, reverseSentence} = require('../challenges/reverse-array.js');
+const {reverseArray, reverseSentence} = require('../challenges/round3/19-reverse-array.js');
 
 describe('reverseArray test', () => {
   let arr, reversed;
@@ -24,7 +24,7 @@ describe('reverseArray test', () => {
   });
 });
 
-xdescribe('reverseSentence test', () => {
+describe('reverseSentence test', () => {
   let sentence, reversed;
   it('returns a single word unchanged', () => {
     sentence = 'hello';

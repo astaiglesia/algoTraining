@@ -4,11 +4,38 @@ Reverse and return an array in-place. Do not create a new array in memory.
 Instead, modify the array as given. Do not use the array reverse method built in
 to the array prototype while solving the problem.
 
+input: array
+output: array
+givens: 
+- reverse in place
+- 
+approach: iterate and swap
+- use dual pointers: left and right, init to first and last idx
+- swap vals
+- increment and decrement pointers
+- continue while left < right
+edges:
+-invalid inputs
+- handle subarrays?
+- 
+timespace:
+- linear
+
 */
 
-// ### DO NOT CREATE A NEW ARRAY or REVERSE ARRAY METHOD
+// ### DO NOT CREATE A NEW ARRAY or use REVERSE ARRAY METHOD
 
-const reverseArray 
+const reverseArray = array => {
+  let leftIdx = 0, rightIdx = array.length - 1;
+
+  while (leftIdx < rightIdx) {
+    [array[leftIdx], array[rightIdx]] = [array[rightIdx], array[leftIdx]];
+    leftIdx += 1;
+    rightIdx -= 1;
+  }
+
+  return array;
+}
 
 
 // test cases
