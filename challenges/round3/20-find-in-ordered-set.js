@@ -37,7 +37,12 @@ const findInOrderedSet = (sortedArr, target) => {
   while (leftIdx < rightIdx) {
     const center = Math.round((leftIdx + rightIdx) / 2);
 
-    if (target === sortedArr[center]) return true;
+    if (target === sortedArr[leftIdx] 
+        || target === sortedArr[center] 
+        || target === sortedArr[rightIdx]
+    ) 
+    return true;
+
     if (target < sortedArr[center]) rightIdx = center - 1;
     if (target >= sortedArr[center]) leftIdx = center + 1;
   }
@@ -47,13 +52,15 @@ const findInOrderedSet = (sortedArr, target) => {
 
 // testcases
 const nums = [-3, 0, 8, 13, 37]
-console.log(findInOrderedSet(nums, 0));  //-> true
-console.log(findInOrderedSet(nums, 2));  //-> false
+// console.log(findInOrderedSet(nums, 13));  //-> true
+// console.log(findInOrderedSet(nums, 2));  //-> false
 
 const arr = [-41, -2, 0, 1, 3, 13, 72];
-console.log(findInOrderedSet(arr, -500)); //(false));
-console.log(findInOrderedSet(arr, 64));   // (false)
-console.log(findInOrderedSet(arr, 13));   // (true));
+// console.log(findInOrderedSet(arr, -500)); //(false));
+// console.log(findInOrderedSet(arr, 64));   // (false)
+// console.log(findInOrderedSet(arr, 13));   // (true));
+
+
 
 /*
 Extension:
@@ -72,17 +79,27 @@ const matrix = [
 findIn2dMatrix(matrix, 13); -> true
 findIn2dMatrix(matrix, 42); -> false
 
+approach: nested iteration 
+- nested iteration
+  - iterate through input
+  - call find in ordered set on each
+  - return if true, else continue
+- default return of false
 */
 
-// check the middle element of the middle array
-// --- determine if target is equal to, greater or less than middle element
-// --- check if targety is equal to, greater or less than edge element in the array
-// --- if target is within the array's range, recurse within
-// --- if target is outside of the array range, recurse outside
-
-
 const findIn2dMatrix = (matrix, target) => {
-
+  for (const subarray of matrix) if (findInOrderedSet(subarray, target)) return true;
+  return false;
 };
+
+
+// testing
+const matrix = [
+  [-3, -1,  2,  4,  5],
+  [ 6,  7,  8, 13, 37],
+  [41, 49, 50, 61, 75]
+];
+// console.log('expect', findIn2dMatrix(matrix, 13), 'to equal true')
+// console.log('expect', findIn2dMatrix(matrix, 42), 'to equal false')
 
 module.exports = { findInOrderedSet, findIn2dMatrix };

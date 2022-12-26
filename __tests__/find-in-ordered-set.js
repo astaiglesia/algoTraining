@@ -22,7 +22,7 @@ describe('findInOrderedSet tests', () => {
   it('should return false if the target is greater than the largest value in the array', () => expect(findInOrderedSet(arr, 500)).toBe(false));
 });
 
-xdescribe('findIn2dMatrix tests', () => {
+describe('findIn2dMatrix tests', () => {
   const matrix = [
     [-9, -1,  2,  4,  5],
     [ 6,  7,  8, 13, 37],
