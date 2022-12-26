@@ -19,7 +19,7 @@ edges:
 - handle subarrays?
 - 
 timespace:
-- linear
+- linear/2   =>   linear
 
 */
 
@@ -53,10 +53,22 @@ The input string will always be a series of words separated by spaces between
 them, with each word containing only lowercase letters and no punctuation. The
 input string will always have at least one word
 
+approach: 
+- split string, space seperator
+- call reverseArray
+- join array
+
+edges: 
+- strings not following prompt assumptions
+
+
 */
 
-const reverseSentence = sentence => {
-  
-};
+const reverseSentence = sentence => reverseArray(sentence.split(' ')).join(' ');
+
+// testcases
+let senTest = 'we are holding onto nothing'
+console.log('expect: ', reverseSentence(senTest), 'to equal: nothing onto holding are we')
+
 
 module.exports = {reverseArray, reverseSentence};
