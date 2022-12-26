@@ -3,16 +3,49 @@ Write a function findInOrderedSet that determines if a target value exists withi
 
 Assuming that the array is sorted in ascending order, can you accomplish this with time complexity better than O(n)?
 
+input: nums: array, target: num
+output: bool
+givens: 
+- function to determine if target exists in nums array
+- input sorted in ascending order
+- solve in a better time than linear
+
+approach:
+- use a binary search on target
+  - left, middle, right pointers
+  - continue til target hit
+  - terminate if left > right
+
+edges:
+- empty array
+- invalid inputs
+- target not in array
+- handle nested arrays?
+
+timespace: log time, constant space (linear space on recursive)
+
 ex:
 const nums = [-3, 0, 8, 13, 37]
 findInOrderedSet(nums, 0);  -> true
 findInOrderedSet(nums, 2);  -> false
 */
 
-const findInOrderedSet 
+const findInOrderedSet = (sortedArr, target) => {
+  let leftIdx = 0, 
+      rightIdx = sortedArr.length - 1;
+      
+  while (leftIdx < rightIdx) {
+    const center = Math.round((leftIdx + rightIdx) / 2);
+
+    if (target === sortedArr[center]) return true;
+    if (target < sortedArr[center]) rightIdx = center - 1;
+    if (target >= sortedArr[center]) leftIdx = center + 1;
+  }
+  
+  return false;
+}
 
 // testcases
-
 const nums = [-3, 0, 8, 13, 37]
 console.log(findInOrderedSet(nums, 0));  //-> true
 console.log(findInOrderedSet(nums, 2));  //-> false

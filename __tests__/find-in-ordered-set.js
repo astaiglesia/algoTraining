@@ -1,4 +1,4 @@
-const { findInOrderedSet, findIn2dMatrix } = require('../challenges/find-in-ordered-set');
+const { findInOrderedSet, findIn2dMatrix } = require('../challenges/round3/20-find-in-ordered-set');
 
 
 describe('findInOrderedSet tests', () => {
