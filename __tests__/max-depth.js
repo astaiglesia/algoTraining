@@ -1,4 +1,4 @@
-const {maxDepth} = require('../challenges/max-depth.js');
+const {maxDepth} = require('../challenges/round3/18-max-depth');
 
 describe('maxDepth test', () => {
   it('handles non-nested arrays', () => {

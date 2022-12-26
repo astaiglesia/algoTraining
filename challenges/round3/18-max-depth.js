@@ -4,9 +4,23 @@ Given an arbitrarily nested array of arrays, return the maximum depth.
 
 For example:
 
+input: source: []any
+ouput: num
+approach: recursion
+- maintain a depth tracker
+- recursively traverse the array 
+  - drill down + increment counter if element is an array
+- else pass a sliced input in tail call
+edges: 
+- invalid input
+timespace: linear 
 */
 
-const maxDepth 
+const maxDepth = (source, counter = 1) => {
+  return (!source.length) ? counter
+  : (Array.isArray(source[0])) ? maxDepth(source[0], counter + 1)
+  : maxDepth(source.slice(1), counter)
+}
 
 
 //  test cases
