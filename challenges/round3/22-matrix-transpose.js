@@ -11,18 +11,45 @@ const twoDimArray = [['fred', 'barney'],
 console.table(matrixTranspose(twoDimArray)); // -> [['fred', 30, true], 
                                                     ['barney', 40, false]]
 
+input: 2dArr[][]
+output: [][]
+givens: [][]
+approach:
+- iterate through input
+  - create new output array forEach value of input[0]
+  - on each successive pass, iterate through input subarray and push to respective  output subarray
+
+edges: 
+- invalid inputs
+  - assume enforced uniform schema to input matrix
+timespace:
+- linear time (visit every element to transpose)
+- linear space (for transposed matrix)
+
 */
 
 
-const matrixTranspose 
+const matrixTranspose = matrix => {
+  const output = [];
+  if (!matrix[0])  return output;
+
+  matrix[0].forEach(ele => output.push([ele]));
+  
+  for (let i = 1; i < matrix.length; i++) {
+    matrix[i].forEach( (ele, idx) => output[idx].push(ele))
+  }
+
+  return output;
+} 
 
       
 
 
 
 // test case
-const twoDimArray = [ ['fred', 'barney'], [30, 40], [true, false] ];
-                      
+let twoDimArray = [ ['fred', 'barney'], [30, 40], [true, false] ];
+// console.table(matrixTranspose(twoDimArray)); // -> [['fred', 30, true], ['barney', 40, false]]
+twoDimArray = [];
 console.table(matrixTranspose(twoDimArray)); // -> [['fred', 30, true], ['barney', 40, false]]
 
 

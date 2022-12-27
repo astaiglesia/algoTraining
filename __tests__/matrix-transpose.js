@@ -1,4 +1,4 @@
-const { matrixTranspose, matrixRotate } = require('../challenges/matrix-transpose.js'); 
+const { matrixTranspose, matrixRotate } = require('../challenges/round3/22-matrix-transpose.js'); 
 
 describe('matrixTranspose test', () => {
   let matrix;
