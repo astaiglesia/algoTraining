@@ -52,7 +52,7 @@ describe('matrixTranspose test', () => {
   });
 });
 
-xdescribe('matrixRotate test', () => {
+describe('matrixRotate test', () => {
   let matrix;
   let rotated;
 
