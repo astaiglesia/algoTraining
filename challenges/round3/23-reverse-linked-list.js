@@ -1,6 +1,6 @@
-function Node(value) {
+function Node(value, next = null) {
   this.value = value;
-  this.next = null;
+  this.next = next;
 }
 
 /**
@@ -21,10 +21,30 @@ function Node(value) {
  * Extension:
  * Do it in place
  *
+ * input: head: Node
+ * output: Node
+ * approach: recursive
+ * - maintain a current and prev nodes
+ * - traverse the list
+ *  - process each node by reassigning next pointers to point to prev
+ *      - use a temp to store the next node  
+ *  - terminate traversal when current is null
  */
 
-const reverseLinkedList = head => {
+const reverseLinkedList = (root, prev = null, next = root?.next) => !root ? prev 
+  : (root.next = prev, reverseLinkedList(next, root))
 
-};
+// const reverseLinkedList = (head, prev = null, temp = current?.next) => {
+//   // base case 
+//   if (current === null) return prev
+  
+//   // recursively process the node - reassign pointers, tail call to tnext current
+//   current.next = prev  
+//   return reverseLinkedList(head, temp, current)
+// };
+
+// test case
+let tester = new Node(1, new Node(2, new Node(3, new Node(4, new Node(5)))))
+// console.log(reverseLinkedList(tester))
 
 module.exports = { Node, reverseLinkedList }

@@ -1,4 +1,4 @@
-const { Node, reverseLinkedList } = require('../challenges/reverse-linked-list.js');
+const { Node, reverseLinkedList } = require('../challenges/round3/23-reverse-linked-list.js');
 
 describe('reverseLinkedList test', () => {
 
