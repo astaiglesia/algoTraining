@@ -72,8 +72,38 @@ Given a linked list:
 
 */
 
-const linkedListRemoveMultiple = (ll, val) => {
-
+let linkedListRemoveMultiple = (ll, target, prev = null, current = ll.head, temp = current?.next, didHit = false) => {
+  if (current === null) return ll
+  if (ll.head.val === target) {
+    ll.head = current.next
+    current.next = null
+    didHit = true
+  }
+  else if (current.val === target) {
+    prev.next = current.next
+    current.next = null
+    didHit = true
+  }
+  return linkedListRemoveMultiple(ll, target, didHit ? prev : current, temp)
 }
+// ternary + ES6 refactor
+// linkedListRemoveMultiple = (ll, target, prev = null, current = ll.head, temp = current?.next, didHit = false) => {
+//   return (current === null) ? ll
+//   : (
+//       (ll.head.val === target) && (
+//         ll.head = current.next,
+//         current.next = null,
+//         didHit = true
+//       ),
+//       (current.val === target) && (
+//         console.log('hit--- > prev', prev),
+//         prev.next = current.next,
+//         current.next = null,
+//         didHit = true
+//       ),
+//       console.log('passing into tail call: didhit', didHit, 'prev', prev, 'current', current, 'temp', temp),  
+//       linkedListRemoveMultiple(ll, target, didHit ? prev : current, temp)
+//     )
+// }
 
 module.exports = { LinkedList, Node, linkedListRemove, linkedListRemoveMultiple };

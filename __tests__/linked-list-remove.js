@@ -30,7 +30,7 @@ describe('linkedListRemove test', () => {
   
 });
 
-xdescribe ('linkedListRemoveMultiple', ()=>{
+describe ('linkedListRemoveMultiple', ()=>{
   const llMultiple = new LinkedList();
   beforeEach(()=>{
     const nodeList = new Node('a');
@@ -50,7 +50,8 @@ xdescribe ('linkedListRemoveMultiple', ()=>{
   });
 
   it('Bonus: Should be solved in constant space', () => {
+    const expected = llMultiple.head.next;
     const newLL = linkedListRemoveMultiple(llMultiple, 'a');
-    expect(newLL).toBe(llMultiple.head.next);
+    expect(newLL.head).toBe(expected);
   });
 })
