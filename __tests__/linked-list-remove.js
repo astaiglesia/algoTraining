@@ -1,4 +1,4 @@
-const {LinkedList, Node, linkedListRemove, linkedListRemoveMultiple} = require('../challenges/linked-list-remove');
+const {LinkedList, Node, linkedListRemove, linkedListRemoveMultiple} = require('../challenges/round3/24-linked-list-remove');
 
 describe('linkedListRemove test', () => {
   const ll = new LinkedList();
@@ -10,9 +10,10 @@ describe('linkedListRemove test', () => {
     nodeList.next.next.next.next= new Node('b');
     ll.head = nodeList;
   });
-
   it('Should return head.next if the value corresponds to the first node', () => {
-    expect(linkedListRemove(ll, 'a')).toBe(ll.head.next);
+    const expected = ll.head.next;
+    const newLL = linkedListRemove(ll, 'a')
+    expect(newLL).toBe(expected);
   });
 
   it('Should delete the first instance of the node', () => {
@@ -22,10 +23,10 @@ describe('linkedListRemove test', () => {
   });
 
   it('Bonus: Should be solved in constant space', () => {
+    const expected = ll.head.next;
     const newLL = linkedListRemove(ll, 'a');
-    expect(newLL).toBe(ll.head.next);
+    expect(newLL).toEqual(expected);
   });
-
   
 });
 
