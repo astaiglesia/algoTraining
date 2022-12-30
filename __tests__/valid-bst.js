@@ -1,4 +1,4 @@
-const { BinaryTree, validBST } = require('../challenges/valid-bst');
+const { BinaryTree, validBST } = require('../challenges/round3/25-valid-bst');
 
 describe('validBST test', () => {
   const tree = new BinaryTree(10);

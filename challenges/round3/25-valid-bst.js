@@ -36,9 +36,27 @@ function BinaryTree(value) {
    /      /
   1     *4*
 
+
+// ----- valid BST approach
+- Define the min and max value the current node can have
+- If a node's value is not within those bounds, return false
+- Recursively validate the node's left children, with the max bound set to the node's value
+- Recursively validate the node's right children, with the min bound set to the node's value
+
 */
 
+const validBST = (bst, min, max) => {
+  return (!bst) ? true
+    :  (bst.value <= min || bst.value >= max) ? false
+    :  validBST(bst.left, min, bst.value) && validBST(bst.right, bst.value, max)
+}
 
-const validBST 
+// const validBST = (bst, min, max) => {
+//   console.log(bst)
+//   if (!bst) {console.log('--- hit null node'); return true}
+//   if (bst.value <= min || bst.value >= max) return false
+
+//   return validBST(bst.left, min, bst.value) && validBST(bst.right, bst.value, max)  // both recursive tail calls need to return out true
+// }
 
 module.exports = { BinaryTree, validBST };
