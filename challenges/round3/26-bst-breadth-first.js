@@ -10,6 +10,8 @@ the end of the queue. Keep consuming the queue (using the shift method) until
 there are no more nodes in the queue.
 
 Utilizing recursion is not necessary, nor recommended.
+
+
 Example:
 
 If the tree is
@@ -25,6 +27,19 @@ If the tree is
 then apply the callback on the numbers in the order:
 4, 2, 7, 1, 3, 9, 8.
 
+input: root: bst node, callback
+output: 
+givens:
+- apply the callback to each value tracversed
+- matain a queue
+approach: FIFO queue approach - push nodes
+- init queue with root
+- while queue is not empty
+  - pop and process the node
+  - unshift left, then  right if not null
+edges:
+timespace:
+
 */
 
 function BinarySearchTree(value) {
@@ -33,11 +48,35 @@ function BinarySearchTree(value) {
   this.left = null;
 }
 
-const bfs 
 
+const bfs = (bst, callback) => {
+  const queue = [bst];
+  const results = [];
 
+  while (queue.length) {
+    const currentNode = queue.pop()
+    callback(currentNode.value)
+    currentNode.left && queue.unshift(currentNode.left)
+    currentNode.right && queue.unshift(currentNode.right)
+  }
 
-// create a test case
+  return results
+}
+
+// testcases:
+// const bst = new BinarySearchTree(4);
+// bst.left = new BinarySearchTree(2);
+// bst.right = new BinarySearchTree(7);
+// bst.left.left = new BinarySearchTree(1);
+// bst.left.right = new BinarySearchTree(3);
+// bst.right.right = new BinarySearchTree(9);
+// bst.right.right.left = new BinarySearchTree(8);
+
+// const cb = val => {
+//   results.push(val);
+// };
+// const expected = bfs(bst, cb);
+// console.log(`expect ${expected} toEqual([4, 2, 7, 1, 3, 9, 8])`)
 
 
 

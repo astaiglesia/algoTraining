@@ -1,4 +1,4 @@
-const {BinarySearchTree, bfs, minimumDistance} = require('../challenges/bst-breadth-first.js');
+const {BinarySearchTree, bfs, minimumDistance} = require('../challenges/round3/26-bst-breadth-first.js');
 
 describe('bfs test', () => {
   let bst, results;
