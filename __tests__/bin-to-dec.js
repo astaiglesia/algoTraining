@@ -1,4 +1,4 @@
-const {binToDec} = require('../challenges/bin-to-dec.js');
+const {binToDec} = require('../challenges/round3/27-bin-to-dec.js');
 
 describe('binToDec test', ()=>{
   it('Should return correct conversion', ()=>{
