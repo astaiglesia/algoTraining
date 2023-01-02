@@ -65,17 +65,16 @@ area = [[1, 0, 0],
   // console.log('------- new step at row', row, 'col', col, 'current step:', area[row][col], 'with count of:', stepCounter ) 
 */ 
 
-
-const findShortestPath = (numRows, numColumns, area) => {
-  class PathForward {
-    constructor(row, col, stepCounter, newGrid) {
-      this.newRow = row,
-      this.newCol = col,
-      this.stepCounter = stepCounter,
-      this.newGrid = newGrid
-    }
+class PathForward {
+  constructor(row, col, stepCounter, newGrid) {
+    this.newRow = row,
+    this.newCol = col,
+    this.stepCounter = stepCounter,
+    this.newGrid = newGrid
   }
-  
+}
+
+const findShortestPath = (numRows, numColumns, area) => { 
   const queue = [],
         paths = [];
   const minPathMatrix = (numRows, numColumns, area, stepCounter = 0, row = 0, col = 0) => {
