@@ -78,9 +78,7 @@ const bfs = (bst, callback) => {
 // console.log(`expect ${expected} toEqual([4, 2, 7, 1, 3, 9, 8])`)
 
 
-
-
-/*
+/*-----------------------------------------------------------------------------------
 
 Extension:
 
@@ -173,8 +171,6 @@ neighbors are traversable and haven't already been visited.
  * */ 
 
 
-
-
 function gridPoint(row, col, distance, grid) {
   this.row = row,
   this.col = col,
@@ -182,39 +178,41 @@ function gridPoint(row, col, distance, grid) {
   this.grid = grid
 }
 
-const minimumDistance = (grid) => {
-  const NUMROWS = grid.length,
-        NUMCOLUMNS = grid[0].length,
-        QUEUE = [],
-        PATHS = []
+const analyzeNode = (grid, row, col, distance, config) => {
+  const { NUMROWS, NUMCOLUMNS, QUEUE, PATHS } = config
+  let newCol = col, newRow = row, newGrid = [...grid]
 
-  const analyzeNode = (grid, row, col, distance) => {
-    let newCol = col, newRow = row, newGrid = [...grid];
+  if (grid[row][col] === 2) PATHS.push(distance)          // handle destination hit
+  else {                                                  // handle path processing
+    newGrid[row][col] = 1;                                // mark current as path traveled
 
-    if (grid[row][col] === 2) PATHS.push(distance)          // handle destination hit
-    else {                                                  // handle path processing
-      newGrid[row][col] = 1;                                // mark current as path traveled
-
-      /* process potential paths */
-      newCol = col - 1
-      if (newCol >= 0 && grid[row][newCol] !== 1) QUEUE.unshift(new gridPoint(row, newCol, distance + 1, newGrid ));          // check left
-      newCol = col + 1
-      if (newCol < NUMCOLUMNS && grid[row][newCol] !== 1) QUEUE.unshift(new gridPoint(row, newCol, distance + 1, newGrid ));  // check right
-      newRow = row - 1
-      if (newRow >= 0 && grid[newRow][col] !== 1) QUEUE.unshift(new gridPoint(newRow, col, distance + 1, newGrid ));          // check up 
-      newRow = row + 1
-      if (newRow < NUMROWS && grid[newRow][col] !== 1) QUEUE.unshift(new gridPoint(newRow, col, distance + 1, newGrid ));     // check down
-    }
-
-    return (!QUEUE.length) ? (!PATHS.length ? -1 : Math.min(...PATHS))
-    : (
-      nextNode = QUEUE.pop(),
-      analyzeNode(newGrid, nextNode.row, nextNode.col, nextNode.distance)
-    )
+    /* process potential paths */
+    newCol = col - 1
+    if (newCol >= 0 && grid[row][newCol] !== 1) QUEUE.unshift(new gridPoint(row, newCol, distance + 1, newGrid, config))          // check left
+    newCol = col + 1
+    if (newCol < NUMCOLUMNS && grid[row][newCol] !== 1) QUEUE.unshift(new gridPoint(row, newCol, distance + 1, newGrid, config))  // check right
+    newRow = row - 1
+    if (newRow >= 0 && grid[newRow][col] !== 1) QUEUE.unshift(new gridPoint(newRow, col, distance + 1, newGrid, config))          // check up 
+    newRow = row + 1
+    if (newRow < NUMROWS && grid[newRow][col] !== 1) QUEUE.unshift(new gridPoint(newRow, col, distance + 1, newGrid, config))     // check down
   }
 
-  return analyzeNode(grid, 0, 0, 0);
+  return (!QUEUE.length) ? (!PATHS.length ? -1 : Math.min(...PATHS))
+  : (
+    nextNode = QUEUE.pop(),
+    analyzeNode(newGrid, nextNode.row, nextNode.col, nextNode.distance, config)
+  )
+}
 
+const minimumDistance = (grid) => {
+  const config = {
+    NUMROWS: grid.length,
+    NUMCOLUMNS: grid[0].length,
+    QUEUE: [],
+    PATHS: []
+  }
+
+  return analyzeNode(grid, 0, 0, 0, config)
 };
 
 module.exports = {BinarySearchTree, bfs, minimumDistance};
