@@ -1,4 +1,4 @@
-const {BinarySearchTree, bstMinMax, lowestCommonAncestor} = require('../challenges/bst-min-max.js');
+const {BinarySearchTree, bstMinMax, lowestCommonAncestor} = require('../challenges/round3/28-bst-min-max.js');
 
 describe('bstSum test', () => {
   let bst;
