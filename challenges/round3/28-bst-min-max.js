@@ -38,7 +38,6 @@ returns 8, because 9 - 1 = 8
  * - set max to the furthest right node value (recurse right until null)
  * -> still linear complexity as a worst case (all nodes follow the path of recursion)
  * -> we can eliminate unecessary evaluations of middle nodes (helpful if each operation is expensive)
- * 
  */
 
 function BinarySearchTree(value, left = null, right = null) {
@@ -131,8 +130,8 @@ edgges:
 timespace
 - log time (binary search eliminates half the set on each pass)
 - frames on a stack
-*/
 
+#draftcode
 const lowestCommonAncestor = (root, p, q) => {
   // basecase
   if (p.value >= root.value && q.value <= root.value 
@@ -144,7 +143,16 @@ const lowestCommonAncestor = (root, p, q) => {
   // edgecase
   else return null
 };
+*/
 
+const lowestCommonAncestor = (root, p, q) => {
+  return (p.value >= root.value && q.value <= root.value 
+      || p.value <= root.value && q.value >= root.value 
+    ) ? root
+    : (p.value < root.value && q.value < root.value ) ? lowestCommonAncestor(root.left, p, q)
+    : (p.value > root.value && q.value > root.value ) ? lowestCommonAncestor(root.right, p, q)
+    : null
+}
 
 
 module.exports = {BinarySearchTree, bstMinMax, lowestCommonAncestor};

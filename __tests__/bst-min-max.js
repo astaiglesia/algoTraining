@@ -31,7 +31,7 @@ describe('bstSum test', () => {
   });
 });
 
-xdescribe('lowestCommonAncestor test', () => {
+describe('lowestCommonAncestor test', () => {
   let bst;
   it('calculates ancestors of binary search tree nodes with p and q ascending in value', () => {
     bst = new BinarySearchTree(4);
