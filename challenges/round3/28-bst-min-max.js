@@ -109,10 +109,42 @@ The LCA of node 1 and node 3 is node 2.
 The LCA of node 8 and node 9 is node 9.
 The LCA of node 2 and node 8 is node 4.
 
+input: root, p, q: BST Nodes
+output: BST Node
+givens: 
+- LCA can be itself (e.g. the parent in a parent+child relationship is the LCA)
+  - i.e. 
+    - the LCA is the closest node that can be traversed to both args 
+    - 
+approach:
+- amended binary search with 2 vals
+- recursion to handle 4 possible outcomes
+- given root, check val of both args against root
+  - if both less, recurse left
+  - if both right, recurse right
+  - else if split or parent+child, terminate recursion/iteration, return current node
+  - handle edge of parent+child relationship (if current is equal to one of the args + the other arg is a child)
+edgges:
+- invalid inputs
+    - nodes don't exist on tree
+    - null/ non-node inputs
+timespace
+- log time (binary search eliminates half the set on each pass)
+- frames on a stack
 */
 
 const lowestCommonAncestor = (root, p, q) => {
-  
+  // basecase
+  if (p.value >= root.value && q.value <= root.value 
+    || p.value <= root.value && q.value >= root.value 
+    ) return root
+  // recursive case
+  if (p.value < root.value && q.value < root.value ) return lowestCommonAncestor(root.left, p, q)
+  else if (p.value > root.value && q.value > root.value ) return lowestCommonAncestor(root.right, p, q)
+  // edgecase
+  else return null
 };
+
+
 
 module.exports = {BinarySearchTree, bstMinMax, lowestCommonAncestor};
