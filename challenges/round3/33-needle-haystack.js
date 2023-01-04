@@ -15,15 +15,38 @@ Input: 'finding a needle in a haystack', 'lein'
 Output: false
 */
 
+/**
+ * input: superstring: string(n), target: string(m)
+ * output: boolean
+ * givens:
+ * - function should determine if superstring contains target 
+ * - no regex
+ * - no includes or indexOf
+ * - solve in n * m complexity
+ * approach:
+ * iterate through superstring (n)
+ * - check for charAt(0) of target
+ * - if hit then check for matches at idx 1...2...3...  (m)
+ * - else continue on any misses (reset inner loop)
+ * edges:
+ * timespace: linear time... n determines the number of operations
+ *                            m runs in parallel
+ *            constant space
+ */
 
-const needleInHaystack 
+const needleInHaystack = (superstring, target) => {
+  let targetIdx = 0
+  for (const char of superstring){
+    targetIdx = (char === target[targetIdx]) ? targetIdx + 1 : 0
+    if (!target[targetIdx]) return true
+  }
+  
+  return false
+}
 
 // testcase:
 const test2 = 'finding a needle in a haystack';
 const find2 = 'lein';
-
-console.log(test2[7]); // expect to 8th char to be a space
-
 console.log(needleInHaystack('xztzcatbfbbq', 'cat')); // true
 console.log(needleInHaystack(test2, find2)); // false
 
