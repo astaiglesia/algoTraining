@@ -1,4 +1,4 @@
-const {BinarySearchTree, bstSum, bstReverse} = require('../challenges/bst-sum.js');
+const {BinarySearchTree, bstSum, bstReverse} = require('../challenges/round3/30-bst-sum.js');
 
 describe('bstSum test', () => {
   let bst;
@@ -29,7 +29,7 @@ describe('bstSum test', () => {
   });
 });
 
-xdescribe('bstReverse test', () => {
+describe('bstReverse test', () => {
   let bst;
   it('reverses single-depth binary search trees', () => {
     bst = new BinarySearchTree(6);
