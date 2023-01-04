@@ -1,4 +1,4 @@
-const {BinarySearchTree, bstReverse, sortedArrayToBST} = require('../challenges/bst-reverse.js');
+const {BinarySearchTree, bstReverse, sortedArrayToBST} = require('../challenges/round3/31-bst-reverse.js');
 
 describe('bstReverse test', () => {
   let bst;

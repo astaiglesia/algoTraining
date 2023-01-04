@@ -39,9 +39,16 @@ function.
 
 T2 BONUS -> utilize swap syntax
 
+approach: recursively swap children nodes
+
 */
 
-const bstReverse
+const bstReverse = node => {
+  if (!node) return
+  [node.left, node.right] = [node.right, node.left]
+  bstReverse(node.left)
+  bstReverse(node.right)
+}
 
 
 
