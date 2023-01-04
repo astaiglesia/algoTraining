@@ -47,10 +47,6 @@ const bstHeight = bstNode => {
 
 
 
-
-
-
-
 /*
   Extension:
 
@@ -76,10 +72,32 @@ const bstHeight = bstNode => {
   But, it is not superbalanced since for the 7 subtree, height of left is 0, height of right is 2.
   
   The tree on the right is superbalanced since the difference in height is not more than 1 at any given subtree.
+
+  --approach--
+  - basecase: return out  when currentNode is null
+  - recursive case:
+    - call bstHeight on left and right nodes
+    - return out false if height delta > 1
+    - else recursive call on children
+    
+    const superbalanced = (tree, output = true) => {
+      if (!tree) return output
+    
+      const diff = Math.abs(bstHeight(tree.right) - bstHeight(tree.left))
+    
+      if (diff > 1) return false
+    
+      else return (
+        superbalanced(tree.left, output),
+        superbalanced(tree.right, output)
+      )
+    }
+
  */
 
-const superbalanced = tree => {
-  
-};
+const superbalanced = (tree, diff = Math.abs(bstHeight(tree?.right) - bstHeight(tree?.left))) => !tree ? true
+  : (diff > 1) ? false
+  : (superbalanced(tree.left), superbalanced(tree.right))
+
 
 module.exports = {BinarySearchTree, bstHeight, superbalanced};

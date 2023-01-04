@@ -19,15 +19,22 @@ describe('bstHeight test', () => {
   });
 });
 
-xdescribe('superbalanced test', () => {
+describe('superbalanced test', () => {
   let tree;
   
+  /**
+   *                  10
+   *             5        14
+   *          3     6
+   *        1
+   */
+
   beforeEach(() => {
     tree = new BinarySearchTree(10);
-    tree.left = new BinarySearchTree(5);
-    tree.left.left = new BinarySearchTree(3);
-    tree.left.right = new BinarySearchTree(6);
-    tree.right = new BinarySearchTree(14);
+    tree.right = new BinarySearchTree(5);
+    tree.right.right = new BinarySearchTree(3);
+    tree.right.right = new BinarySearchTree(6);
+    tree.left = new BinarySearchTree(14);
   });
   
   it('should detect superbalanced trees', () => {
@@ -35,7 +42,7 @@ xdescribe('superbalanced test', () => {
   });
 
   it('should return false for not superbalanced trees', () => {
-    tree.left.left.left = new BinarySearchTree(1);
+    tree.right.right.left = new BinarySearchTree(1);
     expect(superbalanced(tree)).toBe(false);
   });
 });
