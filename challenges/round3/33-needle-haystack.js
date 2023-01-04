@@ -62,10 +62,24 @@ Output: true
 
 Input: 'montana', '__o__'
 Output: false
+
+approach:
+- modify the above to check against either arg is a wildcard... if so treat as a hit
+
 */
 
-const needleInHaystackWithWildcards = (string, substring) => {
-
-};
+const needleInHaystackWithWildcards = (superstring, target) => {
+  let targetIdx = 0
+  for (const char of superstring){
+    targetIdx = (
+      char === target[targetIdx] 
+      || char === '_' 
+      || target[targetIdx] === '_'
+    ) ? targetIdx + 1 : 0
+    if (!target[targetIdx]) return true
+  }
+  
+  return false
+}
 
 module.exports = { needleInHaystack, needleInHaystackWithWildcards };
