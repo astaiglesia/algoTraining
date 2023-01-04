@@ -1,4 +1,4 @@
-const { DoublyLinkedList } = require('../challenges/doubly-linked-list.js');
+const { DoublyLinkedList } = require('../challenges/round3/32-doubly-linked-list.js');
 
 describe('Doubly LinkedList Test', () => {
   const list = new DoublyLinkedList();

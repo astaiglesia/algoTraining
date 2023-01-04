@@ -27,12 +27,61 @@ function Node(val) {
   this.prev = null;
 }
 
+  // create add() - adds an additional node to the tail
+  // create a new node
+  // access the tail 
+  // reassign next val
+  // reassign tail
+  
 
-DoublyLinkedList.prototype.add 
+DoublyLinkedList.prototype.add  = function (data) {
+  const newNode = new Node(data)
+  
+  if (!this.head) {
+    this.head = newNode
+  } else if (!this.tail) {
+    this.tail = newNode
+    this.head.next = newNode
+    this.tail.prev = this.head
+  } else {
+    newNode.prev = this.tail
+    this.tail.next = newNode
+    this.tail = newNode
+  }
 
+  return this
+}
 
-DoublyLinkedList.prototype.remove = function (val) {
+// traverse the list, reassigning pointers and terminating at target
+// maintain a ref to prev and current nodes
+// on target hit, disconnect current and rewire prev and next
+// handle target misses + head / tail targets
 
+DoublyLinkedList.prototype.remove = function (target) {
+  let current = this.head, prev = null, temp;
+  while (current && current.val !== target) {
+    prev = current
+    current = current.next
+  }
+
+  if (current === this.head) {
+    temp = current.next
+    temp.prev = null
+    current.next = null
+    this.head = temp
+  } else if (current === this.tail) {
+    prev.next = null
+    current.prev = null
+    this.tail = prev
+  } else {
+    temp = current.next
+    temp.prev = prev
+    prev.next = temp
+    current.next = null
+  }
+
+  return current
 };
+
 
 module.exports = { DoublyLinkedList, Node };
