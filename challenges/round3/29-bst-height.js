@@ -21,11 +21,29 @@ Ex. the tallest height of:
 is 3, because the tallest height of the tree connects the numbers 4 - 7 - 9 - 8
 and has 3 links.
 
+approach: dfs with a depth tracker (current and max)
+// basecase: terminate when null
+// recursive case
+// - check if left leaf exists, recurse left if true
+// - check if right leaf exists, recurse right if true
+- 
+
+console.log('---depth----', currentDepth, ' ----new recursive call:', bstNode)
 */
 
+const bstHeight = bstNode => {
+  let maxDepth = 0
 
+  const depthFinder = (bstNode, currentDepth = 0) => {
+    bstNode && currentDepth > maxDepth && (maxDepth = currentDepth)
+    if (!bstNode) return
+    depthFinder(bstNode.left, currentDepth + 1)
+    depthFinder(bstNode.right, currentDepth + 1)
+  }
+  depthFinder(bstNode)
 
-const bstHeight 
+  return maxDepth
+}
 
 
 

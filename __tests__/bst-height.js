@@ -1,4 +1,4 @@
-const {BinarySearchTree, bstHeight, superbalanced} = require('../challenges/bst-height.js');
+const {BinarySearchTree, bstHeight, superbalanced} = require('../challenges/round3/29-bst-height.js');
 
 describe('bstHeight test', () => {
   it('finds the height of a binary search tree', () => {
