@@ -45,7 +45,7 @@ describe('bstReverse test', () => {
   });
 });
 
-xdescribe('sortedArrayToBST test', () => {
+describe('sortedArrayToBST test', () => {
   let bstResult, bstTest;
   it('creates small binary search trees', () => {
     bstResult = sortedArrayToBST([]);

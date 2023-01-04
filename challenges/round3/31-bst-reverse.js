@@ -1,7 +1,7 @@
-function BinarySearchTree(value) {
+function BinarySearchTree(value, left = null, right = null) {
   this.value = value;
-  this.right = null;
-  this.left = null;
+  this.left = left;
+  this.right = right;
 }
 
 /*
@@ -52,9 +52,7 @@ const bstReverse = node => {
 
 
 
-
-
-/*
+/* --------------------------------------------------------------------------------
 
 Extension:
 
@@ -66,7 +64,7 @@ which the depth of the two subtrees of every node never differ by more than 1.
 
 Ex:
 
-Given the sorted array: [0, 3, 4, 6, 8, 9], the output is:
+Given the sorted array: [0, 3, 4, 6, 8], the output is:
 
      6 
    /   \
@@ -87,11 +85,23 @@ giving us:
 (i.e. choose the 7 over the 4 to place at the top of the entire tree, and then
 the 4 over the 1 to place at the top of the left subtree. Hint: look up the
 Math.ceil function)
+input: array of nums
+output: bst node or null
+givens:
+- prioritize right most value 
+approach: recursively create a new Node for the middle value of the range 
+                (midpair-right on even length arrays)
+- pass sliced arrays to recurive calls as left and right props to create children nodes
+- terminate recursion on empty array
+edges:
+- unsorted input (assume sorted - yes)
+timespace: linear on both counts
 
 */
 
-const sortedArrayToBST = arr => {
-  
-};
+const sortedArrayToBST = (arr, midIdx = Math.floor(arr.length / 2)) => (arr.length)
+  ? new BinarySearchTree(arr[midIdx], sortedArrayToBST(arr.slice(0, midIdx)), sortedArrayToBST(arr.slice(midIdx + 1))) 
+  : null
+
 
 module.exports = {BinarySearchTree, bstReverse, sortedArrayToBST};
