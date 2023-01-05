@@ -1,4 +1,4 @@
-const { maxSubarray, kadanesMaxSubarray } = require('../challenges/max-subarray.js');
+const { maxSubarray, kadanesMaxSubarray } = require('../challenges/round3/37-max-subarray.js');
 
 describe('maxSubarray test', () => {
   let input;
