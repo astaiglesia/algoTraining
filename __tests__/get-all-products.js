@@ -1,4 +1,4 @@
-const {getAllProducts} = require('../challenges/get-all-products.js');
+const {getAllProducts} = require('../challenges/round3/36-get-all-products.js');
 
 describe('getAllProducts test', () => {
   let input, output;

@@ -18,10 +18,31 @@ this is done via:
 Be careful in this problem! What if there is a zero (or multiple zeroes) in the
 input array? How would you handle this?
 
+input: numsArray: []nums, 
+output: []nums
+givens:
+- numsArray min of length 2
+- function returns an array of products where each ele is the product reduction of all but one 
+approach:
+- iterate through array
+  - on each pass reduce array, skipping current idx
+edges: 
+timespace: quadratic
 */
 
+const getAllProducts = numsArray => {
+  const output = []
 
-const getAllProducts 
+  for (let i = 0; i < numsArray.length; i++) {
+    const product = numsArray.reduce((accum, current, idx) => {
+      return idx === i ? accum : accum * current
+    }, 1)
+    output.push(product)
+  }
+
+  return output
+}
+
 
 
 // test cases:
