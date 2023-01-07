@@ -68,17 +68,37 @@ const maxSubarray = numsArray => {
 input = [1, -2, 3, 10, -4, 7, 2, -5] 
 input2 =  [-100, -20, 5, -10]
 
-console.log('expect', maxSubarray(input), 'to equal 18')
-console.log('expect', maxSubarray(input2), 'toEqual 5')
+// console.log('expect', maxSubarray(input), 'to equal 18')
+// console.log('expect', maxSubarray(input2), 'toEqual 5')
 
 
 /*
   Extension: solve in linear time and constant space
   Hint: Kadane's Algorithm
+  -  maintain a maxSum and current Sum
+  -  iterate through array
+    - incremet current sum by current num on each pass, reassign max num as necessary
+    - if currentSum is less than 0, reset to 0 
+    - (carrying forward negative sums can only reduce any sums to the right)
+
+  linear time
 */
 
-const kadanesMaxSubarray = (arr) => {
-  
+const kadanesMaxSubarray = numsArray => {
+  let currentSum = 0,
+      maxSum = -Infinity
+
+  for (const num of numsArray) {
+    currentSum += num
+    if (currentSum > maxSum) maxSum = currentSum
+    if (currentSum < 0) currentSum = 0
+  }
+
+  return maxSum
 }
+
+
+console.log('expect', kadanesMaxSubarray(input), 'to equal 18')
+console.log('expect', kadanesMaxSubarray(input2), 'toEqual 5')
 
 module.exports = { maxSubarray, kadanesMaxSubarray };
