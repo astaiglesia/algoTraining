@@ -23,11 +23,49 @@ subsetSumClosest([], 6) -> 6
 An empty array "sums" to 0, which has an absolute difference from the target 6
 of 6.
 
+input: nums: [], target: num
+output: num
+givens:
+- function returns the distance (abs value) from the target to the closest sum of any sized subset
+- subset can be any size and of any order
+
+approach:
+- determine all possible combinations of sums for the nums array
+- init closestSum defaulted to target
+- iterate through nums
+  - subtract current and reassign closest sum if smaller
+  - 
+edges: 
+- 
+
 */
 
 const subsetSumClosest = (nums, target) => {
+  let closestDiff = target
+  let totalSum = nums.reduce((accum, current) => accum + current)
+  console.log("🚀 ~ file: 38-subset-sum-closest.js:46 ~ subsetSumClosest ~ totalSum", totalSum)
+  let currentSum = 0
+
+  const sorted = nums.sort((a, b) => a - b)
+  console.log('sorted', sorted)
   
+  for (let i = 0; i < nums.length; i++) {
+    currentSum += nums[i]
+    const currentDiff = Math.abs(target - currentSum)
+    if (currentDiff < closestDiff) closestDiff = currentDiff
+    if (closestDiff === 0) break
+  }
+
+  return closestDiff
 };
+
+// testcases
+const tester = [3, 0, -2, 9, -5, 7]
+
+
+console.log('expect', subsetSumClosest(tester, 4), 'to equal 0')
+console.log('expect', subsetSumClosest(tester, 15), 'to equal 1')
+
 
 /*
 
