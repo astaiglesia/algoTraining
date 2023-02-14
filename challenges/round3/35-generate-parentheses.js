@@ -26,8 +26,37 @@ Given n = 0, a solution set is:
   ""
 ]
 
+input: n: num
+output: array of strings
+approach:
+- track open parens with num
+- 
+
 */
 
+
+
+const generateParentheses = n => {
+  const output = []
+  const current = ''
+  for (let i = n; i > 0; i--) {
+    
+  }
+};
+
+// test cases:
+console.log(generateParentheses(2)); // <--- expect [ "(())", "()()" ]
+console.log(generateParentheses(3)); // <--- expect [ "((()))", "(()())", "(())()", "()(())", "()()()" ]
+console.log(generateParentheses(0)); // <--- expect [ "" ]
+
+
+
+module.exports = {generateParentheses};
+
+
+
+
+// ------- legacy --------
 // input:	an integer; output: an array of strings
 // find: all combinations of well formed parens in the format of strings
 // givens: an intetegers
@@ -44,17 +73,3 @@ Given n = 0, a solution set is:
 
 
 // ------- Code --------
-
-const generateParentheses = (n, output = [] ) => {
-  
-};
-
-// test cases:
-console.log(generateParentheses(2)); // <--- expect [ "(())", "()()" ]
-console.log(generateParentheses(3)); // <--- expect [ "((()))", "(()())", "(())()", "()(())", "()()()" ]
-console.log(generateParentheses(0)); // <--- expect [ "" ]
-
-// ------- Refactor --------
-
-
-module.exports = {generateParentheses};
