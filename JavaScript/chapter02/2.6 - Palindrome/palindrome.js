@@ -1,3 +1,5 @@
+// implement a function to check if the linked list is a palindrome
+
 // if doubly - move to middle, and then extend front and back to check
 // if singly - make a reversed linkedlist from the first half
 

@@ -1,3 +1,10 @@
+// URLify
+// Write a method to replace all spacesi n a string with '%20'. 
+// You may assume that the string has sufficient space at the end to hold the addittional characters.
+// You are given the true length of the string
+
+
+
 var urlify = function(str, length) {
   // have a pointer to check from start to end
   var strArr = str.split('');

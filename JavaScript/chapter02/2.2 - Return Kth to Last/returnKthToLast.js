@@ -1,3 +1,5 @@
+// implement an algorithm to find the kth to last element of a singly linked list
+
 const LinkedList = require("../util/LinkedListX");
 
 var findKthToLast = function(k, list) {

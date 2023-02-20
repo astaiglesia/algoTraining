@@ -1,3 +1,10 @@
+// String Compression
+// Implement a method to perform basic string compression using the counts of sequentially repeated characters
+// e.g. 
+// aabcccccaaa => a2b1c5a3
+// if the compressed string would not become smaller than the original string, your method should return the original string
+// assume the string only has upper and lower case letters
+
 var strComp = function(string) {
   var compressed = '';
   var currChar = '';

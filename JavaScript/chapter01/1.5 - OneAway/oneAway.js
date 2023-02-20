@@ -1,3 +1,9 @@
+// One Away
+// There are three types of edits that can be performed on strings: 
+// insert a character, remove a character, replace a character.
+// given two strings, write a function to check if they are one edit (or zero edits) away
+
+
 var oneAway = function(string1, string2) {
   // insert a char for str1 -> remove a char for str2
   var checkOneMissing = function(first, second) {

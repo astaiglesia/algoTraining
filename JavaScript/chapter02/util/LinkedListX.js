@@ -18,9 +18,9 @@ class Node {
         this.value = value
         this.next = null;
     }
-  }
+}
   
-  class LinkedList {
+class LinkedList {
     constructor() {
         this.head = null;
         this.tail = null;
@@ -135,7 +135,7 @@ class Node {
   
         return arr;
     }
-  }
+}
   
   module.exports = LinkedList;
   

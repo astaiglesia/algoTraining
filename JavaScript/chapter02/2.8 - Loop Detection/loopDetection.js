@@ -1,3 +1,6 @@
+// given a linked LinkedList, which might contain a loop
+// implement an algorithm that returns the node at the beginning of the loop if one exists
+
 var LinkedList = require('./../util/LinkedList');
 
 var loopDetection = (head) => {

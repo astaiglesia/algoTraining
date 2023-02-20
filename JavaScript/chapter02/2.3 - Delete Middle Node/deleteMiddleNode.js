@@ -1,3 +1,9 @@
+implement an algorithm to delete a node in the middle of a singly linked list
+
+input is the node to be deleted
+
+
+
 const LinkedList = require("../util/LinkedListX");
 const printList = require("../util/printList");
 

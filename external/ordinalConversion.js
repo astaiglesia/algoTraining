@@ -8,7 +8,7 @@
 // output: string
 // givens: use TDD 
 // - ordinal numbers indicate position (e.g. 1st, 2nd, 3rd, 4th-20th, 21st, 42nd, 33rd, 100th, )
-// approach: 
+// approach: concat a conditional suffix to a stringified number
 // - convert num to string
 // - access the last char of the number (toString())
 // - concat the number with the appropriate suffix

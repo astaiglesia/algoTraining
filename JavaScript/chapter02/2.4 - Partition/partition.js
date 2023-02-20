@@ -1,3 +1,10 @@
+// write code to partition a linked list around a value x, such that all nodes less than x come before all nodes greater than or equal to x
+
+// the partition element x can appear anywhere in the right partition 
+// it does not need to appear between the left and right partitions
+
+// the additional spacing in the example below indicates the partition
+
 var LinkedList = function(value) {
   this.value = value;
   this.next = null;

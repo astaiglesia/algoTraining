@@ -1,3 +1,11 @@
+// Rotate Matrix
+// Given an image represented by an N x N marix, where each pixel in the image is represented by an integer
+// Write a method to rotate the image by 90 degrees
+
+// extension: rotate in place
+
+
+
 var rotateMatrix = function(matrix) {
   var edge = matrix.length - 1;
 

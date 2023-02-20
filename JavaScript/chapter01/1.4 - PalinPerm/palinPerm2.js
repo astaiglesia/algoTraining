@@ -1,3 +1,11 @@
+// Palindrome Permutation
+// given a string, write a function to check if it is a permutation of a Palindrome
+// palindrome is a word or phrase that's the same forwards and backwards.
+// a permutationis a rearrangement of letters 
+// the palindrome isn't limited to dictionary words
+// ignore casing and non-letter characters
+
+
 function palinPerm(s) {
   const sanitized = s.toUpperCase().split(" ").join("");
   const freq = new Map();

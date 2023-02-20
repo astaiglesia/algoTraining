@@ -1,3 +1,7 @@
+// you have two nmbers represented by a linked list where each node contains a single digit
+// the digits are stored in reverse order such tahat the 1's digit is at the head of the list
+// write a function that adds the two numbers and returns the sum as a linked list
+
 const LinkedList = require('./../util/LinkedList')
 const printList = require('./../util/printList')
 

@@ -1,4 +1,29 @@
-var allUniqueChars = function(string) {
+/** Implement an algorithmto determine if a string has all unique characters
+ * 
+ * extension: 
+ * do not use additional data structures
+ * 
+ * @param str: string 
+ * @returns boolean
+ * 
+ * givens:
+ * approach:
+ * edges:
+ * timespace:
+ * 
+ *  
+ */
+
+
+const everyCharUnique = () => {
+  
+}
+
+
+
+
+
+var solution1 = function(string) {
   
   // O(n^2) approach, no additional data structures used
   // for each character, check remaining characters for duplicates
@@ -11,8 +36,7 @@ var allUniqueChars = function(string) {
   }
   return true; // if no match, return true
 };
-
-const everyCharUnique = (str, indexOffset = 'a'.charCodeAt()) => {
+const solution2 = (str, indexOffset = 'a'.charCodeAt()) => {
     let counterTable = Number();
     for(let index of [...str].map(c => c.charCodeAt() - indexOffset)) {
         const mask = 1 << index;
@@ -22,8 +46,7 @@ const everyCharUnique = (str, indexOffset = 'a'.charCodeAt()) => {
     }
     return true;
 };
-
-function everyCharUnique(str) {
+function solution3(str) {
   let obj = {};
   for (let i = 0; i < str.length; i++) {
     if (obj[str[i]] && obj[str[i]] >= 1) {

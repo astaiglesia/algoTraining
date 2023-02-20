@@ -1,3 +1,7 @@
+// write code to remove duplicates from an unsorted linked list
+
+// extension: solve without a temporary buffer
+
 // remiveDups redone
 const LinkedList = require("../util/LinkedListX");
 

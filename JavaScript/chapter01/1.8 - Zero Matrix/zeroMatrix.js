@@ -1,3 +1,9 @@
+// Zero Matrix
+// Write an algo such that if an element in an M x N matrix is 0, 
+// its entire row and column are set to 0
+
+
+
 /* Helper Functions */
 var checkZeros = function(matrix) {
   var matrixHeight = matrix.length;

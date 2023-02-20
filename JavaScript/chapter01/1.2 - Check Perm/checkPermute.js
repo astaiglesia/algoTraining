@@ -1,3 +1,8 @@
+// Check Permutation
+// Given two strings, write a method to decide if one is a permutation of the other.
+
+
+
 var checkPermute = function(stringOne, stringTwo) {
   // if different lengths, return false
   if (stringOne.length !== stringTwo.length) {
