@@ -1,4 +1,4 @@
-/** Implement an algorithmto determine if a string has all unique characters
+/** Implement an algorithm to determine if a string has all unique characters
  * 
  * extension: 
  * do not use additional data structures
@@ -7,26 +7,56 @@
  * @returns boolean
  * 
  * givens:
+ * - 
  * approach:
- * edges:
- * timespace:
+ * - create a set to track chars in string 
  * 
- *  
+ * extension:
+ * - (assume all alpha) - split and sort the string
+ * - iterate and track the previous and current
+ * 
+ * 
+ * edges:
+ * - are all chars alpha?
+ * - invalid inputs
+ * - handle spaces & numbers?
+ * 
+ * timespace:
+ * linear time 
+ * linear / constant space 
  */
 
-
-const everyCharUnique = () => {
+const everyCharUnique = string => {
+  const sortedChars = string.split('').sort();
+  let prev;
   
+  for (const char of sortedChars) {
+    if (char === prev) return false
+    prev = char;
+  }
+
+  return true;
 }
 
 
 
+/* TESTS */
+let tester = 'abdip';
+let expected = true;
+let evaluated = everyCharUnique(tester);
+console.log(`expect evaluated result of ${evaluated} to equal ${expected} => ${expected === evaluated ? 'PASS!' : 'FAIL =*/'}`);
+
+tester = 'hello';
+expected = false;
+evaluated = everyCharUnique(tester);
+console.log(`expect evaluated result of ${evaluated} to equal ${expected} => ${expected === evaluated ? 'PASS!' : 'FAIL =*/'}`);
 
 
+
+/* --- textbook solutions --- */ 
+// O(n^2) approach, no additional data structures used
+// for each character, check remaining characters for duplicates
 var solution1 = function(string) {
-  
-  // O(n^2) approach, no additional data structures used
-  // for each character, check remaining characters for duplicates
   for (var i = 0; i < string.length; i++) {
     for (var j = i + 1; j < string.length; j++) {
       if (string[i] === string[j]) {
@@ -36,6 +66,7 @@ var solution1 = function(string) {
   }
   return true; // if no match, return true
 };
+// ?? bit manipulation? left shift operator is used...?
 const solution2 = (str, indexOffset = 'a'.charCodeAt()) => {
     let counterTable = Number();
     for(let index of [...str].map(c => c.charCodeAt() - indexOffset)) {
@@ -46,6 +77,7 @@ const solution2 = (str, indexOffset = 'a'.charCodeAt()) => {
     }
     return true;
 };
+// frequency table
 function solution3(str) {
   let obj = {};
   for (let i = 0; i < str.length; i++) {
@@ -56,10 +88,12 @@ function solution3(str) {
     }
   }
   return true;
-}
+};
 
-/* TESTS */
-console.log(everyCharUnique('abcd'), 'true');
-console.log(everyCharUnique('abccd'), 'false');
-console.log(everyCharUnique('bhjjb'), 'false');
-console.log(everyCharUnique('mdjq'), 'true');
+
+// console.log(everyCharUnique('abcd'), 'true');
+// console.log(everyCharUnique('abccd'), 'false');
+// console.log(everyCharUnique('bhjjb'), 'false');
+// console.log(everyCharUnique('mdjq'), 'true');
+
+module.exports = { everyCharUnique };
