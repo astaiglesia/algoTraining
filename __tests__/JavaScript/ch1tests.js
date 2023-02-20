@@ -3,6 +3,8 @@
 // create assertions
 
 const { urlify } = require('../../JavaScript/chapter01/1.3 - URLify/urlify.js');
+const { isPalindromePermutation } = require('../../JavaScript/chapter01/1.4 - PalinPerm/palinPerm')
+
 
 describe('testing urlify logic', () => {
   let tester, length, expected;
@@ -27,3 +29,55 @@ describe('testing urlify logic', () => {
   })
 })
 
+describe('testing string if its a permutation of a palindrome', () => {
+  let tester, expected;
+
+  it('should handle empty strings', () => {
+    tester = '';
+    expected = true;
+
+    expect(isPalindromePermutation(tester)).toEqual(expected);
+  })
+  it('should handle single char strings', () => {
+    tester = 'R  ';
+    expected = true;
+
+    expect(isPalindromePermutation(tester)).toEqual(expected);
+  })
+  it('should handle strings that are palindromes', () => {
+    tester = 'racecar';
+    expected = true;
+
+    expect(isPalindromePermutation(tester)).toEqual(expected);
+  })
+  it('should handle strings that are not palindromes', () => {
+    tester = 'racecars';
+    expected = false;
+
+    expect(isPalindromePermutation(tester)).toEqual(expected);
+  })
+  it('should handle strings that are perms of a palindrome', () => {
+    tester = 'tactcoa'; // tacocat
+    expected = true;
+
+    expect(isPalindromePermutation(tester)).toEqual(expected);
+  })
+  it('should handle strings that are not perms of a palindrome', () => {
+    tester = 'tactboa';
+    expected = false;
+
+    expect(isPalindromePermutation(tester)).toEqual(expected);
+  })
+  it('should ignore spaces', () => {
+    tester = 'tact coa';
+    expected = true;
+
+    expect(isPalindromePermutation(tester)).toEqual(expected);
+  })
+  it('should ignore casing', () => {
+    tester = 'Rac Care';
+    expected = true;
+
+    expect(isPalindromePermutation(tester)).toEqual(expected);
+  })
+})
