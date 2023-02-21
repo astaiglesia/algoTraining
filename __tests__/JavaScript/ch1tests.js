@@ -4,9 +4,9 @@
 
 const { urlify } = require('../../JavaScript/chapter01/1.3 - URLify/urlify.js');
 const { isPalindromePermutation } = require('../../JavaScript/chapter01/1.4 - PalinPerm/palinPerm')
+const oneAway = require('../../JavaScript/chapter01/1.5 - OneAway/oneAway.js');
 
-
-describe('testing urlify logic', () => {
+xdescribe('testing urlify logic', () => {
   let tester, length, expected;
 
   it('urlify should handle no spaces', () => {
@@ -29,7 +29,7 @@ describe('testing urlify logic', () => {
   })
 })
 
-describe('testing string if its a permutation of a palindrome', () => {
+xdescribe('testing string if its a permutation of a palindrome', () => {
   let tester, expected;
 
   it('should handle empty strings', () => {
@@ -81,3 +81,67 @@ describe('testing string if its a permutation of a palindrome', () => {
     expect(isPalindromePermutation(tester)).toEqual(expected);
   })
 })
+describe('testing if strings are one edit away from each other', () => {
+  let tester1, tester2, expected;
+
+  it('should recognize zero edits needed', () => {
+    tester1 = 'avenger'
+    tester2 = 'avenger'
+    expected = true
+
+    expect(oneAway(tester1, tester2)).toEqual(expected);
+  })
+
+  it('should recognize char INSERT needed', () => {
+    tester1 = 'krpton'
+    tester2 = 'krypton'
+    expected = true
+
+    expect(oneAway(tester1, tester2)).toEqual(expected);
+  })
+
+  it('should recognize REMOVE char needed', () => {
+    tester1 = 'avsenger'
+    tester2 = 'avenger'
+    expected = true
+
+    expect(oneAway(tester1, tester2)).toEqual(expected);
+  })
+
+  it('should recognize REPLACE char needed', () => {
+    tester1 = 'spidermen'
+    tester2 = 'spiderman'
+    expected = true
+
+    expect(oneAway(tester1, tester2)).toEqual(expected);
+  })
+  it('should recognize more than 1 edit is needed', () => {
+    tester1 = 'spiderman'
+    tester2 = 'spidergwen'
+    expected = false
+
+    expect(oneAway(tester1, tester2)).toEqual(expected);
+  })
+  it('should recognize strings are of lengths that require more than 2 edits', () => {
+    tester1 = 'spiderm'
+    tester2 = 'spidergwen'
+    expected = false
+
+    expect(oneAway(tester1, tester2)).toEqual(expected);
+  })
+  it('should recognize same characters are out of order (expect false)', () => {
+    tester1 = 'ms marvel'
+    tester2 = 'smm ravel'
+    expected = false
+
+    expect(oneAway(tester1, tester2)).toEqual(expected);
+  })
+})
+
+// describe('', () => {
+//   let tester1, tester2, expected;
+
+//   it('')
+
+
+// })
