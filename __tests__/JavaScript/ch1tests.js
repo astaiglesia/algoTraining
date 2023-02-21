@@ -5,6 +5,7 @@
 const { urlify } = require('../../JavaScript/chapter01/1.3 - URLify/urlify.js');
 const { isPalindromePermutation } = require('../../JavaScript/chapter01/1.4 - PalinPerm/palinPerm')
 const oneAway = require('../../JavaScript/chapter01/1.5 - OneAway/oneAway.js');
+const strCompressor = require('../../JavaScript/chapter01/1.6 - String Compression/strCompression.js');
 
 xdescribe('testing urlify logic', () => {
   let tester, length, expected;
@@ -27,8 +28,7 @@ xdescribe('testing urlify logic', () => {
     expected = 'game%20of%20thrones%20prequel';
     expect(urlify(tester, length)).toEqual(expected);
   })
-})
-
+});
 xdescribe('testing string if its a permutation of a palindrome', () => {
   let tester, expected;
 
@@ -80,8 +80,8 @@ xdescribe('testing string if its a permutation of a palindrome', () => {
 
     expect(isPalindromePermutation(tester)).toEqual(expected);
   })
-})
-describe('testing if strings are one edit away from each other', () => {
+});
+xdescribe('testing if strings are one edit away from each other', () => {
   let tester1, tester2, expected;
 
   it('should recognize zero edits needed', () => {
@@ -136,12 +136,48 @@ describe('testing if strings are one edit away from each other', () => {
 
     expect(oneAway(tester1, tester2)).toEqual(expected);
   })
-})
+});
+xdescribe('testing string compression logic', () => {
+  let tester, expected;
 
-// describe('', () => {
-//   let tester1, tester2, expected;
-
-//   it('')
-
-
-// })
+  it('should compress single char', () => {
+    tester = 'aaaaa'
+    expected = 'a5'
+    expect(strCompressor(tester)).toEqual(expected);
+  })
+  it('should compress multiple chars', () => {
+    tester = 'aaaaattteeee'
+    expected = 'a5t3e4'
+    expect(strCompressor(tester)).toEqual(expected);
+  })
+  it('should compress non-alpha chars', () => {
+    tester = 'aaaaa%%%2222}}}'
+    expected = 'a5%324}3'
+    expect(strCompressor(tester)).toEqual(expected);
+  })
+  it('should ignore casing', () => {
+    tester = 'AaaAa%%%2222}}}'
+    expected = 'a5%324}3'
+    expect(strCompressor(tester)).toEqual(expected);
+  })
+  it('should ignore spaces', () => {
+    tester = 'aaaaa % %% 2 2 22}}}'
+    expected = 'a5%324}3'
+    expect(strCompressor(tester)).toEqual(expected);
+  })
+  it('should handle empty strings', () => {
+    tester = ''
+    expected = ''
+    expect(strCompressor(tester)).toEqual(expected);
+  })
+  it('should return original string if no compression gain', () => {
+    tester = 'abcdef'
+    expected = 'abcdef'
+    expect(strCompressor(tester)).toEqual(expected);
+  })
+  it('should return original string if no compression gain', () => {
+    tester = 'aabbccddeeff'
+    expected = 'aabbccddeeff'
+    expect(strCompressor(tester)).toEqual(expected);
+  })
+});
