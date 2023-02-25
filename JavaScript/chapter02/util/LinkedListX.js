@@ -109,21 +109,22 @@ class LinkedList {
   
     removeAt(index) {
       let i = 0;
-      let cur = this.head;
+      let current = this.head;
       let prev = null;
   
-      while (cur != null) {
+      while (current != null) {
         if (i == index) {
-          // remove
-          if (prev == null)
-            this.head = cur.next;
-          else prev.next = cur.next;
-          cur.next = null;
-          return cur.value;
+          if (current === this.head) this.shift();
+          else if (current === this.tail) this.pop();
+          else {
+            prev.next = current.next;
+            current.next = null;
+            return current;
+          }
         }
         else {
-          prev = cur;
-          cur = cur.next;
+          prev = current;
+          current = current.next;
           i++;
         }
       }
