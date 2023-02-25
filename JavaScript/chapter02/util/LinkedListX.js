@@ -25,57 +25,86 @@ class LinkedList {
         this.head = null;
         this.tail = null;
     }
-  
-    append(value) {
-        let node = new Node(value);
-        // if list is empty
+
+          
+    unshift(value) {
+        const newNode = new Node(value);
+        
         if (!this.head) {
-            this.head = node;
-            this.tail = node;
+            this.head = newNode;
+            this.tail = newNode;
         }
         else {
-            this.tail.next = node;
-            this.tail = node;
+            newNode.next = this.head;
+            this.head = newNode;
         }
+
+        return this.head
     }
-  
-    prepend(value) {
-        let node = new Node(value);
-        node.next = this.head;
-        this.head = node;
-    }
-  
-    pop() {
-        let cur = this.head;
-  
-        // only one or no item exists
-        if (!cur) return null;
-        if (!cur.next) {
-            this.head = null;
-            return cur;
-        }
-        // move till the 2nd last
-        while (cur.next.next)
-            cur = cur.next;
+
+    push(value) {
+        const newNode = new Node(value);
         
-        let last = this.tail;
-        this.tail = cur;
-        this.tail.next = null;
-        return last;
-    }
-  
-    popFirst() {
-        let first = this.head;
-        if (this.head && this.head.next) {
-            this.head = this.head.next;
-            first.next = null;
+        if (!this.head) {
+            this.head = newNode;
+            this.tail = newNode;
         }
-        else this.head = null;
-        return first;
+        else {
+            this.tail.next = newNode;
+            this.tail = newNode;
+        }
+
+        return this.head;
+    }
+
+  
+    pop() {                                     // removes and returns current tail
+        let current = this.head,                // set up pointers
+            prev = null;
+                                                // --- handle edges
+        if (!current) return null;              // - no head
+        if (!current.next) {                    // - single node list
+            this.head = null;
+            this.tail = null;
+
+            return current;
+        }
+        
+        while (current.next) {                  // traverse to tail
+            prev = current;
+            current = current.next;
+        }
+        
+        prev.next = null;                       // disconnect current tail and rewire
+        this.tail = prev;
+
+        return current;                         
     }
   
+    shift() {                                   // removes and returns current head
+        let current = this.head;
+                                                // --- handle edges
+        if (!current) return null;              // - no head
+        if (!current.next) {                    // - single node list
+            this.head = null;
+            this.tail = null;
+
+            return current;
+        }
+
+        this.head = current.next;               // disconnect current head and rewire
+        current.next = null;
+        
+        return current;
+    }
+  
+
     head() {
         return this.head;
+    }
+
+    tail() {
+        return this.tail;
     }
   
     removeAt(index) {
@@ -121,9 +150,7 @@ class LinkedList {
         return false;
     }
   
-    tail() {
-        return this.tail;
-    }
+
   
     _toArray() {
         let arr = [];
