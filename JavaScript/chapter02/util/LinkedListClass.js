@@ -67,6 +67,19 @@ class LinkedList {
 
 		return this;
 	}
+	
+	pushNode(node) {
+		if (!this.head) {
+				this.head = node;
+				this.tail = node;
+		}
+		else {
+				this.tail.next = node;
+				this.tail = node;
+		}
+
+		return this;
+	}
 
 	pop() {                                     
 		let current = this.head,                // set up pointers

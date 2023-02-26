@@ -1,88 +1,88 @@
-// write code to partition a linked list around a value x, such that all nodes less than x come before all nodes greater than or equal to x
+/** PARTITION()
+ *  prompt: 
+ *    write code to partition a linked list around a value x
+ *    such that all nodes less than x come before all nodes greater than or equal to x
+ *  IMPORTANT: 
+ *    the partition element x can appear anywhere in the right partition 
+ *    element x does not need to appear between the left and right partitions
+ * 
+ *  EXAMPLE:
+ *  inputs: list: 3 > 5 > 8 > 5 > 10 > 2 > 1; partition = 5
+ *  output: 3 > 1 > 2     >     10 > 5 > 5 > 8
+ */
 
-// the partition element x can appear anywhere in the right partition 
-// it does not need to appear between the left and right partitions
+const { LinkedList } = require('../util/LinkedListClass.js')
 
-// the additional spacing in the example below indicates the partition
+/**
+ * input: list: LL head, partition: number
+ * output: LL head
+ * givens:
+ * - less than partition value to the left grouping
+ * - greater than or equal to part val to the right grouping
+ * approach: 
+ *  create new lists and merge the two - linear time, constant space
+ *  - create pushNode method / helper function that inserts a node at tail
+ *  - traverse list
+ *    - shift nodes and conditionally push to the proper partition group
+ *    - merge the two lists (i.e. assign right head to left group tail property)
+ * 
+ * alt1: 
+ * > linear time, constant space
+ * - create an output list 
+ * - traverse list and shift til current is null 
+ *    - unshift() vals smaller than partition target to output list
+ *    - else push() to output
+ * 
+ * alt2: 
+ * > quadratic time + constant space
+ * - get length of list 
+ * - traverse list 
+ *  - maintain 
+ *    - counter init to 0
+ *    - current node
+ *  - while counter < length
+ *  - if current greater than or equal to partition
+ *    - update current 
+ *    - removeAt counter and push
+ *  - else increment counter + update current
+ * edges:
+ * - invalid inputs
+ * - order of elements in partition does not seem to matter?
+ * timespace:
+ * - linear time, constant space
+ */
 
-var LinkedList = function(value) {
-  this.value = value;
-  this.next = null;
-};
 
-var partition = function(head, partition) {
-  // approach is to create left and right threads
-  // and attach nodes with values less than partition value to the left
-  // and nodes with vallues more than partition value to the right
-  var left;
-  var middle;
-  var right;
-  var currLeft = null;
-  var currMiddle = null;
-  var currRight = null;
+const partition = (list, partTarget) => {
+  const leftGroup = new LinkedList();               // init partitions
+  const rightGroup = new LinkedList();
 
-  var node = head;
-  while (node !== null) {
-    if (node.value < partition) {
-      if (currLeft === null) {
-        left = node;
-        currLeft = left;
-      } else {
-        currLeft.next = node;
-        currLeft = currLeft.next;
-      }
-    } else if (node.value === partition) {
-      if (currMiddle === null) {
-        middle = node;
-        currMiddle = middle;
-      } else {
-        currMiddle.next = node;
-        currMiddle = currMiddle.next;
-      }
-    } else {
-      if (currRight === null) {
-        right = node;
-        currRight = right;
-      } else {
-        currRight.next = node;
-        currRight = currRight.next;
-      }
-    }
-    node = node.next;
+  let current = list.head;                          // init pointer
+  while (current) {                                 // traverse the list
+    const next = current.next;
+    current.value < partTarget                      // conditionally populate partitions with shifted nodes
+      ? leftGroup.pushNode(list.shift())
+      : rightGroup.pushNode(list.shift());
+    current = next;
   }
-  currRight.next = null;
-  // connect the left values with those matching the partition value
-  currLeft.next = middle;
-  // connect the middle with the right partitions
-  currMiddle.next = right;
-  return left; // return head of new linkedList
-};
 
-/* TESTS */
-// Input: 3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1 [partition = 5]
-// Output: 3 -> 2 -> 1 -> 5 -> 5 -> 8 -> 10
+  leftGroup.tail.next = rightGroup.head;            // merge lists
+  leftGroup.tail = rightGroup.tail;
 
-var printList = function(a) {
-  while (a !== null) {
-    console.log(a.value);
-    a = a.next;
-  }
-};
+  return leftGroup;
+}
 
-var a = new LinkedList(3);
-var b = new LinkedList(5);
-var c = new LinkedList(8);
-var d = new LinkedList(5);
-var e = new LinkedList(10);
-var f = new LinkedList(2);
-var g = new LinkedList(1);
 
-a.next = b;
-b.next = c;
-c.next = d;
-d.next = e;
-e.next = f;
-f.next = g;
 
-var newa = partition(a, 5);
-printList(newa);
+module.exports = { partition }
+
+
+/** Reminder on garbage collection
+ * Since Javascript is garbage collected, you don't need to delete objects themselves 
+ * - they will be removed when there is no way to refer to them anymore.
+ * 
+ * It can be useful to delete references to an object if you are finished with them, 
+ * because this gives the garbage collector more information about what is able to be reclaimed. 
+ * If references remain to a large object, this can cause it to be unreclaimed 
+ * - even if the rest of your program doesn't actually use that object.
+ */
