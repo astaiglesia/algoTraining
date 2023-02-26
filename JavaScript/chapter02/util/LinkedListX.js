@@ -14,9 +14,9 @@ remove(Node)*         -> Remove Node from the list
 // NOTE: no type-safety
 
 class Node {
-    constructor(value) {
+    constructor(value, next) {
         this.value = value
-        this.next = null;
+        this.next = next || null;
     }
 }
   
@@ -26,6 +26,17 @@ class LinkedList {
         this.tail = null;
     }
 
+    length() {
+        let counter = 0,
+            current = this.head;
+
+        while (current) {
+            counter += 1;
+            current = current.next;
+        }
+
+        return counter;
+    }
           
     unshift(value) {
         const newNode = new Node(value);
@@ -107,6 +118,21 @@ class LinkedList {
         return this.tail;
     }
   
+    find(index) {
+      let i = 0;
+      let current = this.head;
+      let prev = null;
+
+      while (current != null) {
+        if (i == index) return current
+        prev = current;
+        current = current.next;
+        i++;   
+      }
+
+      return undefined;
+    }
+
     removeAt(index) {
       let i = 0;
       let current = this.head;
@@ -165,7 +191,7 @@ class LinkedList {
     }
 }
   
-  module.exports = LinkedList;
+  module.exports = { LinkedList, Node };
   
   /* TEST */
   
