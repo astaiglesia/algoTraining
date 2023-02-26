@@ -23,11 +23,7 @@ timespace:
 const urlify = str => str.replaceAll(' ', '%20');
 
 
-
-
-
-
-module.exports = { urlify };
+module.exports = urlify;
 
 
 /* TEXT SOLUTIONS */

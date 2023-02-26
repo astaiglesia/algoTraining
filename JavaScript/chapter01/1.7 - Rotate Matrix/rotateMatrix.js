@@ -1,12 +1,101 @@
-// Rotate Matrix
-// Given an image represented by an N x N marix, where each pixel in the image is represented by an integer
-// Write a method to rotate the image by 90 degrees
+/** Rotate Matrix
+ * Given an image represented by an N x N marix, where each pixel in the image is represented by an integer
+ * Write a method to rotate the image by 90 degrees
+ * 
+ * extension: rotate in place
+ *  
+ * */
+/**
+ * 
+ * @param matrix: 2d array
+ * @returns 2d array
+ * givens:
+ * - nxn square matrix input
+ * - assume clockwise rotation
+ * [0][0] -> [0][3]
+ * [0][1] -> [1][3]
+ * [0][2] -> [2][3]
+ * [0][3] -> [3][3]
+ * 
+ * 1/0 -> 0/2
+ * 1/1 -> 1/2
+ * 1/2 -> 2/2
+ * 1/3 -> 3/2
+ * 
+ * 2/0 -> 0/1
+ * 2/1 -> 1/1
+ * 2/2 -> 2/1
+ * 2/3 -> 3/1
+ * 
+ * 3/0 -> 0/0
+ * 3/1 -> 1/0
+ * 3/2 -> 2/0
+ * 3/3 -> 3/0
+ * 
+ * 
+ * approach: (quadratic time + quadratic space)
+ * - determine matrix dims
+ * - init an output array with necessary subarrays
+ * - track row, column
+ * - iterate through the matrix rows
+ *  - iterate through the row's columns
+ *  - populate output matrix with spec of: output[original col][max row idx - 1]
+ * 
+ * rotate in place extension:
+ * - transpose matrix then reverse columns
+ * -
+ * 
+ * edges:
+ * - invalid inputs
+ * - 
+ * timespace:
+ * - 
+ */
 
-// extension: rotate in place
+function rotateMatrix(matrix) {
+  const height = matrix.length;
+  const width = matrix[0].length;
+  const output = [];
+  matrix.forEach(() => output.push([]));
+
+  for (let row = 0; row < height; row++) {
+    for (let col = 0; col < width; col++){
+      output[col][width - 1 - row] = matrix[row][col];
+    }
+  }
+
+  return output;
+}
+function rotateMatrixInPlace(matrix) {
+  const height = matrix.length;
+  const width = matrix[0].length;
+  const output = [];
+  matrix.forEach(() => output.push([]));
+
+  for (let row = 0; row < height; row++) {
+    for (let col = 0; col < width; col++){
+      output[col][width - 1 - row] = matrix[row][col];
+    }
+  }
+
+  return output;
+}
+
+// row col   row col
+// [0][0] -> [0][3]
+// [0][1] -> [1][3]
+// [0][2] -> [2][3]
+// [0][3] -> [3][3]
+
+// new matrix position => matrix[original column][maxWidthIndex - row]
+// 
 
 
+module.exports = { rotateMatrix, rotateMatrixInPlace};
 
-var rotateMatrix = function(matrix) {
+
+// TEXT SOLUTION
+var solution = function(matrix) {
   var edge = matrix.length - 1;
 
   var movePixels = function(row, col) {
@@ -51,19 +140,19 @@ var testMatrix = [
 [1, 0, 0, 1]
 ];
 
-console.log('before:');
-console.log(testMatrix[0]);
-console.log(testMatrix[1]);
-console.log(testMatrix[2]);
-console.log(testMatrix[3]);
+// console.log('before:');
+// console.log(testMatrix[0]);
+// console.log(testMatrix[1]);
+// console.log(testMatrix[2]);
+// console.log(testMatrix[3]);
 
 rotateMatrix(testMatrix);
 
-console.log('after:');
-console.log(testMatrix[0]);
-console.log(testMatrix[1]);
-console.log(testMatrix[2]);
-console.log(testMatrix[3]);
+// console.log('after:');
+// console.log(testMatrix[0]);
+// console.log(testMatrix[1]);
+// console.log(testMatrix[2]);
+// console.log(testMatrix[3]);
 
 /*
 var edge = n - 1;

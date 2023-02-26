@@ -2,10 +2,11 @@
 // create describe block for grouping unit test assertions
 // create assertions
 
-const { urlify } = require('../../JavaScript/chapter01/1.3 - URLify/urlify.js');
-const { isPalindromePermutation } = require('../../JavaScript/chapter01/1.4 - PalinPerm/palinPerm')
+const urlify = require('../../JavaScript/chapter01/1.3 - URLify/urlify.js');
+const isPalindromePermutation = require('../../JavaScript/chapter01/1.4 - PalinPerm/palinPerm')
 const oneAway = require('../../JavaScript/chapter01/1.5 - OneAway/oneAway.js');
 const strCompressor = require('../../JavaScript/chapter01/1.6 - String Compression/strCompression.js');
+const { rotateMatrix, rotateMatrixInPlace } = require('../../JavaScript/chapter01/1.7 - Rotate Matrix/rotateMatrix.js');
 
 xdescribe('testing urlify logic', () => {
   let tester, length, expected;
@@ -181,3 +182,52 @@ xdescribe('testing string compression logic', () => {
     expect(strCompressor(tester)).toEqual(expected);
   })
 });
+describe('testing matrix rotation logic', () => {
+  let tester, expected;
+
+  it('should rotate an n x n matrix clockwise 90 degrees', () => {
+    tester = [
+      [1, 2, 3, 4],
+      [0, 1, 2, 3],
+      [0, 0, 1, 2],
+      [1, 0, 0, 1]
+    ] 
+    expected = [
+      [1, 0, 0, 1],
+      [0, 0, 1, 2],
+      [0, 1, 2, 3],
+      [1, 2, 3, 4]
+    ] 
+    expect(rotateMatrix(tester)).toEqual(expected)
+  })
+  it('should rotate IN PLACE an n x n matrix clockwise 90 degrees', () => {
+    tester = [
+      [1, 2, 3, 4],
+      [0, 1, 2, 3],
+      [0, 0, 1, 2],
+      [1, 0, 0, 1]
+    ] 
+    expected = [
+      [1, 0, 0, 1],
+      [0, 0, 1, 2],
+      [0, 1, 2, 3],
+      [1, 2, 3, 4]
+    ] 
+    expect(rotateMatrixInPlace(tester)).toEqual(expected)
+  })
+  it('should rotate matrix IN PLACE and return ref to input matrix', () => {
+    tester = [
+      [1, 2, 3, 4],
+      [0, 1, 2, 3],
+      [0, 0, 1, 2],
+      [1, 0, 0, 1]
+    ] 
+    expected = [
+      [1, 0, 0, 1],
+      [0, 0, 1, 2],
+      [0, 1, 2, 3],
+      [1, 2, 3, 4]
+    ] 
+    expect(rotateMatrixInPlace(tester)).toBe(tester)
+  })
+})

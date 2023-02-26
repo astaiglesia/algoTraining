@@ -5,7 +5,38 @@
 const { LinkedList, Node } = require('../../JavaScript/chapter02/util/LinkedListX.js');
 const { removeDuplicates } = require('../../JavaScript/chapter02/2.1 - Remove Dups/removeDups.js');
 const { kthToLast } = require('../../JavaScript/chapter02/2.2 - Return Kth to Last/returnKthToLast');
+const { deleteMidNode } = require('../../JavaScript/chapter02/2.3 - Delete Middle Node/deleteMiddleNode')
 
+describe('testing logic to delete a node betwen the head and tail', () => {
+  const testList = new LinkedList();
+  let target,
+      expected;
+  for (const val of  [1, 2, 3, 4, 5, 6]) testList.push(val);
+
+  it('should return null for null inputs', () => {
+    target = null;
+    expected = null;
+    expect(deleteMidNode(target)).toEqual(expected);
+  });
+  it('should return null for head node inputs', () => {
+    target = testlist.head;
+    expected = null;
+    expect(deleteMidNode(target)).toEqual(expected);
+  });
+  it('should return null for tail node inputs', () => {
+    target = testList.tail;
+    expected = null;
+    expect(deleteMidNode(target)).toEqual(expected);
+  });
+  it('should remove a middle node', () => {
+    target = targetList.find(3);
+    expected = new LinkedList();
+    for (const val of  [1, 2, 3, 5, 6]) expected.push(val);
+
+    expect(deleteMidNode(target)).toEqual(expected);
+  });
+
+})
 
 describe('testing logic to find the kth to the last node of a singly linked list', () => {
   let testList = new LinkedList(), 

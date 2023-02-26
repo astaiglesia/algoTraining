@@ -32,8 +32,6 @@ edges:
 timespace:
 - linear time
 - constant space
- * 
- * 
  */
 
 
