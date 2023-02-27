@@ -169,7 +169,7 @@ describe('testing logic to sum linked lists integers - reverse store', () => {
 
     expect(sumLists(testlist1, testlist2)).toEqual(expected);
   });
-  it('should handle uneven linked lists integers', () => {
+  it('should handle uneven list lengths', () => {
     for (const digit of [5, 9, 2, 3]) testlist2.push(digit);
     for (const digit of [2, 1, 9, 3]) expected.push(digit);
 
@@ -193,14 +193,26 @@ describe('testing logic to sum linked list integers - forward store', () => {
   })
 
   it('should return a linked list representation of the integer sum', () => {
-    for (const digit of [5, 9, 2]) testlist2.push(digit);
-    for (const digit of [1, 2, 0, 8]) expected.push(digit);
+    for (const digit of [1, 1, 1]) testlist2.push(digit);
+    for (const digit of [8, 2, 7]) expected.push(digit);
 
     expect(sumListsForward(testlist1, testlist2)).toEqual(expected);
   });
-  it('should handle uneven linked lists integers', () => {
+  it('should handle passing back a leading 1', () => {
+    for (const digit of [5, 9, 2]) testlist2.push(digit);
+    for (const digit of [1, 3, 0, 8]) expected.push(digit);
+
+    expect(sumListsForward(testlist1, testlist2)).toEqual(expected);
+  });
+  it('should handle uneven list lengths', () => {
     for (const digit of [5, 9, 2, 3]) testlist2.push(digit);
     for (const digit of [6, 6, 3, 9]) expected.push(digit);
+
+    expect(sumListsForward(testlist1, testlist2)).toEqual(expected);
+  });
+  it('should handle very uneven lists lengths', () => {
+    for (const digit of [5, 9, 2, 3, 4, 6]) testlist2.push(digit);
+    for (const digit of [5, 9, 3, 0, 6, 2]) expected.push(digit);
 
     expect(sumListsForward(testlist1, testlist2)).toEqual(expected);
   });

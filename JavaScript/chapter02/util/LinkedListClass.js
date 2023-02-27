@@ -52,6 +52,19 @@ class LinkedList {
 
 		return this;
 	}
+	
+	unshiftNode(node) {
+		if (!this.head) {
+				this.head = node;
+				this.tail = node;
+		}
+		else {
+				node.next = this.head;
+				this.head = node;
+		}
+
+		return this;
+	}
 
 	push(value) {
 		const newNode = new Node(value);
@@ -67,7 +80,7 @@ class LinkedList {
 
 		return this;
 	}
-	
+
 	pushNode(node) {
 		if (!this.head) {
 				this.head = node;
