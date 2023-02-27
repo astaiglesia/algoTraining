@@ -3,6 +3,7 @@ const { removeDuplicates } = require('../../JavaScript/chapter02/2.1 - Remove Du
 const { kthToLast } = require('../../JavaScript/chapter02/2.2 - Return Kth to Last/returnKthToLast');
 const { deleteMidNode } = require('../../JavaScript/chapter02/2.3 - Delete Middle Node/deleteMiddleNode');
 const { partition } = require('../../JavaScript/chapter02/2.4 - Partition/partition.js');
+const { sumLists, sumListsForward, sumListsRecursive } = require('../../JavaScript/chapter02/2.5 - Sum Lists/sumLists.js');
 
 describe('testing logic to delete a node betwen the head and tail', () => {
   let target, expected, testList;
@@ -149,5 +150,86 @@ describe('testing logic to partition a linked list', () => {
 
     expect(evalRight).toEqual(expect.arrayContaining(expected));
     expect(evalRight.length).toEqual(expected.length);
+  });
+});
+
+describe('testing logic to sum linked lists integers - reverse store', () => {
+  let testlist1, testlist2, expected;
+
+  beforeEach(() => {
+    testlist1 = new LinkedList(); 
+    testlist2 = new LinkedList(); 
+    expected = new LinkedList();
+    for (const digit of [7, 1, 6]) testlist1.push(digit);
+  })
+
+  it('should return a linked list representation of the integer sum', () => {
+    for (const digit of [5, 9, 2]) testlist2.push(digit);
+    for (const digit of [2, 1, 9]) expected.push(digit);
+
+    expect(sumLists(testlist1, testlist2)).toEqual(expected);
+  });
+  it('should handle uneven linked lists integers', () => {
+    for (const digit of [5, 9, 2, 3]) testlist2.push(digit);
+    for (const digit of [2, 1, 9, 3]) expected.push(digit);
+
+    expect(sumLists(testlist1, testlist2)).toEqual(expected);
+  });
+  it('should handle empty input lists ', () => {
+    for (const digit of [7, 1, 6]) expected.push(digit);
+
+    expect(sumLists(testlist1, testlist2)).toEqual(expected);
+  });
+});
+
+describe('testing logic to sum linked list integers - forward store', () => {
+  let testlist1, testlist2, expected;
+
+  beforeEach(() => {
+    testlist1 = new LinkedList(); 
+    testlist2 = new LinkedList(); 
+    expected = new LinkedList();
+    for (const digit of [7, 1, 6]) testlist1.push(digit);
+  })
+
+  it('should return a linked list representation of the integer sum', () => {
+    for (const digit of [5, 9, 2]) testlist2.push(digit);
+    for (const digit of [1, 2, 0, 8]) expected.push(digit);
+
+    expect(sumListsForward(testlist1, testlist2)).toEqual(expected);
+  });
+  it('should handle uneven linked lists integers', () => {
+    for (const digit of [5, 9, 2, 3]) testlist2.push(digit);
+    for (const digit of [6, 6, 3, 9]) expected.push(digit);
+
+    expect(sumListsForward(testlist1, testlist2)).toEqual(expected);
+  });
+  it('should handle empty input lists ', () => {
+    for (const digit of [7, 1, 6]) expected.push(digit);
+
+    expect(sumListsForward(testlist1, testlist2)).toEqual(expected);
+  });
+});
+
+xdescribe('testing logic to sum linked lists integers - recursive', () => {
+  let testlist1 = new LinkedList(), 
+      testlist2 = new LinkedList(), 
+      expected = new LinkedList();
+
+  beforeAll(() => {
+    for (const digit of [7, 1, 6]) testlist1.push(digit);
+  })
+
+  it('should return a linked list representation of the integer sum', () => {
+    for (const digit of [5, 9, 2]) testlist2.push(digit);
+    for (const digit of [2, 1, 9]) expected.push(digit);
+
+    expect(sumListsRecursive(testlist1, testlist2)).toEqual(expected);
+  });
+  it('should handle uneven linked lists integers', () => {
+    for (const digit of [5, 9, 2, 3]) testlist2.push(digit);
+    for (const digit of [2, 1, 9, 3]) expected.push(digit);
+
+    expect(sumListsRecursive(testlist1, testlist2)).toEqual(expected);
   });
 });

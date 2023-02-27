@@ -1,95 +1,80 @@
-var LinkedList = require('./../util/LinkedList');
-var printList = require('./../util/printList');
+const { LinkedList, Node } = require('../util/LinkedListClass.js');
+/** sumLists()
+ *  You have two numbers represented by linked lists where each node contains a single digit
+ *  - digits are stored in reverse order (i.e. the 1's digit is stored at the head node)
+ *  
+ *  Write a function that adds the two numbers and returns the sum as a linked list. 
+ * 
+ *  DO NOT CONVERT LISTS INTO INTEGERS
+ * 
+ *  EXAMPLE:
+ *  input: [7 -> 1 -> 6] + [5 -> 9 -> 2]
+ *  output: [2 -> 1 -> 9]
+ * 
+ *  Extension 1:
+ *  Solve for digits stored in forward order
+ *  
+ *  EXAMPLE:
+ *  input: [7 -> 1 -> 6] + [5 -> 9 -> 2 -> 3]
+ *  output: [6 -> 6 -> 3 -> 9]
+ * 
+ *  Extension 2: solve recursively
+ * 
+ */
 
-var sumList = function(head1, head2) {
-  
-  var node1 = head1;
-  var node2 = head2;
-  var node3 = null;
-  var head3 = null;
-  
-  var ones;
-  var tens = 0;
-  var sum;
-  
-  while (node1 !== null && node2 !== null) {
-    if (node1 === null) {
-      sum = node2.value;
-    } else if (node2 === null) {
-      sum = node1.value;
-    } else {
-      sum = node1.value + node2.value;
-    }
+/**
+ * @param {LinkedList} list1 
+ * @param {LinkedList} list2 
+ * returns: LinkedList
+ * givens: 
+ * - lists represent individual integer digits in reverse
+ * approach:
+ * - sequentially traverse the lists 
+ *  - maintain a pow integer base 10 and current pointer, incremented on each pass
+ *  - maintain a remainder integer added to each node value
+ *  - build an output list with each current value multiplied by 10 raised by the pow
+ * edges:
+ * - invalid inputs
+ * - # handle empty lists
+ * - handle uneven lists ## add test for longer testlist1
+ * timespace:
+ * - linear time and space
+ */
 
-    sum += tens;
-    ones = sum % 10;
-    if (node3 === null) {
-      head3 = new LinkedList(ones);
-      node3 = head3;
-    } else {
-      node3.next = new LinkedList(ones);
-      node3 = node3.next;
-    }
 
-    tens = Math.floor(sum / 10);
+const sumLists = (list1, list2) => {
+  const output = new LinkedList();
 
-    if (node1 !== null) {
-      node1 = node1.next;
-    }
+  let current1 = list1.head,
+      current2 = list2.head,
+      carryA1 = 0;
 
-    if (node2 !== null) {
-      node2 = node2.next;
-    }
-
+  while (current1 || current2 || carryA1) {
+    const currentSum = (current1 ? current1.value : 0) + (current2 ? current2.value : 0) + carryA1;
+    const currentDigit = currentSum % 10;
+    const newNode = new Node(currentDigit);
+    
+    output.pushNode(newNode);
+    current1 = current1?.next;
+    current2 = current2?.next;
+    carryA1 = currentSum > 9 ? 1 : 0;
   }
-  if (tens > 0) {
-    node3.next = new LinkedList(tens);
-    node3 = node3.next;
-  }
 
-  return head3;
-};
+  return output;
+}
 
-/* TEST */
+// *  EXAMPLE:
+// *  input:       [7 -> 1 -> 6] 
+//          + [5 -> 9 -> 2 -> 3]
+// *  output: [6 -> 6 -> 3 -> 9]
 
-// Input: (7 -> 1 -> 6) + (5 -> 9 -> 2). this case refers to 617 + 295
-// Output: 2 -> 1 -> 9. the answer refers to 912
+const sumListsForward = (list1, list2) => {
 
-var a = new LinkedList(7);
-var b = new LinkedList(1);
-var c = new LinkedList(6);
+}
 
-a.next = b;
-b.next = c;
+const sumListsRecursive = (list1, list2) => {
 
-var d = new LinkedList(5);
-var e = new LinkedList(9);
-var f = new LinkedList(2);
+}
 
-d.next = e;
-e.next = f;
 
-var newHead = sumList(a, d);
-
-printList(newHead);
-
-// Input: (7 -> 1 -> 6) + (5 -> 9 -> 9). this case refers to 617 + 995
-// Output: 2 -> 1 -> 9. the answer refers to 1612
-
-var a = new LinkedList(7);
-var b = new LinkedList(1);
-var c = new LinkedList(6);
-
-a.next = b;
-b.next = c;
-
-var d = new LinkedList(5);
-var e = new LinkedList(9);
-var f = new LinkedList(2);
-
-d.next = e;
-e.next = f;
-
-var newHead = sumList(a, d);
-
-printList(newHead);
+module.exports = { sumLists, sumListsForward, sumListsRecursive };
