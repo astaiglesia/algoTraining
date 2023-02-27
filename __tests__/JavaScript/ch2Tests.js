@@ -163,7 +163,13 @@ describe('testing logic to sum linked lists integers - reverse store', () => {
     for (const digit of [7, 1, 6]) testlist1.push(digit);
   })
 
-  it('should return a linked list representation of the integer sum', () => {
+  it('should return a linked list representation of an integer sum', () => {
+    for (const digit of [1, 1, 1]) testlist2.push(digit);
+    for (const digit of [8, 2, 7]) expected.push(digit);
+
+    expect(sumLists(testlist1, testlist2)).toEqual(expected);
+  });
+  it('should handle carrying forward a 1', () => {
     for (const digit of [5, 9, 2]) testlist2.push(digit);
     for (const digit of [2, 1, 9]) expected.push(digit);
 
@@ -172,6 +178,12 @@ describe('testing logic to sum linked lists integers - reverse store', () => {
   it('should handle uneven list lengths', () => {
     for (const digit of [5, 9, 2, 3]) testlist2.push(digit);
     for (const digit of [2, 1, 9, 3]) expected.push(digit);
+
+    expect(sumLists(testlist1, testlist2)).toEqual(expected);
+  });
+  it('should handle very uneven list lengths', () => {
+    for (const digit of [5, 9, 2, 3, 4, 5, 1]) testlist2.push(digit);
+    for (const digit of [2, 1, 9, 3, 4, 5, 1]) expected.push(digit);
 
     expect(sumLists(testlist1, testlist2)).toEqual(expected);
   });
@@ -192,7 +204,7 @@ describe('testing logic to sum linked list integers - forward store', () => {
     for (const digit of [7, 1, 6]) testlist1.push(digit);
   })
 
-  it('should return a linked list representation of the integer sum', () => {
+  it('should return a linked list representation of an integer sum', () => {
     for (const digit of [1, 1, 1]) testlist2.push(digit);
     for (const digit of [8, 2, 7]) expected.push(digit);
 
@@ -223,24 +235,42 @@ describe('testing logic to sum linked list integers - forward store', () => {
   });
 });
 
-xdescribe('testing logic to sum linked lists integers - recursive', () => {
-  let testlist1 = new LinkedList(), 
-      testlist2 = new LinkedList(), 
-      expected = new LinkedList();
+describe('testing logic to sum linked lists integers - recursive', () => {
+  let testlist1, testlist2, expected;
 
-  beforeAll(() => {
+  beforeEach(() => {
+    testlist1 = new LinkedList(); 
+    testlist2 = new LinkedList(); 
+    expected = new LinkedList();
     for (const digit of [7, 1, 6]) testlist1.push(digit);
   })
 
-  it('should return a linked list representation of the integer sum', () => {
+  it('should return a linked list representation of an integer sum', () => {
+    for (const digit of [1, 1, 1]) testlist2.push(digit);
+    for (const digit of [8, 2, 7]) expected.push(digit);
+
+    expect(sumListsRecursive(testlist1, testlist2)).toEqual(expected);
+  });
+  it('should handle carrying forward a 1', () => {
     for (const digit of [5, 9, 2]) testlist2.push(digit);
     for (const digit of [2, 1, 9]) expected.push(digit);
 
     expect(sumListsRecursive(testlist1, testlist2)).toEqual(expected);
   });
-  it('should handle uneven linked lists integers', () => {
+  it('should handle uneven list lengths', () => {
     for (const digit of [5, 9, 2, 3]) testlist2.push(digit);
     for (const digit of [2, 1, 9, 3]) expected.push(digit);
+
+    expect(sumListsRecursive(testlist1, testlist2)).toEqual(expected);
+  });
+  it('should handle very uneven list lengths', () => {
+    for (const digit of [5, 9, 2, 3, 4, 5, 1]) testlist2.push(digit);
+    for (const digit of [2, 1, 9, 3, 4, 5, 1]) expected.push(digit);
+
+    expect(sumListsRecursive(testlist1, testlist2)).toEqual(expected);
+  });
+  it('should handle empty input lists ', () => {
+    for (const digit of [7, 1, 6]) expected.push(digit);
 
     expect(sumListsRecursive(testlist1, testlist2)).toEqual(expected);
   });
