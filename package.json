@@ -1,12 +1,12 @@
 {
-  "name": "hack-hour-la-41",
+  "name": "algotraining",
   "version": "1.0.0",
   "private": true,
   "description": "",
   "scripts": {
     "test": "jest",
     "test-hh": "bash ./scripts/run-test.sh",
-    "testAss": "bash ./scripts/run-ass.sh",
+    "testAlgo": "bash ./scripts/run-algo.sh",
     "testCode": "bash ./scripts/run-leet.sh"
 
   },

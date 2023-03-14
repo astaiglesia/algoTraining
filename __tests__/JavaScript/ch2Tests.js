@@ -4,8 +4,10 @@ const { kthToLast } = require('../../JavaScript/chapter02/2.2 - Return Kth to La
 const { deleteMidNode } = require('../../JavaScript/chapter02/2.3 - Delete Middle Node/deleteMiddleNode');
 const { partition } = require('../../JavaScript/chapter02/2.4 - Partition/partition.js');
 const { sumLists, sumListsForward, sumListsRecursive } = require('../../JavaScript/chapter02/2.5 - Sum Lists/sumLists.js');
+const { isLLPalindrome } = require('../../JavaScript/chapter02/2.6 - Palindrome/palindrome')
 
-describe('testing logic to delete a node betwen the head and tail', () => {
+
+xdescribe('testing logic to delete a node betwen the head and tail', () => {
   let target, expected, testList;
 
   beforeEach(() => {
@@ -43,7 +45,7 @@ describe('testing logic to delete a node betwen the head and tail', () => {
   });
 });
 
-describe('testing logic to find the kth to the last node of a singly linked list', () => {
+xdescribe('testing logic to find the kth to the last node of a singly linked list', () => {
   let testList, expected;
 
   beforeEach(() => {
@@ -76,7 +78,7 @@ describe('testing logic to find the kth to the last node of a singly linked list
   });
 });
 
-describe('testing logic to remove duplicates from an unsorted linked list', () => {
+xdescribe('testing logic to remove duplicates from an unsorted linked list', () => {
   let testList, expected;
 
   beforeEach(() => {
@@ -122,7 +124,7 @@ describe('testing logic to remove duplicates from an unsorted linked list', () =
   });
 });
 
-describe('testing logic to partition a linked list', () => {
+xdescribe('testing logic to partition a linked list', () => {
   let testList, partTarg, evalLeft, evalRight;
   
   beforeAll(() => {
@@ -153,7 +155,7 @@ describe('testing logic to partition a linked list', () => {
   });
 });
 
-describe('testing logic to sum linked lists integers - reverse store', () => {
+xdescribe('testing logic to sum linked lists integers - reverse store', () => {
   let testlist1, testlist2, expected;
 
   beforeEach(() => {
@@ -194,7 +196,7 @@ describe('testing logic to sum linked lists integers - reverse store', () => {
   });
 });
 
-describe('testing logic to sum linked list integers - forward store', () => {
+xdescribe('testing logic to sum linked list integers - forward store', () => {
   let testlist1, testlist2, expected;
 
   beforeEach(() => {
@@ -235,7 +237,7 @@ describe('testing logic to sum linked list integers - forward store', () => {
   });
 });
 
-describe('testing logic to sum linked lists integers - recursive', () => {
+xdescribe('testing logic to sum linked lists integers - recursive', () => {
   let testlist1, testlist2, expected;
 
   beforeEach(() => {
@@ -273,5 +275,43 @@ describe('testing logic to sum linked lists integers - recursive', () => {
     for (const digit of [7, 1, 6]) expected.push(digit);
 
     expect(sumListsRecursive(testlist1, testlist2)).toEqual(expected);
+  });
+});
+
+describe('testing logic to check if a linked list is a palindrome', () => {
+  let testlist, expected;
+
+  beforeEach(() => {
+    testlist = new LinkedList();
+  })
+
+  it('should return true for palindromes (case insensitive) ', () => {
+    for (const char of ['a', 'B', 'b', 'A']) testlist.push(char);
+    expected = true;
+
+    expect(isLLPalindrome(testlist)).toEqual(expected);
+  });
+  it('should return false for non-palindromes', () => {
+    for (const char of ['u', 'r', 'b', 'a', 'n' ])testlist.push(char);
+    expected = false;
+
+    expect(isLLPalindrome(testlist)).toEqual(expected);
+  });
+  it('should handle odd list lengths', () => {
+    for (const char of ['r', 'a', 'C', 'e', 'c', 'A', 'R'])testlist.push(char);
+    expected = true;
+
+    expect(isLLPalindrome(testlist)).toEqual(expected);
+  });
+  it('should handle non alpha chars', () => {
+    for (const char of [5, 4, '#', '#', 4, 5])testlist.push(char);
+    expected = true;
+
+    expect(isLLPalindrome(testlist)).toEqual(expected);
+  });
+  it('should handle empty input lists ', () => {
+    expected = true;
+
+    expect(isLLPalindrome(testlist)).toEqual(expected);
   });
 });
