@@ -36,6 +36,7 @@ const bstHeight = bstNode => {
 
   const depthFinder = (bstNode, currentDepth = 0) => {
     bstNode && currentDepth > maxDepth && (maxDepth = currentDepth)
+    
     if (!bstNode) return
     depthFinder(bstNode.left, currentDepth + 1)
     depthFinder(bstNode.right, currentDepth + 1)

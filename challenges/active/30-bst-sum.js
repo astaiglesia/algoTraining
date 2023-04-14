@@ -11,11 +11,37 @@ Note that the function signature is NOT defined as a method on the
 BinarySearchTree prototype. Instead, we provide the root as an argument to the
 function.
 
+input: root: BST Node
+output: number
+givens: 
+- func is not a method on the protype
+- return the sum of all nodes
+approach: 
+- dfs / bfs traversal
+- maintain a sum variable
+- utilize a stack to implementa lifo traversal
+edges: 
+- non number values
+- empty tree argument
+
+timespace: 
+
 */
 
+const bstSum = root => {
+  let sum = 0
+  const stack = [root]
 
-const bstSum = () => {
-  
+  while (stack.length) {
+    const currentNode = stack.pop()
+    current = root.left
+    if (currentNode) {
+      sum += currentNode.valuestack.push(currentNode.left)
+      sum += currentNode.valuestack.push(currentNode.right
+    }
+  }
+
+
 }
 
 // test case
