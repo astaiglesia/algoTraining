@@ -7,24 +7,28 @@ const { BSTNode } = require("../lib");
  */
 
 
+// mk2 - recursively sum the value with the max val of a nodes children
+const maxSum = node => !node 
+  ? 0 
+  : node.val + Math.max(maxSum(node.left), maxSum(node.right))
+
 // mk1 - wrap a recursive function, encapsulating max val tracker
-function maxSum(root) {
-  let currentMax = -Infinity
+// function maxSum(root) {
+//   let currentMax = -Infinity
   
-  const sumFinder = (node, currentSum = 0) => {    
-    if (!node) {
-      return((currentSum > currentMax) && (currentMax = currentSum))
-    }
+//   const sumFinder = (node, currentSum = 0) => {    
+//     if (!node) {
+//       return((currentSum > currentMax) && (currentMax = currentSum))
+//     }
 
-    currentSum += node.val
-    sumFinder(node.left, currentSum, currentMax)
-    sumFinder(node.right, currentSum, currentMax)
-  }
-  sumFinder(root)
+//     currentSum += node.val
+//     sumFinder(node.left, currentSum, currentMax)
+//     sumFinder(node.right, currentSum, currentMax)
+//   }
+//   sumFinder(root)
 
-  return currentMax
-}
-
+//   return currentMax
+// }
 
 
 /** test case
