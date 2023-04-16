@@ -20,14 +20,16 @@
  * 
  */
 
-/** Part 1 - Merge Utility
+/** ---------------------------------------------------------------- Part 1 - Merge Utility
  * You are given two sorted arrays of numbers, arrA and arrB. 
  * - A has a large enough buffer at the end to hold B
  * 
  * Merge B into A in sorted order (mutate the inputs is allowable)
  * - i.e. Do NOT create a new composite structure
  * - returned array should reference arrA's input arg's memspace
- * 
+ *  
+ */
+/** mk1 - mutates the input arrays (full merge of B into A)
  * treat arrB like a queue -> shift and process each ele: currB
  * iterate through A
  * - if currB is greater than A[idx] continue
@@ -36,39 +38,54 @@
  * 
  * ## handle equal vals
  * ## handle B values greater than last idxA
- * 
  */
+// const mergeSortedArrays = (arrA, arrB) => {
+//   let idx = 0, currA, currB = arrB.shift();  
 
-const mergeSortedArrays = (arrA, arrB) => {
-  let idx = 0, currA, currB = arrB.shift();  
-
-  while (currB) {
-    currA = arrA[idx];
+//   while (currB) {
+//     currA = arrA[idx];
     
-    (currB <= currA) &&                                       // splice smaller Bvals into A
-      (arrA.splice(idx, 0, currB), currB = arrB.shift());
-    (idx === arrA.length - 1) &&                              // if idx @end of arrA, push greater Bvals 
-      (arrA.push(currB), currB = arrB.shift());
+//     (currB <= currA) &&                                       // splice smaller Bvals into A
+//       (arrA.splice(idx, 0, currB), currB = arrB.shift());
+//     (idx === arrA.length - 1) &&                              // if idx @end of arrA, push greater Bvals 
+//       (arrA.push(currB), currB = arrB.shift());
 
-    idx++
+//     idx++
+//   }
+
+//   return arrA
+// }
+
+
+/** mk2 - returns a reference to new composite in memspace (sorted)
+ * - repeatedly compare head vals 
+ * -- shift and push the smaller to sorted
+ * - stale data left in memory
+ */ 
+const mergeSortedArrays = (arr1, arr2) => {
+  const sorted = [];
+  
+  while (arr1.length && arr2.length) {
+    (arr1[0] < arr2[0]) 
+      ? sorted.push(arr1.shift())
+      : sorted.push(arr2.shift())
   }
 
-  return arrA
+  return sorted.concat(...arr1, ...arr2)     // concats any remaining items 
 }
 
 
-
 // testcases
-const testA = [1, 3, 5, 7];
-const testB = [2, 4, 6, 8 ];
+const testA = [2, 5, 10, 57, 99];
+const testB = [9, 14, 23 ];
 
-const expected = [1, 2, 3, 4, 5, 6, 7, 8]
+const expected = [2, 5, 9, 10, 14, 23, 57, 99]
 const result = mergeSortedArrays(testA, testB);
 
 console.log(`expect ${result} to equal ${expected}: 
   ${JSON.stringify(result) === JSON.stringify(expected) ? 'PASS!!!' : 'FAIL!!!'}`)
-console.log(`expect ${result} to be ${testA}: ${result === testA ? 'PASS!!!' : 'FAIL!!!'}`)
-
+// console.log(`expect ${result} to be ${testA}: ${result === testA ? 'PASS!!!' : 'FAIL!!!'}`)
+console.log( testA, testB)
 
 
 
@@ -79,13 +96,12 @@ console.log(`expect ${result} to be ${testA}: ${result === testA ? 'PASS!!!' : '
  * Implement mergesort algorithm 
  * 
  * approach: 
- * recursively split arrays til 1 ele
+ * recursively slice arrays til 1 ele
  * - merge left and right using utility
  * 
  */
 
-const mergeSort = unsortedNums => {
-
+const mergeSort = arrOfNums => {
 
 }
 
