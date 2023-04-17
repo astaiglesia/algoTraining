@@ -1,4 +1,31 @@
 # Sorting Algorithms
+resources 
+- https://www.sitepoint.com/best-sorting-algorithms/
+
+
+<br>
+
+## Types of Sorting Algorithms
+- Comparison based: 
+  > compare elements of the data set to determine order
+  > bubbleSort, insertionSort, quickSort, mergeSort
+
+- Non-comparison based:
+  > uses properties of the data set to determine order
+  > countingSort, radixSort, bucketSort
+
+- Sort In-Place
+  > don't require additional memspace to store intermediate results
+  > bubbleSort, insrtionSort, quickSort, shellSort
+
+- Stable
+  > preserves the relative order of equal elements in the data set
+  > insertionSort, mergeSort, TimSort
+
+- Adaptive
+  > takes advantage of any existing order in the adata set to improve efficiency
+  > insertionSort, bubbleSort, TimSort
+
 
 
 ## Bubble Sort
@@ -11,40 +38,19 @@
 - decrement pointer
 - continuously making sweeps of the array until all sorted
 
-const tester = [4, 19, -23, 0, -154, 987, 345, 678]
-const expected = [-154, -23,  0, 4, 19, 345, 678, 987]
 
-### iterative:
-const bubbleSort_iterative = arrOfNums => {
-  let right = arrOfNums.length - 1,
-      left = 0
+## Insertion Sort
+**log-linear avg+worst runtime | constant memory**
 
-  // for loop
-  for (let i = 0; i < arrOfNums.length - 1; i++) {
-    while (right > left) {
-      if (arrOfNums[left] > arrOfNums[left + 1]) {
-        [ arrofNums[left], arrOfNums[left + 1] ] = [ arrofNums[left + 1], arrOfNums[left] ]
-      }
-      left += 1;
-    }
-    right -= 1;
-  }
 
-  return arrOfNums
-}  
 
-### recursive:
-const bubbleSort_recursive = (arrOfNums) => {
 
-}
 
 ## Selection Sort
 **quadratic avg+worst runtime | constant memory**
 
 
 
-## Merge Sort
-**log-linear avg+worst runtime | constant memory**
 
 
 

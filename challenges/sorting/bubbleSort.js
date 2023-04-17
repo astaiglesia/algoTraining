@@ -4,7 +4,7 @@
  *  - quadratic runtime - avg && worst cases
  *  - constant memory 
  * 
- *  approach: brute force - nested looping
+ *  approach: brute force - nested iteration
  *  - sequentially compare pairs starting from 0 to tail pointer
  *    - swap if out of order
  *    - on each pass 
@@ -13,7 +13,6 @@
  *  - repeat while tail > head
  * 
  */
-
 
 // mk1 - recursive
 function bubbleSort(list, head = 0, tail = list.length) {
@@ -28,7 +27,26 @@ function bubbleSort(list, head = 0, tail = list.length) {
   return bubbleSort(list, head, tail - 1)
 }
 
-// mk2 - iterative
+// mk2 - toggled iterative
+// function bubbleSort(list){
+//   let tail = list.length, 
+//       swapped;
+//   do {
+//     swapped = false;
+//     for (let i = 0; i < tail; i++) {
+//       if (list[i] > list[i + 1]) {
+//         [list[i], list[i + 1]] = [list[i + 1], list[i]];
+//         swapped = true;
+//       }
+//     }
+//     tail -= 1;
+//   } while (swapped)
+
+//   return list
+// }
+
+
+// mk3 - iterative
 // function bubbleSort(list) {
 //   let left = 0, 
 //       right = list.length
