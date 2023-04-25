@@ -7,18 +7,39 @@
     "test": "jest",
     "test-hh": "bash ./scripts/run-test.sh",
     "testAlgo": "bash ./scripts/run-algo.sh",
-    "testCode": "bash ./scripts/run-leet.sh"
-
+    "testCode": "bash ./scripts/run-leet.sh",
+    "ts": "npx tsc -w"
   },
-  "dependencies": {},
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  },
   "devDependencies": {
-    "jest": "^24.9.0"
+    "jest": "^24.9.0",
+    "@tsconfig/node18": "^2.0.0",
+    "@types/express": "^4.17.17",
+    "@types/node": "^18.15.12",
+    "eslint": "^8.38.0",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.27.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "prettier": "^2.8.3",
+    "sass": "^1.57.1",
+    "typescript": "^4.9.5"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "client/*"
+    ]
   },
   "repository": {
     "type": "git",
     "url": ""
   },
   "main": "index.js",
-  "author": "sunset sessions",
+  "author": "astaiglesia",
   "license": "ISC"
 }
