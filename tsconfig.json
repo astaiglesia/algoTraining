@@ -11,9 +11,9 @@
     "baseUrl": ".",
     
     "allowJs": true,
-    "outDir": "dist"
+    "outDir": "typescript/dist"
   },
   
-  "include": ["server/**/*"],
+  "include": ["typescript/**/*"],
   "exclude": ["node_modules"]
 }
