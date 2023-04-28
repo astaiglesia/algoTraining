@@ -40,9 +40,8 @@ Success!
 // returns an array of factors
 
 function primeFactors(number, factors = []) {
-  // handle edges
   if (number === 0) return Infinity;
-  if (!number) throw new Error('please provide a number argument');
+  if (!number|| number < 0) throw new Error('please provide a positive integer argument');
 
   let divisor = number;
   let i = 2;
@@ -58,8 +57,8 @@ function primeFactors(number, factors = []) {
 }
 
 // tests
-console.log(primeFactors(0)); // expect Infinity
-console.log(primeFactors(1)); // expect [null]
-console.log(primeFactors(5)); // expect [5]
-console.log(primeFactors(15)); // expect [3, 5]
-console.log(primeFactors(60)); // expect [2, 2, 3, 5]
+// console.log(primeFactors(0)); // expect Infinity
+// console.log(primeFactors(1)); // expect [null]
+// console.log(primeFactors(5)); // expect [5]
+// console.log(primeFactors(15)); // expect [3, 5]
+// console.log(primeFactors(60)); // expect [2, 2, 3, 5]
