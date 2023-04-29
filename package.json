@@ -8,6 +8,7 @@
     "test-hh": "bash ./scripts/run-test.sh",
     "testAlgo": "bash ./scripts/run-algo.sh",
     "testCode": "bash ./scripts/run-leet.sh",
+    "typescript": "bash ./scripts/run-ts.sh",
     "ts": "npx tsc -w"
   },
   "dependencies": {
